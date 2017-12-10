@@ -14,8 +14,8 @@ import com.alavpa.androidkakebo.R
  */
 open class LoadingDialog : DialogFragment() {
 
-    private var tvLoading: TextView? = null
-    private var message: String? = null
+    private lateinit var tvLoading: TextView
+    private lateinit var message: String
 
     companion object {
         private val LOADING_MESSAGE = "LOADING_MESSAGE"
@@ -25,22 +25,22 @@ open class LoadingDialog : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        tvLoading?.text = arguments.getString(LOADING_MESSAGE)
+        tvLoading.text = arguments?.getString(LOADING_MESSAGE)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(R.layout.dialog_loading, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.dialog_loading, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tvLoading = getView()?.findViewById(R.id.tv_loading)
-        tvLoading?.text = message
+        tvLoading = view.findViewById(R.id.tv_loading)
+        tvLoading.text = message
 
     }
 
-    fun show(message: String?, parent: AppCompatActivity) {
+    fun show(message: String, parent: AppCompatActivity) {
         this.message = message
         show(parent.supportFragmentManager, TAG)
     }

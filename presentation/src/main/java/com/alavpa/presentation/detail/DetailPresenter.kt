@@ -32,7 +32,7 @@ class DetailPresenter(val view: DetailView) : BasePresenter() {
                     model.categories = list
                 },
                 { view.render(model) },
-                { t -> view.showError(t.message) },
+                { t -> view.showError(t.message!!) },
                 { view.stopLoading() })
     }
 
@@ -44,7 +44,7 @@ class DetailPresenter(val view: DetailView) : BasePresenter() {
                     insertSpend.run()
                 },
                 { view.render(model) },
-                { t -> view.showError(t.message) },
+                { t -> view.showError(t.message!!) },
                 {
                     view.stopLoading()
                     view.finish()

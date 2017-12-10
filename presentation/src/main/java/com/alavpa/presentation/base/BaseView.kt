@@ -5,7 +5,7 @@ package com.alavpa.presentation.base
  */
 interface BaseView {
 
-    fun startLoading(message : String?)
+    fun startLoading(message : String)
     fun stopLoading()
-    fun showError(message : String?)
+    fun showError(message : String)
 }
