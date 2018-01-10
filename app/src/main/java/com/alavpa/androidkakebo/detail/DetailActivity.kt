@@ -55,11 +55,6 @@ class DetailActivity : BaseActivity(), DetailView {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        presenter.init()
-    }
-
     override fun render(model: DetailViewModel) {
         adapter.items = model.categories
         adapter.itemSelected = model.selectedCategory
