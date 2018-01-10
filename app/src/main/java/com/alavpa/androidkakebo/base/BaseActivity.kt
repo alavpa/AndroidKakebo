@@ -1,29 +1,15 @@
 package com.alavpa.androidkakebo.base
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
-import com.alavpa.androidkakebo.di.application.ApplicationComponent
-import com.alavpa.androidkakebo.di.base.BaseComponent
-import com.alavpa.androidkakebo.di.base.BaseModule
-import com.alavpa.androidkakebo.di.base.DaggerBaseComponent
 import com.alavpa.androidkakebo.loading.LoadingDialog
+import com.alavpa.presentation.base.BasePresenter
 import com.alavpa.presentation.base.BaseView
 
 open class BaseActivity : AppCompatActivity(), BaseView {
 
-    val baseComponent : BaseComponent by lazy {
-        DaggerBaseComponent.builder()
-                .applicationComponent(getApplicationComponent())
-                .baseModule(BaseModule(this))
-                .build()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        baseComponent.inject(this)
-    }
+    private lateinit var basePresenter: BasePresenter<BaseView>
 
     private val loadingDialog = LoadingDialog()
     override fun stopLoading() {
@@ -38,7 +24,19 @@ open class BaseActivity : AppCompatActivity(), BaseView {
         loadingDialog.show(message, this)
     }
 
-    fun getApplicationComponent(): ApplicationComponent {
-        return (application as KakeboApplication).applicationComponent
+    override fun onStart() {
+        super.onStart()
+        basePresenter.attachView(this)
     }
+
+    override fun onStop() {
+        super.onStop()
+        basePresenter.detachView()
+    }
+
+    fun setBasePresenter(basePresenter: BasePresenter<*>){
+        this.basePresenter = basePresenter as BasePresenter<BaseView>
+    }
+
+
 }

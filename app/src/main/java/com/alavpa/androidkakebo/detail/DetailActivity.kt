@@ -11,6 +11,7 @@ import com.alavpa.androidkakebo.base.BaseActivity
 import com.alavpa.presentation.detail.DetailPresenter
 import com.alavpa.presentation.detail.DetailView
 import com.alavpa.presentation.detail.DetailViewModel
+import org.koin.android.ext.android.inject
 
 /**
  * Created by alex_avila on 8/11/17.
@@ -26,7 +27,8 @@ class DetailActivity : BaseActivity(), DetailView {
                 .putExtra(EXTRA_IS_INCOME, isIncome)
     }
 
-    private val presenter = DetailPresenter(this)
+    private val presenter by inject<DetailPresenter>()
+
     private lateinit var rvCategories: RecyclerView
     private var adapter = CategoryAdapter({ position -> presenter.onItemClick(position) })
     private lateinit var btnCancel: Button
@@ -35,6 +37,8 @@ class DetailActivity : BaseActivity(), DetailView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+
+        setBasePresenter(presenter)
 
         presenter.value = intent.getFloatExtra(EXTRA_VALUE, 0f)
         presenter.isIncome = intent.getBooleanExtra(EXTRA_IS_INCOME, false)

@@ -25,15 +25,22 @@ android {
 
 dependencies {
   implementation fileTree(include: ['*.jar'], dir: 'libs')
+  implementation project(':domain')
+
   implementation "com.android.support:appcompat-v7:$support_version"
 
   implementation "android.arch.persistence.room:runtime:1.0.0"
-  annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+  kapt "android.arch.persistence.room:compiler:1.0.0"
+
+  // RxJava support for Room
+  implementation "android.arch.persistence.room:rxjava2:1.0.0"
+
+  // Koin for Android
+  implementation "org.koin:koin-android:$koin_version"
 
   testImplementation 'junit:junit:4.12'
   androidTestImplementation 'com.android.support.test:runner:1.0.1'
   androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-  implementation project(':domain')
   compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 repositories {

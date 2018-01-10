@@ -5,21 +5,27 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import com.alavpa.androidkakebo.Navigation
 import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.base.BaseActivity
-import com.alavpa.androidkakebo.di.DiFactory
+import com.alavpa.presentation.base.BasePresenter
+import com.alavpa.presentation.base.BaseView
 import com.alavpa.presentation.main.MainPresenter
 import com.alavpa.presentation.main.MainView
 import com.alavpa.presentation.main.MainViewModel
+import org.koin.android.ext.android.inject
+import java.text.DecimalFormat
 
 class MainActivity : BaseActivity(), MainView {
 
-    private val df = DiFactory.instance.decimalFormat
-    private val navigation = DiFactory.instance.navigation
+    private val df by inject<DecimalFormat>()
+    private val navigation by inject<Navigation>()
+
     private lateinit var etValue: EditText
     private lateinit var btnIncome: Button
     private lateinit var btnOutcome: Button
-    private val presenter = MainPresenter(this)
+
+    private val presenter by inject<MainPresenter>()
 
     companion object {
 
@@ -29,10 +35,11 @@ class MainActivity : BaseActivity(), MainView {
 
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setBasePresenter(presenter)
 
         btnIncome = findViewById(R.id.btn_income)
         btnOutcome = findViewById(R.id.btn_outcome)

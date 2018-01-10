@@ -4,8 +4,6 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'kotlin-kapt'
-
 android {
     compileSdkVersion compile_sdk_version
     defaultConfig {
@@ -26,16 +24,29 @@ android {
 
 dependencies {
   implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+  //Kotlin
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+  //Android Support
   implementation "com.android.support:appcompat-v7:$support_version"
   implementation "com.android.support:recyclerview-v7:$support_version"
   implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-  testImplementation 'junit:junit:4.12'
+
+  //Modules
+  implementation project(':presentation')
+  implementation project(':data')
+  implementation project(':domain')
+
+  // Koin for Android
+  implementation "org.koin:koin-android:$koin_version"
+
+  //Android Test
   androidTestImplementation 'com.android.support.test:runner:1.0.1'
   androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-  implementation project(':presentation')
 
-  // Dagger 2
-  implementation 'com.google.dagger:dagger:2.9'
-  kapt 'com.google.dagger:dagger-compiler:2.9'
+  // Test
+  testImplementation 'junit:junit:4.12'
+  testImplementation "org.koin:koin-test:$koin_version"
+
 }

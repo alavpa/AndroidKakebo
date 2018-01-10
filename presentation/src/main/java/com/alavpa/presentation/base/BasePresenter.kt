@@ -7,26 +7,29 @@ import kotlinx.coroutines.experimental.launch
 /**
  * Created by alex_avila on 8/11/17.
  */
-open class BasePresenter {
+open class BasePresenter<T :BaseView> {
 
-    fun execute(onStart: () -> Unit,
-                execute: () -> Unit,
+    var view : T? = null
+
+    fun attachView(view: T){
+        this.view = view
+    }
+
+    fun detachView(){
+        this.view = null
+    }
+
+    fun execute(execute: () -> Unit,
                 onSuccess: () -> Unit,
-                onException: (Throwable) -> Unit,
-                onFinish: () -> Unit) {
+                onError: (Throwable) -> Unit) {
 
         launch(UI) {
-
-            onStart()
-
             try {
                 async { execute() }.await()
                 onSuccess()
             } catch (t: Throwable) {
-                onException(t)
+                onError(t)
             }
-
-            onFinish()
         }
     }
 }

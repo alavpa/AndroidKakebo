@@ -1,9 +1,11 @@
 package com.alavpa.domain.interactor
 
+import com.alavpa.domain.Repository
+
 /**
  * Created by alex_avila on 3/11/17.
  */
-class GetCategories {
+class GetCategories(val repository: Repository) {
     var isIncome = false
 
     fun run(): List<String> {
