@@ -12,5 +12,9 @@ import com.alavpa.data.database.entity.SpendTable
 @Database(entities = [SpendTable::class], version = 1)
 abstract class KakeboDb : RoomDatabase(){
 
+    companion object {
+        val DB_NAME = "KakeboDB"
+    }
+
     abstract fun spendDao() : SpendDao
 }

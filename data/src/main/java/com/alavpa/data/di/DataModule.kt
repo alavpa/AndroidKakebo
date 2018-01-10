@@ -29,6 +29,6 @@ val dataModule = applicationContext{
 
 fun createDb(context: Context) : KakeboDb{
     return Room
-            .databaseBuilder(context, KakeboDb::class.java, "KakeboDb")
+            .databaseBuilder(context, KakeboDb::class.java, KakeboDb.DB_NAME)
             .build()
 }
