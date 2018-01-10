@@ -38,5 +38,10 @@ open class BaseActivity : AppCompatActivity(), BaseView {
         this.basePresenter = basePresenter as BasePresenter<BaseView>
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        basePresenter.clearDisposables()
+    }
+
 
 }

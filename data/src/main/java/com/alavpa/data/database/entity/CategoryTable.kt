@@ -10,5 +10,5 @@ import android.arch.persistence.room.PrimaryKey
 @Entity
 data class CategoryTable(
         @ColumnInfo @PrimaryKey(autoGenerate = true) var id : Long = 0,
-        val name: String = "",
-        val income: Boolean = false)
+        var name: String = "",
+        var income: Boolean = false)

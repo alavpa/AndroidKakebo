@@ -1,5 +1,6 @@
 package com.alavpa.presentation.base
 
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.launch
@@ -9,6 +10,7 @@ import kotlinx.coroutines.experimental.launch
  */
 open class BasePresenter<T :BaseView> {
 
+    protected val disposables = CompositeDisposable()
     var view : T? = null
 
     fun attachView(view: T){
@@ -20,8 +22,8 @@ open class BasePresenter<T :BaseView> {
     }
 
     fun execute(execute: () -> Unit,
-                onSuccess: () -> Unit,
-                onError: (Throwable) -> Unit) {
+                 onSuccess: () -> Unit,
+                 onError: (Throwable) -> Unit) {
 
         launch(UI) {
             try {
@@ -31,5 +33,9 @@ open class BasePresenter<T :BaseView> {
                 onError(t)
             }
         }
+    }
+
+    fun clearDisposables(){
+        disposables.clear()
     }
 }
