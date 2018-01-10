@@ -65,4 +65,8 @@ class DetailPresenter(private val insertSpend: InsertSpend,
                 },
                 { throwable -> view?.showError("Error: " + throwable.message) })
     }
+
+    fun init() {
+        populateCategories()
+    }
 }

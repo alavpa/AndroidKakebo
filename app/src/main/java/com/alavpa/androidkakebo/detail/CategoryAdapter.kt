@@ -13,7 +13,7 @@ import com.alavpa.androidkakebo.R
 class CategoryAdapter(private val onItemClickCallback: (Int)->Unit)
     : RecyclerView.Adapter<CategoryAdapter.ItemViewHolder>() {
 
-    var items: List<String> = listOf("hola", "mundo")
+    var items: List<String> = listOf()
     var itemSelected = -1
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ItemViewHolder {
