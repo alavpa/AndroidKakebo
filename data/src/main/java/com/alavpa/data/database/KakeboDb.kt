@@ -13,7 +13,7 @@ import com.alavpa.data.database.entity.SpendTable
 abstract class KakeboDb : RoomDatabase(){
 
     companion object {
-        val DB_NAME = "KakeboDB"
+        const val DB_NAME = "KakeboDB"
     }
 
     abstract fun spendDao() : SpendDao
