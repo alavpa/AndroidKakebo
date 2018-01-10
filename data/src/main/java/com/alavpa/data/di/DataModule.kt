@@ -21,7 +21,8 @@ import org.koin.android.ext.koin.androidApplication
 val dataModule = applicationContext{
 
     bean { DataMapper() }
-    bean { DatabaseSource(androidApplication())}
+    bean { createDb(androidApplication())}
+    bean { DatabaseSource(get())}
     provide {DataRepository(get(),get())} bind Repository::class
 
 }

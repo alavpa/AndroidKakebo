@@ -16,11 +16,11 @@ interface SpendDao {
     fun getAllSpend(): Single<List<SpendTable>>
 
     @Insert(onConflict = REPLACE)
-    fun insertSpend(spendTable : SpendTable)
+    fun insertSpend(spendTable : SpendTable) : Long
 
     @Update(onConflict = REPLACE)
-    fun updateSpend(spendTable : SpendTable)
+    fun updateSpend(spendTable : SpendTable) : Int
 
     @Delete
-    fun deleteSpend(spendTable: SpendTable)
+    fun deleteSpend(spendTable: SpendTable) : Int
 }

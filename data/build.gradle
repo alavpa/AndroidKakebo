@@ -29,11 +29,10 @@ dependencies {
 
   implementation "com.android.support:appcompat-v7:$support_version"
 
-  implementation "android.arch.persistence.room:runtime:1.0.0"
-  kapt "android.arch.persistence.room:compiler:1.0.0"
-
-  // RxJava support for Room
-  implementation "android.arch.persistence.room:rxjava2:1.0.0"
+  // Room
+  implementation "android.arch.persistence.room:runtime:$room_version"
+  implementation "android.arch.persistence.room:rxjava2:$room_version"
+  kapt "android.arch.persistence.room:compiler:$room_version"
 
   // Koin for Android
   implementation "org.koin:koin-android:$koin_version"

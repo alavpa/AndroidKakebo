@@ -10,7 +10,7 @@ import java.util.concurrent.Callable
  * Created by alex on 09/01/2018.
  */
 
-class DatabaseSource(private val context: Context) {
+class DatabaseSource(private val db : KakeboDb) {
 
 //    private val db =  Room
 //                .databaseBuilder(context, KakeboDb::class.java, "KakeboDb")
@@ -23,17 +23,7 @@ class DatabaseSource(private val context: Context) {
     }
 
     fun insertSpend(spendTable: SpendTable): Single<Long> {
-
-
-
-        return Single.fromCallable(Callable<Long> {
-            var db =  Room
-                    .databaseBuilder(context, KakeboDb::class.java, "KakeboDb")
-                    .build()
-            db.spendDao().insertSpend(spendTable)
-
-            1
-        })
+        return Single.fromCallable({ db.spendDao().insertSpend(spendTable) })
     }
 
     fun updateSpend(spendTable: SpendTable): Single<Int> {
