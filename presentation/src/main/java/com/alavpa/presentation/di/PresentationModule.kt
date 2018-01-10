@@ -11,5 +11,5 @@ import org.koin.dsl.module.applicationContext
 val presentationModule = applicationContext{
 
     factory { MainPresenter() }
-    factory { DetailPresenter(get()) }
+    factory { DetailPresenter(get(), get(), get()) }
 }

@@ -40,7 +40,7 @@ open class BaseActivity : AppCompatActivity(), BaseView {
 
     override fun onDestroy() {
         super.onDestroy()
-        basePresenter.clearDisposables()
+        basePresenter.clearUseCases()
     }
 
 

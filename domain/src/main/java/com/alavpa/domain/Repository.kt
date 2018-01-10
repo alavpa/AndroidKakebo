@@ -15,5 +15,6 @@ interface Repository {
     fun insertAlarm(alarm: Alarm) : Single<Long>
     fun getCategories(isIncome : Boolean): Single<List<Category>>
     fun getCurrentMonth(): Single<Month>
+    fun insertCategory(category: Category): Single<Long>
 
 }

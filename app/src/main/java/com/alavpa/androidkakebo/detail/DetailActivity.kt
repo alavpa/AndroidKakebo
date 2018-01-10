@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ImageView
 import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.base.BaseActivity
 import com.alavpa.presentation.detail.DetailPresenter
@@ -33,6 +36,8 @@ class DetailActivity : BaseActivity(), DetailView {
     private var adapter = CategoryAdapter({ position -> presenter.onItemClick(position) })
     private lateinit var btnCancel: Button
     private lateinit var btnDone: Button
+    private lateinit var btnAdd: ImageView
+    private lateinit var etCategory: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +57,11 @@ class DetailActivity : BaseActivity(), DetailView {
 
         btnDone = findViewById(R.id.btn_done)
         btnDone.setOnClickListener { presenter.done() }
+
+        btnAdd = findViewById(R.id.btn_add)
+        btnAdd.setOnClickListener({ presenter.add(etCategory.text.toString()) })
+
+        etCategory = findViewById(R.id.et_category)
 
     }
 

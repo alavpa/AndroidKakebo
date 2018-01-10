@@ -2,6 +2,7 @@ package com.alavpa.data.database
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
+import com.alavpa.data.database.dao.CategoryDao
 import com.alavpa.data.database.dao.SpendDao
 import com.alavpa.data.database.entity.CategoryTable
 import com.alavpa.data.database.entity.SpendTable
@@ -21,4 +22,5 @@ abstract class KakeboDb : RoomDatabase(){
     }
 
     abstract fun spendDao() : SpendDao
+    abstract fun categoryDao() : CategoryDao
 }

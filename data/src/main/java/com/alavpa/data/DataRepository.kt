@@ -13,7 +13,11 @@ import io.reactivex.Single
  * Created by alex on 10/01/2018.
  */
 class DataRepository(private val databaseSource: DatabaseSource,
-                     private val mapper : DataMapper) : Repository {
+                     private val mapper: DataMapper) : Repository {
+
+    override fun insertCategory(category: Category): Single<Long> {
+        return databaseSource.insertCategory(mapper.entityToTable(category))
+    }
 
     override fun insertSpend(spend: Spend): Single<Long> {
         return databaseSource.insertSpend(mapper.entityToTable(spend))
@@ -24,7 +28,8 @@ class DataRepository(private val databaseSource: DatabaseSource,
     }
 
     override fun getCategories(isIncome: Boolean): Single<List<Category>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return databaseSource.getAllCategories()
+                .map { tables -> tables.map { table -> mapper.tableToEntity(table) } }
     }
 
     override fun getCurrentMonth(): Single<Month> {

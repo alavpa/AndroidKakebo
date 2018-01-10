@@ -2,6 +2,7 @@ package com.alavpa.domain.di
 
 import com.alavpa.domain.Repository
 import com.alavpa.domain.interactor.GetCategories
+import com.alavpa.domain.interactor.InsertCategory
 import com.alavpa.domain.interactor.InsertSpend
 import org.koin.dsl.module.applicationContext
 
@@ -12,5 +13,6 @@ val domainModule = applicationContext{
 
     bean { GetCategories(get()) }
     bean { InsertSpend (get())}
+    bean { InsertCategory (get())}
 
 }

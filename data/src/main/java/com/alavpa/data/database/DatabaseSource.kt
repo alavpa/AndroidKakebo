@@ -2,7 +2,9 @@ package com.alavpa.data.database
 
 import android.arch.persistence.room.Room
 import android.content.Context
+import com.alavpa.data.database.entity.CategoryTable
 import com.alavpa.data.database.entity.SpendTable
+import com.alavpa.domain.entity.Category
 import io.reactivex.Single
 import java.util.concurrent.Callable
 
@@ -10,12 +12,7 @@ import java.util.concurrent.Callable
  * Created by alex on 09/01/2018.
  */
 
-class DatabaseSource(private val db : KakeboDb) {
-
-//    private val db =  Room
-//                .databaseBuilder(context, KakeboDb::class.java, "KakeboDb")
-//                .build()
-
+class DatabaseSource(private val db: KakeboDb) {
 
     fun getAllSpend(): Single<List<SpendTable>> {
         //return db.spendDao().getAllSpend()
@@ -34,5 +31,13 @@ class DatabaseSource(private val db : KakeboDb) {
     fun deleteSpend(spendTable: SpendTable): Single<Int> {
         //return db.spendDao().deleteSpend(spendTable)
         TODO("Implement")
+    }
+
+    fun insertCategory(categoryTable: CategoryTable) : Single<Long>{
+        return Single.fromCallable({db.categoryDao().insert(categoryTable)})
+    }
+
+    fun getAllCategories(): Single<List<CategoryTable>> {
+        return db.categoryDao().getAll()
     }
 }

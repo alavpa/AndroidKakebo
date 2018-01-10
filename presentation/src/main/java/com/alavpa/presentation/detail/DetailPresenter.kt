@@ -1,8 +1,10 @@
 package com.alavpa.presentation.detail
 
+import android.view.View
 import com.alavpa.domain.entity.Category
 import com.alavpa.domain.entity.Spend
 import com.alavpa.domain.interactor.GetCategories
+import com.alavpa.domain.interactor.InsertCategory
 import com.alavpa.domain.interactor.InsertSpend
 import com.alavpa.presentation.base.BasePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,8 +15,9 @@ import java.util.*
  * Created by alex_avila on 8/11/17.
  */
 class DetailPresenter(private val insertSpend: InsertSpend,
-                      private val getCategories: GetCategories)
-    : BasePresenter<DetailView>(insertSpend,getCategories) {
+                      private val getCategories: GetCategories,
+                      private val insertCategory: InsertCategory)
+    : BasePresenter<DetailView>(insertSpend, getCategories, insertCategory) {
 
 
     private val model = DetailViewModel()
@@ -50,5 +53,16 @@ class DetailPresenter(private val insertSpend: InsertSpend,
                 { id -> view?.showError("Added:" + id) },
                 { throwable -> view?.showError("Error: " + throwable.message) })
 
+    }
+
+    fun add(name: String) {
+        insertCategory.category = Category(0, name, isIncome)
+
+        insertCategory.execute(Schedulers.io(), AndroidSchedulers.mainThread(),
+                { id ->
+                    view?.showError("Added: " + id)
+                    populateCategories()
+                },
+                { throwable -> view?.showError("Error: " + throwable.message) })
     }
 }
