@@ -35,6 +35,7 @@ open class BaseActivity : AppCompatActivity(), BaseView {
     }
 
     fun setBasePresenter(basePresenter: BasePresenter<*>){
+        @SuppressWarnings("unchecked")
         this.basePresenter = basePresenter as BasePresenter<BaseView>
     }
 
