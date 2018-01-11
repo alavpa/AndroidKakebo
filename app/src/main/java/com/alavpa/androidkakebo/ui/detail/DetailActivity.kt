@@ -1,4 +1,4 @@
-package com.alavpa.androidkakebo.detail
+package com.alavpa.androidkakebo.ui.detail
 
 import android.content.Context
 import android.content.Intent
@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.ImageView
 import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.base.BaseActivity

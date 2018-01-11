@@ -1,8 +1,8 @@
-package com.alavpa.androidkakebo
+package com.alavpa.androidkakebo.navigation
 
 import android.content.Context
-import com.alavpa.androidkakebo.detail.DetailActivity
-import com.alavpa.androidkakebo.main.MainActivity
+import com.alavpa.androidkakebo.ui.detail.DetailActivity
+import com.alavpa.androidkakebo.ui.main.MainActivity
 
 /**
  * Created by alex_avila on 3/11/17.

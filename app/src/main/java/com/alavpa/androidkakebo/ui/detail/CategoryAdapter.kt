@@ -1,4 +1,4 @@
-package com.alavpa.androidkakebo.detail
+package com.alavpa.androidkakebo.ui.detail
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

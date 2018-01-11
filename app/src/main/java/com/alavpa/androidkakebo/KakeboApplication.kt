@@ -1,4 +1,4 @@
-package com.alavpa.androidkakebo.base
+package com.alavpa.androidkakebo
 
 import android.app.Application
 import com.alavpa.androidkakebo.di.modules

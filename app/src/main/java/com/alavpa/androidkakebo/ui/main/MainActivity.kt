@@ -1,15 +1,13 @@
-package com.alavpa.androidkakebo.main
+package com.alavpa.androidkakebo.ui.main
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import com.alavpa.androidkakebo.Navigation
+import com.alavpa.androidkakebo.navigation.Navigation
 import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.base.BaseActivity
-import com.alavpa.presentation.base.BasePresenter
-import com.alavpa.presentation.base.BaseView
 import com.alavpa.presentation.main.MainPresenter
 import com.alavpa.presentation.main.MainView
 import com.alavpa.presentation.main.MainViewModel

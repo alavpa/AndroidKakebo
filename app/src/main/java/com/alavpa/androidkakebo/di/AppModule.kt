@@ -1,8 +1,6 @@
 package com.alavpa.androidkakebo.di
 
-import com.alavpa.androidkakebo.Navigation
-import com.alavpa.presentation.detail.DetailPresenter
-import com.alavpa.presentation.main.MainPresenter
+import com.alavpa.androidkakebo.navigation.Navigation
 import org.koin.dsl.module.applicationContext;
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols

@@ -9,9 +9,9 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:supportsRtl="true"
       android:theme="@style/AppTheme"
-      android:name=".base.KakeboApplication">
+      android:name=".KakeboApplication">
 
-    <activity android:name=".main.MainActivity">
+    <activity android:name="com.alavpa.androidkakebo.ui.main.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
@@ -19,7 +19,7 @@
       </intent-filter>
     </activity>
     <activity android:name=".base.BaseActivity"/>
-    <activity android:name=".detail.DetailActivity"/>
+    <activity android:name="com.alavpa.androidkakebo.ui.detail.DetailActivity"/>
   </application>
 
 </manifest>
