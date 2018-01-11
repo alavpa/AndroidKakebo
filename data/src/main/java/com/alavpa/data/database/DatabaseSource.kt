@@ -1,12 +1,8 @@
 package com.alavpa.data.database
 
-import android.arch.persistence.room.Room
-import android.content.Context
 import com.alavpa.data.database.entity.CategoryTable
 import com.alavpa.data.database.entity.SpendTable
-import com.alavpa.domain.entity.Category
 import io.reactivex.Single
-import java.util.concurrent.Callable
 
 /**
  * Created by alex on 09/01/2018.
@@ -35,6 +31,10 @@ class DatabaseSource(private val db: KakeboDb) {
 
     fun insertCategory(categoryTable: CategoryTable) : Single<Long>{
         return Single.fromCallable({db.categoryDao().insert(categoryTable)})
+    }
+
+    fun getAllCategories(isIncome : Boolean): Single<List<CategoryTable>> {
+        return db.categoryDao().getAll(isIncome)
     }
 
     fun getAllCategories(): Single<List<CategoryTable>> {

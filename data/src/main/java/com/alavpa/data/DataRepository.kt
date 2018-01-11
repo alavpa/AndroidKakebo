@@ -28,7 +28,7 @@ class DataRepository(private val databaseSource: DatabaseSource,
     }
 
     override fun getCategories(isIncome: Boolean): Single<List<Category>> {
-        return databaseSource.getAllCategories()
+        return databaseSource.getAllCategories(isIncome)
                 .map { tables -> tables.map { table -> mapper.tableToEntity(table) } }
     }
 
