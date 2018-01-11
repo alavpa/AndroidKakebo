@@ -28,13 +28,18 @@ android {
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-  testImplementation 'junit:junit:4.12'
+  // Kotlin
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
   // Koin for Android
   implementation "org.koin:koin-android:$koin_version"
 
   //RxJava
   implementation "io.reactivex.rxjava2:rxkotlin:$rx_version"
+
+  // Test
+  testImplementation 'junit:junit:4.12'
+  testImplementation "org.koin:koin-test:$koin_version"
 }
 repositories {
   mavenCentral()

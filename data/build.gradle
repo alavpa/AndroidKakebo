@@ -27,22 +27,27 @@ dependencies {
   implementation fileTree(include: ['*.jar'], dir: 'libs')
   implementation project(':domain')
 
-  implementation "com.android.support:appcompat-v7:$support_version"
-
-  // Room
-  implementation "android.arch.persistence.room:runtime:$room_version"
-  implementation ("android.arch.persistence.room:rxjava2:$room_version"){
-    exclude group : "org.reactivestreams"
-  }
-  kapt "android.arch.persistence.room:compiler:$room_version"
+  // Kotlin
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
   // Koin for Android
   implementation "org.koin:koin-android:$koin_version"
 
+  // Room
+  implementation ("android.arch.persistence.room:runtime:$room_version"){
+    exclude group : "com.android.support"
+  }
+  implementation ("android.arch.persistence.room:rxjava2:$room_version"){
+    exclude group : "org.reactivestreams"
+    exclude group : "com.android.support"
+    exclude group : "io.reactivex.rxjava2"
+  }
+  kapt "android.arch.persistence.room:compiler:$room_version"
+
+  // Test
   testImplementation 'junit:junit:4.12'
-  androidTestImplementation 'com.android.support.test:runner:1.0.1'
-  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  testImplementation "org.koin:koin-test:$koin_version"
+
 }
 repositories {
   mavenCentral()
