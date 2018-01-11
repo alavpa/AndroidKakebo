@@ -3,7 +3,6 @@ package com.alavpa.domain.interactor
 import com.alavpa.domain.Repository
 import com.alavpa.domain.entity.Spend
 import io.reactivex.Observable
-import io.reactivex.Single
 import java.util.*
 
 /**
