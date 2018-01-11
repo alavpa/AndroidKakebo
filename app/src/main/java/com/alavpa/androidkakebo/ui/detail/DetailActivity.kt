@@ -12,7 +12,6 @@ import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.base.BaseActivity
 import com.alavpa.presentation.detail.DetailPresenter
 import com.alavpa.presentation.detail.DetailView
-import com.alavpa.presentation.detail.DetailViewModel
 import org.koin.android.ext.android.inject
 
 /**
@@ -69,9 +68,9 @@ class DetailActivity : BaseActivity(), DetailView {
         presenter.init()
     }
 
-    override fun render(model: DetailViewModel) {
-        adapter.items = model.categories
-        adapter.itemSelected = model.selectedCategory
+    override fun populateCategories(categories: List<String>, selectedCategory : Int) {
+        adapter.items = categories
+        adapter.itemSelected = selectedCategory
 
         adapter.notifyDataSetChanged()
     }

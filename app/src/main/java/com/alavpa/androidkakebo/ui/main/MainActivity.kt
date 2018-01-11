@@ -10,7 +10,6 @@ import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.base.BaseActivity
 import com.alavpa.presentation.main.MainPresenter
 import com.alavpa.presentation.main.MainView
-import com.alavpa.presentation.main.MainViewModel
 import org.koin.android.ext.android.inject
 import java.text.DecimalFormat
 
@@ -54,19 +53,14 @@ class MainActivity : BaseActivity(), MainView {
         }
     }
 
-    override fun render(model : MainViewModel) {
-        var strValue = df.format(model.value)
+    override fun setValue(value : Float) {
+        var strValue = df.format(value)
         etValue.setText(strValue)
     }
 
     override fun onResume() {
         super.onResume()
         presenter.init()
-    }
-
-    fun getValueAsFloat(): Float {
-        val str = etValue.text.toString()
-        return df.parse(str).toFloat()
     }
 
     override fun goToIncome(value : Float) {
@@ -76,4 +70,10 @@ class MainActivity : BaseActivity(), MainView {
     override fun goToOutcome(value : Float) {
         navigation.openDetailActivity(this, value, false)
     }
+
+    private fun getValueAsFloat(): Float {
+        val str = etValue.text.toString()
+        return df.parse(str).toFloat()
+    }
+
 }

@@ -7,6 +7,6 @@ import com.alavpa.presentation.base.BaseView
  */
 interface DetailView : BaseView{
 
-    fun render(model : DetailViewModel)
     fun finish()
+    fun populateCategories(categories: List<String>, selectedCategory : Int)
 }

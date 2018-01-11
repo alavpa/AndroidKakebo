@@ -19,23 +19,23 @@ class DetailPresenter(private val insertSpend: InsertSpend,
                       private val insertCategory: InsertCategory)
     : BasePresenter<DetailView>(insertSpend, getCategories, insertCategory) {
 
-
-    private val model = DetailViewModel()
     var value = 0f
     var isIncome = false
+    var categories : List<String> = listOf()
+    var selectedCategory = -1
 
     fun onItemClick(position: Int) {
-        model.selectedCategory = position
+        this.selectedCategory = position
     }
 
-    fun populateCategories() {
+    fun getCategories() {
         getCategories.isIncome = isIncome
 
         getCategories.execute(Schedulers.io(),
                 AndroidSchedulers.mainThread(),
                 { list ->
-                    model.categories = list.map { category -> category.name }
-                    view?.render(model)
+                    this.categories = list.map { category -> category.name }
+                    view?.populateCategories(categories, selectedCategory)
                 },
                 { throwable -> view?.showError("Error: " + throwable.message) })
     }
@@ -61,12 +61,12 @@ class DetailPresenter(private val insertSpend: InsertSpend,
         insertCategory.execute(Schedulers.io(), AndroidSchedulers.mainThread(),
                 { id ->
                     view?.showError("Added: " + id)
-                    populateCategories()
+                    getCategories()
                 },
                 { throwable -> view?.showError("Error: " + throwable.message) })
     }
 
     fun init() {
-        populateCategories()
+        getCategories()
     }
 }
