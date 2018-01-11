@@ -28,25 +28,28 @@ dependencies {
   implementation project(':domain')
 
   // Kotlin
-  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation libraries.kotlin
 
   // Koin for Android
-  implementation "org.koin:koin-android:$koin_version"
+  implementation libraries.koin
+
+  //RxJava
+  implementation libraries.rxkotlin
 
   // Room
-  implementation ("android.arch.persistence.room:runtime:$room_version"){
-    exclude group : "com.android.support"
+  implementation (libraries.room_runtime){
+    exclude group : groups.support
   }
-  implementation ("android.arch.persistence.room:rxjava2:$room_version"){
-    exclude group : "org.reactivestreams"
-    exclude group : "com.android.support"
-    exclude group : "io.reactivex.rxjava2"
+  implementation (libraries.room_rx){
+    exclude group : groups.reactivestreams
+    exclude group : groups.support
+    exclude group : groups.rxjava2
   }
-  kapt "android.arch.persistence.room:compiler:$room_version"
+  kapt libraries.room_compiler
 
   // Test
-  testImplementation 'junit:junit:4.12'
-  testImplementation "org.koin:koin-test:$koin_version"
+  testImplementation testLibraries.junit
+  testImplementation testLibraries.koin
 
 }
 repositories {

@@ -28,18 +28,18 @@ dependencies {
   implementation project(':domain')
 
   // Kotlin
-  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation libraries.kotlin
 
   // Koin for Android
-  implementation "org.koin:koin-android:$koin_version"
+  implementation libraries.koin
 
   //RxJava
-  implementation "io.reactivex.rxjava2:rxkotlin:$rx_version"
-  implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+  implementation libraries.rxkotlin
+  implementation libraries.rxandroid
 
   // Test
-  testImplementation 'junit:junit:4.12'
-  testImplementation "org.koin:koin-test:$koin_version"
+  testImplementation testLibraries.junit
+  testImplementation testLibraries.koin
 }
 repositories {
   mavenCentral()
