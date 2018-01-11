@@ -1,5 +1,6 @@
 package com.alavpa.androidkakebo.ui.detail
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -52,7 +53,7 @@ class DetailActivity : BaseActivity(), DetailView {
         rvCategories.layoutManager = LinearLayoutManager(this)
 
         btnCancel = findViewById(R.id.btn_cancel)
-        btnCancel.setOnClickListener { finish() }
+        btnCancel.setOnClickListener { presenter.cancel() }
 
         btnDone = findViewById(R.id.btn_done)
         btnDone.setOnClickListener { presenter.done() }
@@ -74,5 +75,15 @@ class DetailActivity : BaseActivity(), DetailView {
         adapter.itemSelected = selectedCategory
 
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onDone() {
+        setResult(Activity.RESULT_OK)
+        finish()
+    }
+
+    override fun onCancel() {
+        setResult(Activity.RESULT_CANCELED)
+        finish()
     }
 }

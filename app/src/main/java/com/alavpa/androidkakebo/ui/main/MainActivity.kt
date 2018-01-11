@@ -1,5 +1,6 @@
 package com.alavpa.androidkakebo.ui.main
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -74,6 +75,14 @@ class MainActivity : BaseActivity(), MainView {
     private fun getValueAsFloat(): Float {
         val str = etValue.text.toString()
         return df.parse(str).toFloat()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(requestCode == Navigation.DETAIL_ACTIVITY_REQUESTCODE){
+            if(resultCode == Activity.RESULT_OK){
+                presenter.clear()
+            }
+        }
     }
 
 }

@@ -7,6 +7,7 @@ import com.alavpa.presentation.base.BaseView
  */
 interface DetailView : BaseView{
 
-    fun finish()
     fun populateCategories(categories: List<CategoryItem>, selectedCategory : Long)
+    fun onDone()
+    fun onCancel()
 }

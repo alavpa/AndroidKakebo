@@ -23,5 +23,9 @@ class MainPresenter : BasePresenter<MainView>() {
         view?.setValue(value)
     }
 
+    fun clear() {
+        value = 0f
+    }
+
 
 }
