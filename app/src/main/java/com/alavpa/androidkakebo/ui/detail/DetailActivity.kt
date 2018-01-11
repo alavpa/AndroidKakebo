@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.base.BaseActivity
+import com.alavpa.presentation.detail.CategoryItem
 import com.alavpa.presentation.detail.DetailPresenter
 import com.alavpa.presentation.detail.DetailView
 import org.koin.android.ext.android.inject
@@ -31,7 +32,7 @@ class DetailActivity : BaseActivity(), DetailView {
     private val presenter by inject<DetailPresenter>()
 
     private lateinit var rvCategories: RecyclerView
-    private var adapter = CategoryAdapter({ position -> presenter.onItemClick(position) })
+    private var adapter = CategoryAdapter({ categoryId -> presenter.onItemClick(categoryId) })
     private lateinit var btnCancel: Button
     private lateinit var btnDone: Button
     private lateinit var btnAdd: ImageView
@@ -68,7 +69,7 @@ class DetailActivity : BaseActivity(), DetailView {
         presenter.init()
     }
 
-    override fun populateCategories(categories: List<String>, selectedCategory : Int) {
+    override fun populateCategories(categories: List<CategoryItem>, selectedCategory : Long) {
         adapter.items = categories
         adapter.itemSelected = selectedCategory
 

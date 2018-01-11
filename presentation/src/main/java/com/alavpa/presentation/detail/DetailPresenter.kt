@@ -1,12 +1,12 @@
 package com.alavpa.presentation.detail
 
-import android.view.View
 import com.alavpa.domain.entity.Category
 import com.alavpa.domain.entity.Spend
 import com.alavpa.domain.interactor.GetCategories
 import com.alavpa.domain.interactor.InsertCategory
 import com.alavpa.domain.interactor.InsertSpend
 import com.alavpa.presentation.base.BasePresenter
+import com.alavpa.presentation.mapper.ViewMapper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.*
@@ -16,15 +16,16 @@ import java.util.*
  */
 class DetailPresenter(private val insertSpend: InsertSpend,
                       private val getCategories: GetCategories,
-                      private val insertCategory: InsertCategory)
+                      private val insertCategory: InsertCategory,
+                      private val mapper: ViewMapper)
     : BasePresenter<DetailView>(insertSpend, getCategories, insertCategory) {
 
     var value = 0f
     var isIncome = false
-    var categories : List<String> = listOf()
-    var selectedCategory = -1
+    var categories : List<CategoryItem> = listOf()
+    var selectedCategory = -1L
 
-    fun onItemClick(position: Int) {
+    fun onItemClick(position: Long) {
         this.selectedCategory = position
     }
 
@@ -34,7 +35,7 @@ class DetailPresenter(private val insertSpend: InsertSpend,
         getCategories.execute(Schedulers.io(),
                 AndroidSchedulers.mainThread(),
                 { list ->
-                    this.categories = list.map { category -> category.name }
+                    this.categories = list.map { category -> mapper.entityToView(category) }
                     view?.populateCategories(categories, selectedCategory)
                 },
                 { throwable -> view?.showError("Error: " + throwable.message) })
