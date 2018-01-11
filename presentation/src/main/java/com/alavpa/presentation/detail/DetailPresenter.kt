@@ -2,6 +2,7 @@ package com.alavpa.presentation.detail
 
 import com.alavpa.domain.entity.Category
 import com.alavpa.domain.entity.Spend
+import com.alavpa.domain.interactor.GetCategory
 import com.alavpa.domain.interactor.GetCategories
 import com.alavpa.domain.interactor.InsertCategory
 import com.alavpa.domain.interactor.InsertSpend
@@ -22,14 +23,14 @@ class DetailPresenter(private val insertSpend: InsertSpend,
 
     var value = 0f
     var isIncome = false
-    var categories : List<CategoryItem> = listOf()
-    var selectedCategory = -1L
+    private var categories : List<CategoryItem> = listOf()
+    private var selectedCategory = -1L
 
     fun onItemClick(position: Long) {
         this.selectedCategory = position
     }
 
-    fun getCategories() {
+    private fun getCategories() {
         getCategories.isIncome = isIncome
 
         getCategories.execute(Schedulers.io(),
@@ -42,18 +43,14 @@ class DetailPresenter(private val insertSpend: InsertSpend,
     }
 
     fun done() {
-
-        insertSpend.spend = Spend(0,
-                value,
-                Date(),
-                Category(0, "category", isIncome),
-                isIncome)
+        insertSpend.value = value
+        insertSpend.isIncome = isIncome
+        insertSpend.categoryId = selectedCategory
 
         insertSpend.execute(Schedulers.io(),
                 AndroidSchedulers.mainThread(),
                 { id -> view?.showError("Added:" + id) },
                 { throwable -> view?.showError("Error: " + throwable.message) })
-
     }
 
     fun add(name: String) {

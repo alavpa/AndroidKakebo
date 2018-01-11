@@ -2,6 +2,7 @@ package com.alavpa.data.database
 
 import com.alavpa.data.database.entity.CategoryTable
 import com.alavpa.data.database.entity.SpendTable
+import com.alavpa.domain.entity.Category
 import io.reactivex.Single
 
 /**
@@ -39,5 +40,9 @@ class DatabaseSource(private val db: KakeboDb) {
 
     fun getAllCategories(): Single<List<CategoryTable>> {
         return db.categoryDao().getAll()
+    }
+
+    fun getCategory(id: Long): Single<CategoryTable> {
+        return db.categoryDao().get(id)
     }
 }

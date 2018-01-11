@@ -19,6 +19,9 @@ interface CategoryDao {
     @Query("SELECT * FROM CategoryTable WHERE income = :arg0")
     fun getAll(income : Boolean): Single<List<CategoryTable>>
 
+    @Query("SELECT * FROM CategoryTable WHERE id = :arg0")
+    fun get(id: Long): Single<CategoryTable>
+
     @Insert(onConflict = REPLACE)
     fun insert(table : CategoryTable) : Long
 

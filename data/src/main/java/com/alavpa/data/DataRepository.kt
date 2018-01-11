@@ -14,6 +14,9 @@ import io.reactivex.Single
  */
 class DataRepository(private val databaseSource: DatabaseSource,
                      private val mapper: DataMapper) : Repository {
+    override fun getCategory(id: Long): Single<Category> {
+        return databaseSource.getCategory(id).map { table -> mapper.tableToEntity(table) }
+    }
 
     override fun insertCategory(category: Category): Single<Long> {
         return databaseSource.insertCategory(mapper.entityToTable(category))
