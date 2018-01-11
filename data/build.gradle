@@ -52,6 +52,3 @@ dependencies {
   testImplementation testLibraries.koin
 
 }
-repositories {
-  mavenCentral()
-}
