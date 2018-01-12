@@ -5,6 +5,7 @@ import android.arch.persistence.room.OnConflictStrategy.REPLACE
 import com.alavpa.data.database.entity.CategoryTable
 import com.alavpa.data.database.entity.SpendTable
 import com.alavpa.domain.entity.Spend
+import io.reactivex.Flowable
 import io.reactivex.Single
 
 /**
@@ -17,16 +18,13 @@ interface CategoryDao {
     fun getAll(): Single<List<CategoryTable>>
 
     @Query("SELECT * FROM CategoryTable WHERE income = :arg0")
-    fun getAll(income : Boolean): Single<List<CategoryTable>>
+    fun getAll(income : Boolean): Flowable<List<CategoryTable>>
 
     @Query("SELECT * FROM CategoryTable WHERE id = :arg0")
     fun get(id: Long): Single<CategoryTable>
 
     @Insert(onConflict = REPLACE)
     fun insert(table : CategoryTable) : Long
-
-    @Update(onConflict = REPLACE)
-    fun update(table : CategoryTable) : Int
 
     @Delete
     fun delete(table: SpendTable) : Int

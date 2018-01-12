@@ -3,6 +3,7 @@ package com.alavpa.data.database
 import com.alavpa.data.database.entity.CategoryTable
 import com.alavpa.data.database.entity.SpendTable
 import com.alavpa.domain.entity.Category
+import io.reactivex.Flowable
 import io.reactivex.Single
 
 /**
@@ -34,7 +35,7 @@ class DatabaseSource(private val db: KakeboDb) {
         return Single.fromCallable({db.categoryDao().insert(categoryTable)})
     }
 
-    fun getAllCategories(isIncome : Boolean): Single<List<CategoryTable>> {
+    fun getAllCategories(isIncome : Boolean): Flowable<List<CategoryTable>> {
         return db.categoryDao().getAll(isIncome)
     }
 

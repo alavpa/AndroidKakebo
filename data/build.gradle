@@ -45,6 +45,9 @@ dependencies {
   }
   kapt libraries.room_compiler
 
+  //Timber
+  implementation libraries.timber
+
   // Test
   testImplementation testLibraries.junit
   testImplementation testLibraries.koin

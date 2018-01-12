@@ -1,11 +1,13 @@
 package com.alavpa.domain.interactor
 
+import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.SingleSource
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
+import timber.log.Timber
 import java.util.*
 
 /**
@@ -32,12 +34,12 @@ abstract class UseCase<T> {
                 .subscribe(onSuccess, onError)
 
         disposables.add(dispose)
+
+        Timber.d("Disposables: " + disposables.size())
     }
 
     fun dispose(){
+        Timber.d("Clear Disposables: " + disposables.size())
         disposables.clear()
     }
-
-
-
 }

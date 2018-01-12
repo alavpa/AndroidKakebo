@@ -26,21 +26,24 @@ android {
 dependencies {
   implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-  // Kotlin
-  implementation libraries.kotlin
-
-  // Koin for Android
-  implementation libraries.koin
+  //Modules
+  implementation project(':presentation')
+  implementation project(':data')
+  implementation project(':domain')
 
   //Android Support
   implementation libraries.appcompat
   implementation libraries.recyclerview
   implementation libraries.constraint_layout
 
-  //Modules
-  implementation project(':presentation')
-  implementation project(':data')
-  implementation project(':domain')
+  // Kotlin
+  implementation libraries.kotlin
+
+  // Koin for Android
+  implementation libraries.koin
+
+  //Timber
+  implementation libraries.timber
 
   //Android Test
   androidTestImplementation testLibraries.runner

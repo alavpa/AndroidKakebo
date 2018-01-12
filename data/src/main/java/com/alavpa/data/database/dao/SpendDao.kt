@@ -18,9 +18,6 @@ interface SpendDao {
     @Insert(onConflict = REPLACE)
     fun insertSpend(spendTable : SpendTable) : Long
 
-    @Update(onConflict = REPLACE)
-    fun updateSpend(spendTable : SpendTable) : Int
-
     @Delete
     fun deleteSpend(spendTable: SpendTable) : Int
 }

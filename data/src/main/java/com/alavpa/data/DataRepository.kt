@@ -7,6 +7,7 @@ import com.alavpa.domain.entity.Alarm
 import com.alavpa.domain.entity.Category
 import com.alavpa.domain.entity.Month
 import com.alavpa.domain.entity.Spend
+import io.reactivex.Flowable
 import io.reactivex.Single
 
 /**
@@ -30,7 +31,7 @@ class DataRepository(private val databaseSource: DatabaseSource,
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getCategories(isIncome: Boolean): Single<List<Category>> {
+    override fun getCategories(isIncome: Boolean): Flowable<List<Category>> {
         return databaseSource.getAllCategories(isIncome)
                 .map { tables -> tables.map { table -> mapper.tableToEntity(table) } }
     }

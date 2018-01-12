@@ -1,5 +1,6 @@
 package com.alavpa.presentation.detail
 
+import android.util.Log
 import com.alavpa.domain.entity.Category
 import com.alavpa.domain.interactor.GetCategories
 import com.alavpa.domain.interactor.InsertCategory
@@ -27,7 +28,7 @@ class DetailPresenter(private val insertSpend: InsertSpend,
         this.selectedCategory = position
     }
 
-    private fun getCategories() {
+    fun subscribeCategories() {
         getCategories.isIncome = isIncome
 
         getCategories.execute(Schedulers.io(),
@@ -60,14 +61,7 @@ class DetailPresenter(private val insertSpend: InsertSpend,
         insertCategory.category = Category(0, name, isIncome)
 
         insertCategory.execute(Schedulers.io(), AndroidSchedulers.mainThread(),
-                { id ->
-                    view?.showError("Added: " + id)
-                    getCategories()
-                },
+                { },
                 { throwable -> view?.showError("Error: " + throwable.message) })
-    }
-
-    fun init() {
-        getCategories()
     }
 }

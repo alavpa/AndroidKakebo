@@ -29,6 +29,11 @@ open class BaseActivity : AppCompatActivity(), BaseView {
         basePresenter.attachView(this)
     }
 
+    override fun onPause() {
+        super.onPause()
+        basePresenter.clearUseCases()
+    }
+
     override fun onStop() {
         super.onStop()
         basePresenter.detachView()
@@ -38,11 +43,5 @@ open class BaseActivity : AppCompatActivity(), BaseView {
         @SuppressWarnings("unchecked")
         this.basePresenter = basePresenter as BasePresenter<BaseView>
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        basePresenter.clearUseCases()
-    }
-
 
 }

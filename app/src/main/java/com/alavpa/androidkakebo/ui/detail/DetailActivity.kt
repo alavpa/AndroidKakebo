@@ -15,6 +15,7 @@ import com.alavpa.presentation.detail.CategoryItem
 import com.alavpa.presentation.detail.DetailPresenter
 import com.alavpa.presentation.detail.DetailView
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 /**
  * Created by alex_avila on 8/11/17.
@@ -67,7 +68,13 @@ class DetailActivity : BaseActivity(), DetailView {
 
     override fun onResume() {
         super.onResume()
-        presenter.init()
+        Timber.d("OnResume")
+        presenter.subscribeCategories()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Timber.d("OnPause")
     }
 
     override fun populateCategories(categories: List<CategoryItem>, selectedCategory : Long) {

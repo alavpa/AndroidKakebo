@@ -14,6 +14,7 @@ ext {
   layout_version = '1.0.2'
   runner_version = '1.0.1'
   espresso_version = '3.0.1'
+  timber_version = '4.6.0'
 
   libraries = [
           kotlin           : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
@@ -25,7 +26,8 @@ ext {
           room_compiler    : "android.arch.persistence.room:compiler:$room_version",
           appcompat        : "com.android.support:appcompat-v7:$support_version",
           recyclerview     : "com.android.support:recyclerview-v7:$support_version",
-          constraint_layout: "com.android.support.constraint:constraint-layout:$layout_version"
+          constraint_layout: "com.android.support.constraint:constraint-layout:$layout_version",
+          timber           : "com.jakewharton.timber:timber:$timber_version"
   ]
 
   testLibraries = [

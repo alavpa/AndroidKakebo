@@ -31,6 +31,9 @@ dependencies {
   //RxJava
   implementation libraries.rxkotlin
 
+  // Timber
+  implementation libraries.timber
+
   // Test
   testImplementation testLibraries.junit
   testImplementation testLibraries.koin
