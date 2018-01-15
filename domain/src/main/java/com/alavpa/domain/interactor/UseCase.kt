@@ -1,14 +1,9 @@
 package com.alavpa.domain.interactor
 
-import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.Scheduler
-import io.reactivex.Single
-import io.reactivex.SingleSource
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Consumer
 import timber.log.Timber
-import java.util.*
 
 /**
  * Created by alex on 10/01/2018.
