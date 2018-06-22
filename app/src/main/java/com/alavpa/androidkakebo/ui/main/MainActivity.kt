@@ -1,25 +1,29 @@
-package com.alavpa.androidkakebo.main
+package com.alavpa.androidkakebo.ui.main
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import com.alavpa.androidkakebo.navigation.Navigation
 import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.base.BaseActivity
-import com.alavpa.androidkakebo.di.DiFactory
 import com.alavpa.presentation.main.MainPresenter
 import com.alavpa.presentation.main.MainView
-import com.alavpa.presentation.main.MainViewModel
+import org.koin.android.ext.android.inject
+import java.text.DecimalFormat
 
 class MainActivity : BaseActivity(), MainView {
 
-    private val df = DiFactory.instance.decimalFormat
-    private val navigation = DiFactory.instance.navigation
+    private val df by inject<DecimalFormat>()
+    private val navigation by inject<Navigation>()
+
     private lateinit var etValue: EditText
     private lateinit var btnIncome: Button
     private lateinit var btnOutcome: Button
-    private val presenter = MainPresenter(this)
+
+    private val presenter by inject<MainPresenter>()
 
     companion object {
 
@@ -29,10 +33,11 @@ class MainActivity : BaseActivity(), MainView {
 
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setBasePresenter(presenter)
 
         btnIncome = findViewById(R.id.btn_income)
         btnOutcome = findViewById(R.id.btn_outcome)
@@ -49,19 +54,14 @@ class MainActivity : BaseActivity(), MainView {
         }
     }
 
-    override fun render(model : MainViewModel) {
-        var strValue = df.format(model.value)
+    override fun setValue(value : Float) {
+        var strValue = df.format(value)
         etValue.setText(strValue)
     }
 
     override fun onResume() {
         super.onResume()
         presenter.init()
-    }
-
-    fun getValueAsFloat(): Float {
-        val str = etValue.text.toString()
-        return df.parse(str).toFloat()
     }
 
     override fun goToIncome(value : Float) {
@@ -71,4 +71,18 @@ class MainActivity : BaseActivity(), MainView {
     override fun goToOutcome(value : Float) {
         navigation.openDetailActivity(this, value, false)
     }
+
+    private fun getValueAsFloat(): Float {
+        val str = etValue.text.toString()
+        return df.parse(str).toFloat()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(requestCode == Navigation.DETAIL_ACTIVITY_REQUESTCODE){
+            if(resultCode == Activity.RESULT_OK){
+                presenter.clear()
+            }
+        }
+    }
+
 }

@@ -1,57 +1,67 @@
 package com.alavpa.presentation.detail
 
+import android.util.Log
 import com.alavpa.domain.entity.Category
-import com.alavpa.domain.entity.Spend
 import com.alavpa.domain.interactor.GetCategories
+import com.alavpa.domain.interactor.InsertCategory
 import com.alavpa.domain.interactor.InsertSpend
 import com.alavpa.presentation.base.BasePresenter
-import java.util.*
+import com.alavpa.presentation.mapper.ViewMapper
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by alex_avila on 8/11/17.
  */
-class DetailPresenter(val view: DetailView) : BasePresenter() {
+class DetailPresenter(private val insertSpend: InsertSpend,
+                      private val getCategories: GetCategories,
+                      private val insertCategory: InsertCategory,
+                      private val mapper: ViewMapper)
+    : BasePresenter<DetailView>(insertSpend, getCategories, insertCategory) {
 
-    private val insertSpend = InsertSpend()
-    private val getCategories = GetCategories()
-
-    private val model = DetailViewModel()
     var value = 0f
     var isIncome = false
+    private var categoryItems: List<CategoryItem> = listOf()
+    private var selectedCategory = -1L
 
-    fun onItemClick(position: Int) {
-        model.selectedCategory = position
+    fun onItemClick(position: Long) {
+        this.selectedCategory = position
     }
 
-    fun init() {
+    fun subscribeCategories() {
         getCategories.isIncome = isIncome
 
-        execute({ view.startLoading("loading") },
-                {
-                    var list =  getCategories.run()
-                    model.categories = list
-                },
-                { view.render(model) },
-                { t -> view.showError(t.message) },
-                { view.stopLoading() })
+        getCategories.execute(Schedulers.io(),
+                AndroidSchedulers.mainThread(),
+                { list -> populateCategories(list) },
+                { throwable -> view?.showError("Error: " + throwable.message) })
     }
 
-    fun done() {
-        execute({ view.startLoading("loading") },
-                {
-                    var name = model.categories[model.selectedCategory]
-                    insertSpend.spend = Spend(value, Date(), Category(name,isIncome),isIncome)
-                    insertSpend.run()
-                },
-                { view.render(model) },
-                { t -> view.showError(t.message) },
-                {
-                    view.stopLoading()
-                    view.finish()
-                })
+    private fun populateCategories(categories: List<Category>) {
+        this.categoryItems = categories.map { category -> mapper.entityToView(category) }
+        view?.populateCategories(this.categoryItems, selectedCategory)
     }
 
     fun cancel(){
-        view.finish()
+        view?.onCancel()
+    }
+
+    fun done() {
+        insertSpend.value = value
+        insertSpend.isIncome = isIncome
+        insertSpend.categoryId = selectedCategory
+
+        insertSpend.execute(Schedulers.io(),
+                AndroidSchedulers.mainThread(),
+                { view?.onDone() },
+                { throwable -> view?.showError("Error: " + throwable.message) })
+    }
+
+    fun add(name: String) {
+        insertCategory.category = Category(0, name, isIncome)
+
+        insertCategory.execute(Schedulers.io(), AndroidSchedulers.mainThread(),
+                { },
+                { throwable -> view?.showError("Error: " + throwable.message) })
     }
 }

@@ -1,21 +1,25 @@
 package com.alavpa.domain.interactor
 
+import com.alavpa.domain.Repository
 import com.alavpa.domain.entity.Spend
-import kotlinx.coroutines.experimental.Deferred
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.delay
+import io.reactivex.Observable
+import java.util.*
 
 /**
  * Created by alex_avila on 3/11/17.
  */
-class InsertSpend {
-    lateinit var spend: Spend
+class InsertSpend(private val repository: Repository) : UseCase<Long>(){
+    var value: Float = 0f
+    var isIncome : Boolean = false
+    var categoryId : Long = -1
 
-    fun run(): Float {
-        try {
-            return 45.5f
-        } catch (e: Throwable) {
-            throw e
-        }
+    override fun buildUseCase(): Observable<Long> {
+
+        return repository.getCategory(categoryId)
+                .flatMap { category ->
+                    val spend = Spend(0, value, Date(), category, isIncome)
+                    repository.insertSpend(spend)
+                }.toObservable()
+
     }
 }

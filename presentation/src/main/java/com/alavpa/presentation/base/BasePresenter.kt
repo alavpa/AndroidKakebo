@@ -1,32 +1,23 @@
 package com.alavpa.presentation.base
 
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
+import com.alavpa.domain.interactor.UseCase
 
 /**
  * Created by alex_avila on 8/11/17.
  */
-open class BasePresenter {
+open class BasePresenter<T :BaseView> (private vararg val useCases: UseCase<*> ){
 
-    fun execute(onStart: () -> Unit,
-                execute: () -> Unit,
-                onSuccess: () -> Unit,
-                onException: (Throwable) -> Unit,
-                onFinish: () -> Unit) {
+    var view : T? = null
 
-        launch(UI) {
+    fun attachView(view: T){
+        this.view = view
+    }
 
-            onStart()
+    fun detachView(){
+        this.view = null
+    }
 
-            try {
-                async { execute() }.await()
-                onSuccess()
-            } catch (t: Throwable) {
-                onException(t)
-            }
-
-            onFinish()
-        }
+    fun clearUseCases(){
+        useCases.forEach { useCase -> useCase.dispose() }
     }
 }

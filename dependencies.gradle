@@ -1,0 +1,45 @@
+ext {
+
+  koin_version = '0.8.0'
+  room_version = '1.0.0'
+  rx_version = '2.2.0'
+  rxandroid_version = '2.0.1'
+  target_sdk_version = 27
+  min_sdk_version = 19
+  compile_sdk_version = 27
+  support_version = '27.0.2'
+  version_code = 1
+  version_name = '0.0.1'
+  junit_version = '4.12'
+  layout_version = '1.0.2'
+  runner_version = '1.0.1'
+  espresso_version = '3.0.1'
+  timber_version = '4.6.0'
+
+  libraries = [
+          kotlin           : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+          koin             : "org.koin:koin-android:$koin_version",
+          rxkotlin         : "io.reactivex.rxjava2:rxkotlin:$rx_version",
+          rxandroid        : "io.reactivex.rxjava2:rxandroid:$rxandroid_version",
+          room_runtime     : "android.arch.persistence.room:runtime:$room_version",
+          room_rx          : "android.arch.persistence.room:rxjava2:$room_version",
+          room_compiler    : "android.arch.persistence.room:compiler:$room_version",
+          appcompat        : "com.android.support:appcompat-v7:$support_version",
+          recyclerview     : "com.android.support:recyclerview-v7:$support_version",
+          constraint_layout: "com.android.support.constraint:constraint-layout:$layout_version",
+          timber           : "com.jakewharton.timber:timber:$timber_version"
+  ]
+
+  testLibraries = [
+          junit        : "junit:junit:$junit_version",
+          koin         : "org.koin:koin-test:$koin_version",
+          runner       : "com.android.support.test:runner:$runner_version",
+          espresso_core: "com.android.support.test.espresso:espresso-core:$espresso_version"
+  ]
+
+  groups = [
+          support        : "com.android.support",
+          reactivestreams: "org.reactivestreams",
+          rxjava2        : "io.reactivex.rxjava2"
+  ]
+}

@@ -4,8 +4,6 @@ apply plugin: 'kotlin-android'
 android {
   compileSdkVersion compile_sdk_version
 
-
-
   defaultConfig {
     minSdkVersion min_sdk_version
     targetSdkVersion target_sdk_version
@@ -25,15 +23,19 @@ android {
 
 dependencies {
   implementation fileTree(include: ['*.jar'], dir: 'libs')
-  implementation 'com.android.support:appcompat-v7:26.1.0'
-  testImplementation 'junit:junit:4.12'
-  androidTestImplementation 'com.android.support.test:runner:1.0.1'
-  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
   implementation project(':domain')
-  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version"
-  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version"
-}
-repositories {
-  mavenCentral()
+
+  // Kotlin
+  implementation libraries.kotlin
+
+  // Koin for Android
+  implementation libraries.koin
+
+  //RxJava
+  implementation libraries.rxkotlin
+  implementation libraries.rxandroid
+
+  // Test
+  testImplementation testLibraries.junit
+  testImplementation testLibraries.koin
 }

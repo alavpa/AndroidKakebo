@@ -7,7 +7,7 @@ import com.alavpa.presentation.base.BaseView
  */
 interface MainView : BaseView{
 
-    fun render(model: MainViewModel)
     fun goToIncome(value : Float)
     fun goToOutcome(value : Float)
+    fun setValue(value: Float)
 }

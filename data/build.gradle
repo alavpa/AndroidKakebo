@@ -2,9 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-  compileSdkVersion 26
-
-
+  compileSdkVersion compile_sdk_version
 
   defaultConfig {
     minSdkVersion min_sdk_version
@@ -25,13 +23,33 @@ android {
 
 dependencies {
   implementation fileTree(include: ['*.jar'], dir: 'libs')
-  implementation 'com.android.support:appcompat-v7:26.1.0'
-  testImplementation 'junit:junit:4.12'
-  androidTestImplementation 'com.android.support.test:runner:1.0.1'
-  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
   implementation project(':domain')
-  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-}
-repositories {
-  mavenCentral()
+
+  // Kotlin
+  implementation libraries.kotlin
+
+  // Koin for Android
+  implementation libraries.koin
+
+  //RxJava
+  implementation libraries.rxkotlin
+
+  // Room
+  implementation (libraries.room_runtime){
+    exclude group : groups.support
+  }
+  implementation (libraries.room_rx){
+    exclude group : groups.reactivestreams
+    exclude group : groups.support
+    exclude group : groups.rxjava2
+  }
+  kapt libraries.room_compiler
+
+  //Timber
+  implementation libraries.timber
+
+  // Test
+  testImplementation testLibraries.junit
+  testImplementation testLibraries.koin
+
 }
