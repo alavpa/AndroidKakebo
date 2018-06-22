@@ -46,5 +46,5 @@ open class BaseActivity : AppCompatActivity(), BaseView {
 
     //hotfix 1
 
-    //develop 1
+    //develop 2
 }
