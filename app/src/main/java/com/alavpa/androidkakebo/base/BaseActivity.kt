@@ -44,4 +44,6 @@ open class BaseActivity : AppCompatActivity(), BaseView {
         this.basePresenter = basePresenter as BasePresenter<BaseView>
     }
 
+    //hotfix 1
+
 }
