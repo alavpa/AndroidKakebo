@@ -26,6 +26,5 @@ class MainPresenter : BasePresenter<MainView>() {
     fun clear() {
         value = 0f
     }
-
-    change1
+    change2
 }
