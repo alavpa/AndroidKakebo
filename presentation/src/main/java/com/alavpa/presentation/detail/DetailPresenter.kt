@@ -30,7 +30,6 @@ class DetailPresenter(private val insertSpend: InsertSpend,
 
     private fun populateCategories(categories: List<Category>) {
         this.categoryItems = categories.map { category -> mapper.entityToView(category) }
-        Timber.d("populateCategories")
         view?.populateCategories(this.categoryItems, selectedCategory)
     }
 

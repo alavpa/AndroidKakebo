@@ -7,7 +7,6 @@ import com.alavpa.domain.entity.Alarm
 import com.alavpa.domain.entity.Category
 import com.alavpa.domain.entity.Month
 import com.alavpa.domain.entity.Spend
-import kotlinx.coroutines.delay
 
 class DataRepository(private val databaseSource: DatabaseSource,
                      private val mapper: DataMapper) : Repository {
@@ -31,7 +30,6 @@ class DataRepository(private val databaseSource: DatabaseSource,
 
     override suspend fun getCategories(isIncome: Boolean): List<Category> {
         val tables = databaseSource.getAllCategories(isIncome)
-        delay(10000)
         return tables.map { table -> mapper.tableToEntity(table) }
     }
 
