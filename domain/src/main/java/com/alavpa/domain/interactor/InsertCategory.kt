@@ -6,7 +6,7 @@ import com.alavpa.domain.entity.Category
 class InsertCategory(private val repository: Repository) : UseCase<Long>() {
     lateinit var category: Category
 
-    override fun execute(result: Result<Long>) {
-        repository.insertCategory(category, result)
+    override suspend fun execute(): Long {
+        return repository.insertCategory(category)
     }
 }

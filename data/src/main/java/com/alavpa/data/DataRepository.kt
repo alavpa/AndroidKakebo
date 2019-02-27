@@ -7,65 +7,35 @@ import com.alavpa.domain.entity.Alarm
 import com.alavpa.domain.entity.Category
 import com.alavpa.domain.entity.Month
 import com.alavpa.domain.entity.Spend
-import com.alavpa.domain.interactor.Result
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 
 class DataRepository(private val databaseSource: DatabaseSource,
                      private val mapper: DataMapper) : Repository {
 
-    override fun getCategory(id: Long, result: Result<Category>) {
-        GlobalScope.launch {
-            try {
-                val table = databaseSource.getCategory(id)
-                val entity = mapper.tableToEntity(table)
-                result.onSuccess(entity)
-            } catch (throwable: Throwable) {
-                result.onError(throwable)
-            }
-        }
+    override suspend fun getCategory(id: Long): Category {
+        val table = databaseSource.getCategory(id)
+        return mapper.tableToEntity(table)
     }
 
-    override fun insertCategory(category: Category, result: Result<Long>) {
-        GlobalScope.launch {
-            try {
-                val res = databaseSource.insertCategory(mapper.entityToTable(category))
-                result.onSuccess(res)
-            } catch (throwable: Throwable) {
-                result.onError(throwable)
-            }
-        }
+    override suspend fun insertCategory(category: Category): Long {
+        return databaseSource.insertCategory(mapper.entityToTable(category))
     }
 
-    override fun insertSpend(spend: Spend, result: Result<Long>) {
-        GlobalScope.launch {
-            try {
-                val res = databaseSource.insertSpend(mapper.entityToTable(spend))
-                result.onSuccess(res)
-            } catch (throwable: Throwable) {
-                result.onError(throwable)
-            }
-        }
+    override suspend fun insertSpend(spend: Spend): Long {
+        return databaseSource.insertSpend(mapper.entityToTable(spend))
     }
 
-    override fun insertAlarm(alarm: Alarm): Long {
+    override suspend fun insertAlarm(alarm: Alarm): Long {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getCategories(isIncome: Boolean, result: Result<List<Category>>) {
-        GlobalScope.launch {
-            try {
-                val tables = databaseSource.getAllCategories(isIncome)
-                val list = tables.map { table -> mapper.tableToEntity(table) }
-                result.onSuccess(list)
-            } catch (throwable: Throwable) {
-                result.onError(throwable)
-            }
-        }
-
+    override suspend fun getCategories(isIncome: Boolean): List<Category> {
+        val tables = databaseSource.getAllCategories(isIncome)
+        delay(10000)
+        return tables.map { table -> mapper.tableToEntity(table) }
     }
 
-    override fun getCurrentMonth(): Month {
+    override suspend fun getCurrentMonth(): Month {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

@@ -7,7 +7,7 @@ class GetCategory(private val repository: Repository) : UseCase<Category>() {
 
     var id = -1L
 
-    override fun execute(result: Result<Category>) {
-        repository.getCategory(id, result)
+    override suspend fun execute(): Category {
+        return repository.getCategory(id)
     }
 }

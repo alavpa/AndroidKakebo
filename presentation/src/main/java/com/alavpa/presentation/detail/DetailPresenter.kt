@@ -6,6 +6,7 @@ import com.alavpa.domain.interactor.InsertCategory
 import com.alavpa.domain.interactor.InsertSpend
 import com.alavpa.presentation.base.BasePresenter
 import com.alavpa.presentation.mapper.ViewMapper
+import timber.log.Timber
 
 class DetailPresenter(private val insertSpend: InsertSpend,
                       private val getCategories: GetCategories,
@@ -24,11 +25,12 @@ class DetailPresenter(private val insertSpend: InsertSpend,
 
     fun subscribeCategories() {
         getCategories.isIncome = isIncome
-        getCategories.exec(::populateCategories, ::showError)
+        getCategories.perform(::populateCategories, ::showError)
     }
 
     private fun populateCategories(categories: List<Category>) {
         this.categoryItems = categories.map { category -> mapper.entityToView(category) }
+        Timber.d("populateCategories")
         view?.populateCategories(this.categoryItems, selectedCategory)
     }
 
@@ -44,11 +46,11 @@ class DetailPresenter(private val insertSpend: InsertSpend,
         insertSpend.value = value
         insertSpend.isIncome = isIncome
         insertSpend.categoryId = selectedCategory
-        insertSpend.exec({view?.onDone()}, ::showError)
+        insertSpend.perform({view?.onDone()}, ::showError)
     }
 
     fun add(name: String) {
         insertCategory.category = Category(0, name, isIncome)
-        insertCategory.exec({view?.onDone()}, ::showError)
+        insertCategory.perform({view?.onDone()}, ::showError)
     }
 }

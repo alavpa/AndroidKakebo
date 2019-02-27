@@ -33,6 +33,9 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
+    // Timber
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
     // Test
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.koin:koin-test:$koin_version"

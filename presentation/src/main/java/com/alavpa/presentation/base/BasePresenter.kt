@@ -1,6 +1,5 @@
 package com.alavpa.presentation.base
 
-import com.alavpa.domain.interactor.Result
 import com.alavpa.domain.interactor.UseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -18,20 +17,19 @@ open class BasePresenter<T : BaseView>(private vararg val useCases: UseCase<*>) 
         this.view = null
     }
 
-    fun <T> UseCase<T>.exec(onSuccess: (T) -> Unit, onError: (Throwable) -> Unit) {
-        this.execute(
-            Result(
-                {
-                    GlobalScope.launch(Dispatchers.Main) {
-                        onSuccess(it)
-                    }
-                },
-                {
-                    GlobalScope.launch(Dispatchers.Main) {
-                        onError(it)
-                    }
+    fun <T> UseCase<T>.perform(onSuccess: (T) -> Unit, onError: (Throwable) -> Unit) {
+        val useCase = this
+        GlobalScope.launch {
+            try {
+                val res = useCase.execute()
+                GlobalScope.launch(Dispatchers.Main) {
+                    onSuccess(res)
                 }
-            )
-        )
+            } catch (t: Throwable) {
+                GlobalScope.launch(Dispatchers.Main) {
+                    onError(t)
+                }
+            }
+        }
     }
 }
