@@ -15,7 +15,7 @@ open class BaseActivity : AppCompatActivity(), BaseView {
         loadingDialog.dismiss()
     }
 
-    override fun showError(message: String) {
+    override fun showError(message: String?) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 

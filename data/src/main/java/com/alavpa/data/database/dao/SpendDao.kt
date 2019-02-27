@@ -14,11 +14,11 @@ import com.alavpa.data.database.entity.SpendTable
 interface SpendDao {
 
     @Query("SELECT * FROM SpendTable")
-    fun getAllSpend(): List<SpendTable>
+    suspend fun getAllSpend(): List<SpendTable>
 
     @Insert(onConflict = REPLACE)
-    fun insertSpend(spendTable: SpendTable): Long
+    suspend fun insertSpend(spendTable: SpendTable): Long
 
     @Delete
-    fun deleteSpend(spendTable: SpendTable): Int
+    suspend fun deleteSpend(spendTable: SpendTable): Int
 }

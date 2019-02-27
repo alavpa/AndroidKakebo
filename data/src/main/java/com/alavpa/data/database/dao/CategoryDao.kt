@@ -12,17 +12,17 @@ import com.alavpa.data.database.entity.SpendTable
 interface CategoryDao {
 
     @Query("SELECT * FROM CategoryTable")
-    fun getAll(): List<CategoryTable>
+    suspend fun getAll(): List<CategoryTable>
 
     @Query("SELECT * FROM CategoryTable WHERE income = :income")
-    fun getAll(income : Boolean): List<CategoryTable>
+    suspend fun getAll(income : Boolean): List<CategoryTable>
 
     @Query("SELECT * FROM CategoryTable WHERE id = :id")
-    fun get(id: Long): CategoryTable
+    suspend fun get(id: Long): CategoryTable
 
     @Insert(onConflict = REPLACE)
-    fun insert(table : CategoryTable) : Long
+    suspend fun insert(table : CategoryTable) : Long
 
     @Delete
-    fun delete(table: SpendTable) : Int
+    suspend fun delete(table: SpendTable) : Int
 }

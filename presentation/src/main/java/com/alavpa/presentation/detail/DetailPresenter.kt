@@ -24,13 +24,7 @@ class DetailPresenter(private val insertSpend: InsertSpend,
 
     fun subscribeCategories() {
         getCategories.isIncome = isIncome
-
-        try{
-            val list = getCategories.buildUseCase()
-            populateCategories(list)
-        }catch (throwable: Throwable){
-            view?.showError("Error: " + throwable.message)
-        }
+        getCategories.exec(::populateCategories, ::showError)
     }
 
     private fun populateCategories(categories: List<Category>) {
@@ -38,7 +32,11 @@ class DetailPresenter(private val insertSpend: InsertSpend,
         view?.populateCategories(this.categoryItems, selectedCategory)
     }
 
-    fun cancel(){
+    private fun showError(throwable: Throwable) {
+        view?.showError(throwable.message)
+    }
+
+    fun cancel() {
         view?.onCancel()
     }
 
@@ -46,22 +44,11 @@ class DetailPresenter(private val insertSpend: InsertSpend,
         insertSpend.value = value
         insertSpend.isIncome = isIncome
         insertSpend.categoryId = selectedCategory
-
-        try {
-            insertSpend.buildUseCase()
-            view?.onDone()
-        }catch (throwable: Throwable){
-            view?.showError("Error: " + throwable.message)
-        }
+        insertSpend.exec({view?.onDone()}, ::showError)
     }
 
     fun add(name: String) {
         insertCategory.category = Category(0, name, isIncome)
-
-        try{
-            insertCategory.buildUseCase()
-        }catch (throwable: Throwable){
-            view?.showError("Error: " + throwable.message)
-        }
+        insertCategory.exec({view?.onDone()}, ::showError)
     }
 }

@@ -7,7 +7,7 @@ class GetCategories(private val repository: Repository) : UseCase<List<Category>
 
     var isIncome = false
 
-    override fun buildUseCase(): List<Category> {
-        return repository.getCategories(isIncome)
+    override fun execute(result: Result<List<Category>>) {
+        return repository.getCategories(isIncome, result)
     }
 }

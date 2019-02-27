@@ -9,38 +9,38 @@ import com.alavpa.data.database.entity.SpendTable
 
 class DatabaseSource(private val db: KakeboDb) {
 
-    fun getAllSpend(): List<SpendTable> {
+    suspend fun getAllSpend(): List<SpendTable> {
         //return db.spendDao().getAllSpend()
         TODO("Implement")
     }
 
-    fun insertSpend(spendTable: SpendTable): Long {
+    suspend fun insertSpend(spendTable: SpendTable): Long {
         return db.spendDao().insertSpend(spendTable)
     }
 
-    fun updateSpend(spendTable: SpendTable): Int {
+    suspend fun updateSpend(spendTable: SpendTable): Int {
         //return db.spendDao().updateSpend(spendTable)
         TODO("Implement")
     }
 
-    fun deleteSpend(spendTable: SpendTable): Int {
+    suspend fun deleteSpend(spendTable: SpendTable): Int {
         //return db.spendDao().deleteSpend(spendTable)
         TODO("Implement")
     }
 
-    fun insertCategory(categoryTable: CategoryTable): Long {
+    suspend fun insertCategory(categoryTable: CategoryTable): Long {
         return db.categoryDao().insert(categoryTable)
     }
 
-    fun getAllCategories(isIncome: Boolean): List<CategoryTable> {
+    suspend fun getAllCategories(isIncome: Boolean): List<CategoryTable> {
         return db.categoryDao().getAll(isIncome)
     }
 
-    fun getAllCategories(): List<CategoryTable> {
+    suspend fun getAllCategories(): List<CategoryTable> {
         return db.categoryDao().getAll()
     }
 
-    fun getCategory(id: Long): CategoryTable {
+    suspend fun getCategory(id: Long): CategoryTable {
         return db.categoryDao().get(id)
     }
 }
