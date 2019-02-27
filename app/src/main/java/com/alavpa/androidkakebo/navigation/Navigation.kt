@@ -11,7 +11,7 @@ import com.alavpa.androidkakebo.ui.main.MainActivity
 class Navigation {
 
     companion object {
-        const val DETAIL_ACTIVITY_REQUESTCODE = 1
+        const val DETAIL_ACTIVITY_REQUEST_CODE = 1
     }
     fun openMainActivity(context: Activity) {
 
@@ -22,7 +22,6 @@ class Navigation {
 
     fun openDetailActivity(context:Activity, value : Float, isIncome : Boolean){
         val intent  = DetailActivity.newIntent(context,value,isIncome)
-        context.startActivityForResult(intent, DETAIL_ACTIVITY_REQUESTCODE)
+        context.startActivityForResult(intent, DETAIL_ACTIVITY_REQUEST_CODE)
     }
-
 }

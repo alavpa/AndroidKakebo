@@ -26,16 +26,12 @@ dependencies {
   implementation project(':domain')
 
   // Kotlin
-  implementation libraries.kotlin
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
   // Koin for Android
-  implementation libraries.koin
-
-  //RxJava
-  implementation libraries.rxkotlin
-  implementation libraries.rxandroid
+  implementation "org.koin:koin-android:$koin_version"
 
   // Test
-  testImplementation testLibraries.junit
-  testImplementation testLibraries.koin
+  testImplementation "junit:junit:$junit_version"
+  testImplementation "org.koin:koin-test:$koin_version"
 }

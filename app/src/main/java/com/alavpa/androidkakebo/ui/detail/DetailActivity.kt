@@ -4,11 +4,11 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.base.BaseActivity
 import com.alavpa.presentation.detail.CategoryItem
@@ -23,18 +23,17 @@ import timber.log.Timber
 class DetailActivity : BaseActivity(), DetailView {
 
     companion object {
-        private val EXTRA_VALUE = "EXTRA_VALUE"
-        private val EXTRA_IS_INCOME = "EXTRA_IS_INCOME"
-        fun newIntent(context: Context, value: Float, isIncome: Boolean): Intent
-                = Intent(context, DetailActivity::class.java)
-                .putExtra(EXTRA_VALUE, value)
-                .putExtra(EXTRA_IS_INCOME, isIncome)
+        private const val EXTRA_VALUE = "EXTRA_VALUE"
+        private const val EXTRA_IS_INCOME = "EXTRA_IS_INCOME"
+        fun newIntent(context: Context, value: Float, isIncome: Boolean): Intent = Intent(context, DetailActivity::class.java)
+            .putExtra(EXTRA_VALUE, value)
+            .putExtra(EXTRA_IS_INCOME, isIncome)
     }
 
     private val presenter by inject<DetailPresenter>()
 
     private lateinit var rvCategories: RecyclerView
-    private var adapter = CategoryAdapter({ categoryId -> presenter.onItemClick(categoryId) })
+    private var adapter = CategoryAdapter { categoryId -> presenter.onItemClick(categoryId) }
     private lateinit var btnCancel: Button
     private lateinit var btnDone: Button
     private lateinit var btnAdd: ImageView
@@ -60,7 +59,7 @@ class DetailActivity : BaseActivity(), DetailView {
         btnDone.setOnClickListener { presenter.done() }
 
         btnAdd = findViewById(R.id.btn_add)
-        btnAdd.setOnClickListener({ presenter.add(etCategory.text.toString()) })
+        btnAdd.setOnClickListener { presenter.add(etCategory.text.toString()) }
 
         etCategory = findViewById(R.id.et_category)
 
@@ -77,7 +76,7 @@ class DetailActivity : BaseActivity(), DetailView {
         Timber.d("OnPause")
     }
 
-    override fun populateCategories(categories: List<CategoryItem>, selectedCategory : Long) {
+    override fun populateCategories(categories: List<CategoryItem>, selectedCategory: Long) {
         adapter.items = categories
         adapter.itemSelected = selectedCategory
 

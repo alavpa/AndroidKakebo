@@ -23,18 +23,15 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
   // Kotlin
-  implementation libraries.kotlin
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
   // Koin for Android
-  implementation libraries.koin
-
-  //RxJava
-  implementation libraries.rxkotlin
+  implementation "org.koin:koin-android:$koin_version"
 
   // Timber
-  implementation libraries.timber
+  implementation "com.jakewharton.timber:timber:$timber_version"
 
   // Test
-  testImplementation testLibraries.junit
-  testImplementation testLibraries.koin
+  testImplementation "junit:junit:$junit_version"
+  testImplementation "org.koin:koin-test:$koin_version"
 }

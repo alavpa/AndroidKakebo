@@ -2,9 +2,6 @@ package com.alavpa.data.database
 
 import com.alavpa.data.database.entity.CategoryTable
 import com.alavpa.data.database.entity.SpendTable
-import com.alavpa.domain.entity.Category
-import io.reactivex.Flowable
-import io.reactivex.Single
 
 /**
  * Created by alex on 09/01/2018.
@@ -12,38 +9,38 @@ import io.reactivex.Single
 
 class DatabaseSource(private val db: KakeboDb) {
 
-    fun getAllSpend(): Single<List<SpendTable>> {
+    fun getAllSpend(): List<SpendTable> {
         //return db.spendDao().getAllSpend()
         TODO("Implement")
     }
 
-    fun insertSpend(spendTable: SpendTable): Single<Long> {
-        return Single.fromCallable({ db.spendDao().insertSpend(spendTable) })
+    fun insertSpend(spendTable: SpendTable): Long {
+        return db.spendDao().insertSpend(spendTable)
     }
 
-    fun updateSpend(spendTable: SpendTable): Single<Int> {
+    fun updateSpend(spendTable: SpendTable): Int {
         //return db.spendDao().updateSpend(spendTable)
         TODO("Implement")
     }
 
-    fun deleteSpend(spendTable: SpendTable): Single<Int> {
+    fun deleteSpend(spendTable: SpendTable): Int {
         //return db.spendDao().deleteSpend(spendTable)
         TODO("Implement")
     }
 
-    fun insertCategory(categoryTable: CategoryTable) : Single<Long>{
-        return Single.fromCallable({db.categoryDao().insert(categoryTable)})
+    fun insertCategory(categoryTable: CategoryTable): Long {
+        return db.categoryDao().insert(categoryTable)
     }
 
-    fun getAllCategories(isIncome : Boolean): Flowable<List<CategoryTable>> {
+    fun getAllCategories(isIncome: Boolean): List<CategoryTable> {
         return db.categoryDao().getAll(isIncome)
     }
 
-    fun getAllCategories(): Single<List<CategoryTable>> {
+    fun getAllCategories(): List<CategoryTable> {
         return db.categoryDao().getAll()
     }
 
-    fun getCategory(id: Long): Single<CategoryTable> {
+    fun getCategory(id: Long): CategoryTable {
         return db.categoryDao().get(id)
     }
 }

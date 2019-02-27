@@ -1,15 +1,12 @@
 package com.alavpa.androidkakebo.di
 
 import com.alavpa.androidkakebo.navigation.Navigation
-import org.koin.dsl.module.applicationContext;
+import org.koin.dsl.module.module
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
-import java.util.*
+import java.util.Locale
 
-/**
- * Created by alex on 05/01/2018.
- */
-val appModule = applicationContext {
+val appModule = module {
 
     factory { Navigation() }
     factory { createDecimalFormat() }
@@ -25,5 +22,5 @@ fun createDecimalFormat(): DecimalFormat {
     decimalFormat.maximumFractionDigits = 2
     decimalFormat.minimumFractionDigits = 2
 
-    return decimalFormat;
+    return decimalFormat
 }

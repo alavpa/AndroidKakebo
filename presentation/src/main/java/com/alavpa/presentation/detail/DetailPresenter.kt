@@ -1,18 +1,12 @@
 package com.alavpa.presentation.detail
 
-import android.util.Log
 import com.alavpa.domain.entity.Category
 import com.alavpa.domain.interactor.GetCategories
 import com.alavpa.domain.interactor.InsertCategory
 import com.alavpa.domain.interactor.InsertSpend
 import com.alavpa.presentation.base.BasePresenter
 import com.alavpa.presentation.mapper.ViewMapper
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
-/**
- * Created by alex_avila on 8/11/17.
- */
 class DetailPresenter(private val insertSpend: InsertSpend,
                       private val getCategories: GetCategories,
                       private val insertCategory: InsertCategory,
@@ -31,10 +25,12 @@ class DetailPresenter(private val insertSpend: InsertSpend,
     fun subscribeCategories() {
         getCategories.isIncome = isIncome
 
-        getCategories.execute(Schedulers.io(),
-                AndroidSchedulers.mainThread(),
-                { list -> populateCategories(list) },
-                { throwable -> view?.showError("Error: " + throwable.message) })
+        try{
+            val list = getCategories.buildUseCase()
+            populateCategories(list)
+        }catch (throwable: Throwable){
+            view?.showError("Error: " + throwable.message)
+        }
     }
 
     private fun populateCategories(categories: List<Category>) {
@@ -51,17 +47,21 @@ class DetailPresenter(private val insertSpend: InsertSpend,
         insertSpend.isIncome = isIncome
         insertSpend.categoryId = selectedCategory
 
-        insertSpend.execute(Schedulers.io(),
-                AndroidSchedulers.mainThread(),
-                { view?.onDone() },
-                { throwable -> view?.showError("Error: " + throwable.message) })
+        try {
+            insertSpend.buildUseCase()
+            view?.onDone()
+        }catch (throwable: Throwable){
+            view?.showError("Error: " + throwable.message)
+        }
     }
 
     fun add(name: String) {
         insertCategory.category = Category(0, name, isIncome)
 
-        insertCategory.execute(Schedulers.io(), AndroidSchedulers.mainThread(),
-                { },
-                { throwable -> view?.showError("Error: " + throwable.message) })
+        try{
+            insertCategory.buildUseCase()
+        }catch (throwable: Throwable){
+            view?.showError("Error: " + throwable.message)
+        }
     }
 }

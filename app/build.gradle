@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -24,33 +22,32 @@ android {
 }
 
 dependencies {
-  implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-  //Modules
-  implementation project(':presentation')
-  implementation project(':data')
-  implementation project(':domain')
+    //Modules
+    implementation project(':presentation')
+    implementation project(':data')
+    implementation project(':domain')
 
-  //Android Support
-  implementation libraries.appcompat
-  implementation libraries.recyclerview
-  implementation libraries.constraint_layout
+    //Android Support
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
 
-  // Kotlin
-  implementation libraries.kotlin
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-  // Koin for Android
-  implementation libraries.koin
+    // Koin for Android
+    implementation "org.koin:koin-android:$koin_version"
 
-  //Timber
-  implementation libraries.timber
+    //Timber
+    implementation "com.jakewharton.timber:timber:$timber_version"
 
-  //Android Test
-  androidTestImplementation testLibraries.runner
-  androidTestImplementation testLibraries.espresso_core
+    //Android Test
+    androidTestImplementation "com.android.support.test:runner:$runner_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
 
-  // Test
-  testImplementation testLibraries.junit
-  testImplementation testLibraries.koin
-
+    // Test
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.koin:koin-test:$koin_version"
 }

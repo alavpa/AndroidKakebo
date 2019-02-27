@@ -1,8 +1,7 @@
 package com.alavpa.androidkakebo.base
 
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.alavpa.androidkakebo.loading.LoadingDialog
 import com.alavpa.presentation.base.BasePresenter
 import com.alavpa.presentation.base.BaseView
@@ -21,7 +20,7 @@ open class BaseActivity : AppCompatActivity(), BaseView {
     }
 
     override fun startLoading(message: String) {
-        loadingDialog.show(message, this)
+        loadingDialog.show(this, message)
     }
 
     override fun onStart() {
@@ -29,23 +28,13 @@ open class BaseActivity : AppCompatActivity(), BaseView {
         basePresenter.attachView(this)
     }
 
-    override fun onPause() {
-        super.onPause()
-        basePresenter.clearUseCases()
-    }
-
     override fun onStop() {
         super.onStop()
         basePresenter.detachView()
     }
 
-    fun setBasePresenter(basePresenter: BasePresenter<*>){
-        @SuppressWarnings("unchecked")
+    fun setBasePresenter(basePresenter: BasePresenter<*>) {
         this.basePresenter = basePresenter as BasePresenter<BaseView>
     }
-
-    //hotfix 1
-
-    //hotfix2
 }
 

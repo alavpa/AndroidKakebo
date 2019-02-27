@@ -2,9 +2,6 @@ package com.alavpa.presentation.base
 
 import com.alavpa.domain.interactor.UseCase
 
-/**
- * Created by alex_avila on 8/11/17.
- */
 open class BasePresenter<T :BaseView> (private vararg val useCases: UseCase<*> ){
 
     var view : T? = null
@@ -15,9 +12,5 @@ open class BasePresenter<T :BaseView> (private vararg val useCases: UseCase<*> )
 
     fun detachView(){
         this.view = null
-    }
-
-    fun clearUseCases(){
-        useCases.forEach { useCase -> useCase.dispose() }
     }
 }

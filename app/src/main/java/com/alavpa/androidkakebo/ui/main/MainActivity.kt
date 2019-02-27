@@ -26,11 +26,9 @@ class MainActivity : BaseActivity(), MainView {
     private val presenter by inject<MainPresenter>()
 
     companion object {
-
         fun newIntent(ctx: Context): Intent {
             return Intent(ctx, MainActivity::class.java)
         }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,18 +42,18 @@ class MainActivity : BaseActivity(), MainView {
         etValue = findViewById(R.id.et_value)
 
         btnIncome.setOnClickListener {
-            var value = getValueAsFloat()
+            val value = getValueAsFloat()
             presenter.onIncome(value)
         }
 
         btnOutcome.setOnClickListener {
-            var value = getValueAsFloat()
+            val value = getValueAsFloat()
             presenter.onOutcome(value)
         }
     }
 
-    override fun setValue(value : Float) {
-        var strValue = df.format(value)
+    override fun setValue(value: Float) {
+        val strValue = df.format(value)
         etValue.setText(strValue)
     }
 
@@ -64,11 +62,11 @@ class MainActivity : BaseActivity(), MainView {
         presenter.init()
     }
 
-    override fun goToIncome(value : Float) {
+    override fun goToIncome(value: Float) {
         navigation.openDetailActivity(this, value, true)
     }
 
-    override fun goToOutcome(value : Float) {
+    override fun goToOutcome(value: Float) {
         navigation.openDetailActivity(this, value, false)
     }
 
@@ -78,11 +76,10 @@ class MainActivity : BaseActivity(), MainView {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if(requestCode == Navigation.DETAIL_ACTIVITY_REQUESTCODE){
-            if(resultCode == Activity.RESULT_OK){
+        when (resultCode) {
+            Activity.RESULT_OK -> if (requestCode == Navigation.DETAIL_ACTIVITY_REQUEST_CODE) {
                 presenter.clear()
             }
         }
     }
-
 }

@@ -7,36 +7,33 @@ import com.alavpa.domain.entity.Alarm
 import com.alavpa.domain.entity.Category
 import com.alavpa.domain.entity.Month
 import com.alavpa.domain.entity.Spend
-import io.reactivex.Flowable
-import io.reactivex.Single
 
-/**
- * Created by alex on 10/01/2018.
- */
 class DataRepository(private val databaseSource: DatabaseSource,
                      private val mapper: DataMapper) : Repository {
-    override fun getCategory(id: Long): Single<Category> {
-        return databaseSource.getCategory(id).map { table -> mapper.tableToEntity(table) }
+
+    override fun getCategory(id: Long): Category {
+        val table = databaseSource.getCategory(id)
+        return mapper.tableToEntity(table)
     }
 
-    override fun insertCategory(category: Category): Single<Long> {
+    override fun insertCategory(category: Category): Long {
         return databaseSource.insertCategory(mapper.entityToTable(category))
     }
 
-    override fun insertSpend(spend: Spend): Single<Long> {
+    override fun insertSpend(spend: Spend): Long {
         return databaseSource.insertSpend(mapper.entityToTable(spend))
     }
 
-    override fun insertAlarm(alarm: Alarm): Single<Long> {
+    override fun insertAlarm(alarm: Alarm): Long {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getCategories(isIncome: Boolean): Flowable<List<Category>> {
-        return databaseSource.getAllCategories(isIncome)
-                .map { tables -> tables.map { table -> mapper.tableToEntity(table) } }
+    override fun getCategories(isIncome: Boolean): List<Category> {
+        val tables = databaseSource.getAllCategories(isIncome)
+        return tables.map { table -> mapper.tableToEntity(table) }
     }
 
-    override fun getCurrentMonth(): Single<Month> {
+    override fun getCurrentMonth(): Month {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

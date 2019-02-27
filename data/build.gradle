@@ -1,55 +1,48 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-  compileSdkVersion compile_sdk_version
+    compileSdkVersion compile_sdk_version
 
-  defaultConfig {
-    minSdkVersion min_sdk_version
-    targetSdkVersion target_sdk_version
-    versionCode version_code
-    versionName version_name
+    defaultConfig {
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
+        versionCode version_code
+        versionName version_name
 
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-  }
-
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-  }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
 }
 
 dependencies {
-  implementation fileTree(include: ['*.jar'], dir: 'libs')
-  implementation project(':domain')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':domain')
 
-  // Kotlin
-  implementation libraries.kotlin
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-  // Koin for Android
-  implementation libraries.koin
+    // Koin for Android
+    implementation "org.koin:koin-android:$koin_version"
 
-  //RxJava
-  implementation libraries.rxkotlin
+    // Room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-coroutines:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
-  // Room
-  implementation (libraries.room_runtime){
-    exclude group : groups.support
-  }
-  implementation (libraries.room_rx){
-    exclude group : groups.reactivestreams
-    exclude group : groups.support
-    exclude group : groups.rxjava2
-  }
-  kapt libraries.room_compiler
+    //Timber
+    implementation "com.jakewharton.timber:timber:$timber_version"
 
-  //Timber
-  implementation libraries.timber
-
-  // Test
-  testImplementation testLibraries.junit
-  testImplementation testLibraries.koin
-
+    // Test
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.koin:koin-test:$koin_version"
+    testImplementation "androidx.room:room-testing:$room_version"
 }
