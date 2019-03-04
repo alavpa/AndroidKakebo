@@ -3,16 +3,15 @@ package com.alavpa.presentation.detail
 import com.alavpa.domain.entity.Category
 import com.alavpa.domain.interactor.GetCategories
 import com.alavpa.domain.interactor.InsertCategory
-import com.alavpa.domain.interactor.InsertSpend
+import com.alavpa.domain.interactor.InsertTransaction
 import com.alavpa.presentation.base.BasePresenter
 import com.alavpa.presentation.mapper.ViewMapper
-import timber.log.Timber
 
-class DetailPresenter(private val insertSpend: InsertSpend,
+class DetailPresenter(private val insertTransaction: InsertTransaction,
                       private val getCategories: GetCategories,
                       private val insertCategory: InsertCategory,
                       private val mapper: ViewMapper)
-    : BasePresenter<DetailView>(insertSpend, getCategories, insertCategory) {
+    : BasePresenter<DetailView>(insertTransaction, getCategories, insertCategory) {
 
     var value = 0f
     var isIncome = false
@@ -42,10 +41,10 @@ class DetailPresenter(private val insertSpend: InsertSpend,
     }
 
     fun done() {
-        insertSpend.value = value
-        insertSpend.isIncome = isIncome
-        insertSpend.categoryId = selectedCategory
-        insertSpend.perform({view?.onDone()}, ::showError)
+        insertTransaction.value = value
+        insertTransaction.isIncome = isIncome
+        insertTransaction.categoryId = selectedCategory
+        insertTransaction.perform({view?.onDone()}, ::showError)
     }
 
     fun add(name: String) {

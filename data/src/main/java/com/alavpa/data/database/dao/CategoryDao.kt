@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import com.alavpa.data.database.entity.CategoryTable
-import com.alavpa.data.database.entity.SpendTable
+import com.alavpa.data.database.entity.TransactionTable
 
 @Dao
 interface CategoryDao {
@@ -24,5 +24,5 @@ interface CategoryDao {
     suspend fun insert(table : CategoryTable) : Long
 
     @Delete
-    suspend fun delete(table: SpendTable) : Int
+    suspend fun delete(table: TransactionTable) : Int
 }

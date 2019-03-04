@@ -1,7 +1,11 @@
 <resources>
   <string name="app_name">AndroidKakebo</string>
-  <string name="income">Income</string>
-  <string name="outcome">Outcome</string>
-  <string name="cancel">Cancel</string>
-  <string name="done">Done</string>
+  <string name="home">Inicio</string>
+  <string name="statistics">Estadísticas</string>
+  <string name="settings">Ajustes</string>
+  <string name="income">Ingresos</string>
+  <string name="outcome">Gastos</string>
+  <string name="accept">Aceptar</string>
+  <string name="cancel">Cancelar</string>
+  <string name="done">Hecho</string>
 </resources>

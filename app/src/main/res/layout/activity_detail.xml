@@ -29,7 +29,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="0"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_action_add" />
+            android:src="@drawable/ic_round_add_24px" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

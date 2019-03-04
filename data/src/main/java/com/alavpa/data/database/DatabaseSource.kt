@@ -1,30 +1,26 @@
 package com.alavpa.data.database
 
 import com.alavpa.data.database.entity.CategoryTable
-import com.alavpa.data.database.entity.SpendTable
-
-/**
- * Created by alex on 09/01/2018.
- */
+import com.alavpa.data.database.entity.TransactionTable
 
 class DatabaseSource(private val db: KakeboDb) {
 
-    suspend fun getAllSpend(): List<SpendTable> {
+    suspend fun getAllTransactions(): List<TransactionTable> {
         //return db.spendDao().getAllSpend()
         TODO("Implement")
     }
 
-    suspend fun insertSpend(spendTable: SpendTable): Long {
-        return db.spendDao().insertSpend(spendTable)
+    suspend fun insertTransaction(transactionTable: TransactionTable): Long {
+        return db.transactionDao().insertSpend(transactionTable)
     }
 
-    suspend fun updateSpend(spendTable: SpendTable): Int {
-        //return db.spendDao().updateSpend(spendTable)
+    suspend fun updateTransaction(transactionTable: TransactionTable): Int {
+        //return db.spendDao().updateSpend(transactionTable)
         TODO("Implement")
     }
 
-    suspend fun deleteSpend(spendTable: SpendTable): Int {
-        //return db.spendDao().deleteSpend(spendTable)
+    suspend fun deleteTransaction(transactionTable: TransactionTable): Int {
+        //return db.spendDao().deleteSpend(transactionTable)
         TODO("Implement")
     }
 
