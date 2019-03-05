@@ -28,10 +28,6 @@ class DatabaseSource(private val db: KakeboDb) {
         return db.categoryDao().insert(categoryTable)
     }
 
-    suspend fun getAllCategories(isIncome: Boolean): List<CategoryTable> {
-        return db.categoryDao().getAll(isIncome)
-    }
-
     suspend fun getAllCategories(): List<CategoryTable> {
         return db.categoryDao().getAll()
     }

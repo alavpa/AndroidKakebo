@@ -19,8 +19,8 @@ class DataRepository(private val databaseSource: DatabaseSource) : Repository {
         return databaseSource.insertTransaction(transaction.toTable())
     }
 
-    override suspend fun getCategories(isIncome: Boolean): List<Category> {
-        val tables = databaseSource.getAllCategories(isIncome)
+    override suspend fun getCategories(): List<Category> {
+        val tables = databaseSource.getAllCategories()
         return tables.map { it.toEntity() }
     }
 }
