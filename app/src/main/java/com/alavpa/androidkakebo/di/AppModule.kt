@@ -1,5 +1,6 @@
 package com.alavpa.androidkakebo.di
 
+import com.alavpa.androidkakebo.loading.LoadingDialog
 import com.alavpa.androidkakebo.navigation.Navigation
 import org.koin.dsl.module.module
 import java.text.DecimalFormat
@@ -10,6 +11,7 @@ val appModule = module {
 
     factory { Navigation() }
     factory { createDecimalFormat() }
+    factory { LoadingDialog() }
 }
 
 fun createDecimalFormat(): DecimalFormat {

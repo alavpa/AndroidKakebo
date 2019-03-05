@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-open class BasePresenter<T : BaseView>(private vararg val useCases: UseCase<*>) {
+open class BasePresenter<T: BaseView> {
 
     var view: T? = null
 

@@ -1,11 +1,15 @@
 <resources>
-  <string name="app_name">AndroidKakebo</string>
-  <string name="home">Inicio</string>
-  <string name="statistics">Estadísticas</string>
-  <string name="settings">Ajustes</string>
-  <string name="income">Ingresos</string>
-  <string name="outcome">Gastos</string>
-  <string name="accept">Aceptar</string>
-  <string name="cancel">Cancelar</string>
-  <string name="done">Hecho</string>
+    <string name="app_name">AndroidKakebo</string>
+    <string name="home">Inicio</string>
+    <string name="statistics">Estadísticas</string>
+    <string name="settings">Ajustes</string>
+    <string name="income">Ingresos</string>
+    <string name="outcome">Gastos</string>
+    <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="done">Hecho</string>
+    <string name="categories">Categorias</string>
+    <string name="first_day">Primer día de mes</string>
+    <string name="monthly_target">Objetivo mensual</string>
+    <string name="notifications">Notificaciones</string>
 </resources>

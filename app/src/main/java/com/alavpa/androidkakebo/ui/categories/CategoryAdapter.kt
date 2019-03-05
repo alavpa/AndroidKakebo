@@ -1,12 +1,13 @@
-package com.alavpa.androidkakebo.ui.detail
+package com.alavpa.androidkakebo.ui.categories
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.alavpa.androidkakebo.R
-import com.alavpa.presentation.detail.CategoryItem
+import com.alavpa.presentation.categories.CategoryItem
 
 class CategoryAdapter(private val onItemClickCallback: (Long) -> Unit)
     : RecyclerView.Adapter<CategoryAdapter.ItemViewHolder>() {
@@ -41,10 +42,12 @@ class CategoryAdapter(private val onItemClickCallback: (Long) -> Unit)
     class ItemViewHolder(itemView: View)
         : RecyclerView.ViewHolder(itemView) {
 
-        private var tvName: TextView = itemView.findViewById(R.id.tv_name)
+        private var name: TextView = itemView.findViewById(R.id.name)
+        private var icon: ImageView = itemView.findViewById(R.id.icon)
 
         fun bind(item: CategoryItem, isSelected: Boolean, onClickListener: View.OnClickListener) {
-            tvName.text = item.name
+            name.text = item.name
+            icon.setImageResource(item.icon)
             itemView.isSelected = isSelected
             itemView.setOnClickListener(onClickListener)
         }
