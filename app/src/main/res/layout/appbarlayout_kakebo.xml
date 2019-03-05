@@ -12,7 +12,6 @@
             android:id="@+id/titleBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/categories"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/font_big" />
 
