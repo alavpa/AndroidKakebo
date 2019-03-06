@@ -38,6 +38,8 @@ dependencies {
     implementation "androidx.room:room-coroutines:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+
     //Timber
     implementation "com.jakewharton.timber:timber:$timber_version"
 
