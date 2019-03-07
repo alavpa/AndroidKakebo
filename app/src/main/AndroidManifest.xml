@@ -26,6 +26,7 @@
         <activity
             android:name=".ui.categories.CategoryActivity"
             android:parentActivityName=".ui.main.MainActivity" />
+        <activity android:name=".ui.categories.add.AddCategoryActivity" />
     </application>
 
 </manifest>

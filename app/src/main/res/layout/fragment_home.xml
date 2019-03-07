@@ -10,11 +10,12 @@
         android:id="@+id/amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/font_big"
+        android:hint="@string/amount_hint"
         android:inputType="numberDecimal"
+        android:textSize="@dimen/font_big"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="0.00" />
+        tools:text="@string/amount_hint" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

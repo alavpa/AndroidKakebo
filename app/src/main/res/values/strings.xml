@@ -12,4 +12,6 @@
     <string name="first_day">Primer día de mes</string>
     <string name="monthly_target">Objetivo mensual</string>
     <string name="notifications">Notificaciones</string>
+    <string name="category_name_hint">Nombre</string>
+    <string name="amount_hint">0.00</string>
 </resources>

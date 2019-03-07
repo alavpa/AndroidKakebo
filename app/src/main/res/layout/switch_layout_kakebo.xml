@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/option1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/selectable_switch_background"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@drawable/selectable_item_tint_inverse"
+        android:textSize="@dimen/font_normal"
+        tools:text="option1" />
+
+    <TextView
+        android:id="@+id/option2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/selectable_switch_background"
+        android:gravity="center"
+        android:padding="5dp"
+        android:textColor="@drawable/selectable_item_tint_inverse"
+        android:textSize="@dimen/font_normal"
+        tools:text="option2" />
+
+</merge>

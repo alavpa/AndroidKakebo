@@ -23,7 +23,7 @@ open class BasePresenter<T : BaseView> {
         this.view = null
     }
 
-    fun <T> UseCase<T>.perform(onSuccess: (T) -> Unit, onError: (Throwable) -> Unit) {
+    fun <T> UseCase<T>.perform(onSuccess: (T) -> Unit = {}, onError: (Throwable) -> Unit = {}) {
         val useCase = this
         CoroutineScope(Dispatchers.Default).launch(job) {
             try {

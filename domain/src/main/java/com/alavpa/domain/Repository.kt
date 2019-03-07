@@ -8,4 +8,5 @@ interface Repository {
     suspend fun getCategories(): List<Category>
     suspend fun getCategory(id: Long): Category
     suspend fun insertCategory(category: Category): Long
+    suspend fun getIcons(): List<Int>
 }
