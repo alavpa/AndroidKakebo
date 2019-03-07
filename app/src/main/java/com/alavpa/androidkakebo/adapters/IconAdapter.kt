@@ -7,7 +7,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.alavpa.androidkakebo.R
 
-class IconAdapter(private val onItemClickCallback: (Int) -> Unit)
+class IconAdapter(private val onItemClickCallback: (Int) -> Unit = {})
     : RecyclerView.Adapter<IconAdapter.ItemViewHolder>() {
 
     var items: List<Int> = listOf()

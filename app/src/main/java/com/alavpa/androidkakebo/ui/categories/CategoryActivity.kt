@@ -51,7 +51,8 @@ class CategoryActivity : BaseActivity<CategoryPresenter>(), CategoryView {
     }
 
     override fun showEmptyList() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        adapter.items = listOf()
+        adapter.notifyDataSetChanged()
     }
 
     override fun populateCategories(list: List<Category>) {

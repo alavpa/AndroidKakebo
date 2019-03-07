@@ -18,9 +18,7 @@ class AddCategoryActivity : BaseActivity<AddCategoryPresenter>(), AddCategoryVie
 
     private val presenter: AddCategoryPresenter by inject()
 
-    private val adapter = IconAdapter {
-        presenter.onClickItem(it)
-    }
+    private val adapter = IconAdapter()
 
     override fun bindPresenter(): AddCategoryPresenter {
         return presenter

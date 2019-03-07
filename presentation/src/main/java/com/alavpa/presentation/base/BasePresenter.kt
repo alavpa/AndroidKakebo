@@ -12,10 +12,13 @@ import kotlinx.coroutines.withContext
 open class BasePresenter<T : BaseView> {
 
     var view: T? = null
-    private val job = SupervisorJob()
+    private var job = SupervisorJob()
 
     fun attachView(view: T) {
         this.view = view
+        if (job.isCancelled) {
+            job = SupervisorJob()
+        }
     }
 
     open fun detachView() {
