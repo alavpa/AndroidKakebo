@@ -9,6 +9,6 @@ import org.koin.dsl.module.module
 val presentationModule = module {
     factory { MainPresenter() }
     factory { SettingsPresenter() }
-    factory { CategoryPresenter() }
+    factory { CategoryPresenter(get()) }
     factory { HomePresenter() }
 }

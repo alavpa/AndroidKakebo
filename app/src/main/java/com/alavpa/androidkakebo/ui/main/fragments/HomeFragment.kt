@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.base.BaseFragment
 import com.alavpa.presentation.home.HomePresenter
+import com.alavpa.presentation.home.HomeView
 import kotlinx.android.synthetic.main.fragment_home.amount
 import org.koin.android.ext.android.inject
 
-class HomeFragment : BaseFragment<HomePresenter>() {
+class HomeFragment : BaseFragment<HomePresenter>(), HomeView {
 
     private val presenter: HomePresenter by inject()
 
@@ -20,10 +21,5 @@ class HomeFragment : BaseFragment<HomePresenter>() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        amount?.setText("0.00")
     }
 }
