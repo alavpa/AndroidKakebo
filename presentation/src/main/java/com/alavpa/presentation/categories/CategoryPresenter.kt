@@ -1,19 +1,23 @@
 package com.alavpa.presentation.categories
 
 import com.alavpa.domain.entity.Category
+import com.alavpa.domain.interactor.DeleteCategory
 import com.alavpa.domain.interactor.GetCategories
 import com.alavpa.presentation.base.BasePresenter
 
-class CategoryPresenter(private val getCategories: GetCategories) : BasePresenter<CategoryView>() {
+class CategoryPresenter(
+    private val getCategories: GetCategories,
+    private val removeCategory: DeleteCategory
+) : BasePresenter<CategoryView>() {
 
     fun getCategories() {
         getCategories.perform(::onGetCategories, ::onError)
     }
 
     private fun onGetCategories(list: List<Category>) {
-        if(list.isEmpty()){
+        if (list.isEmpty()) {
             view?.showEmptyList()
-        }else{
+        } else {
             view?.populateCategories(list)
         }
     }
@@ -24,5 +28,23 @@ class CategoryPresenter(private val getCategories: GetCategories) : BasePresente
 
     fun onClickAdd() {
         view?.openAddCategory()
+    }
+
+    fun onClickItem(id: Long) {
+
+    }
+
+    fun onDeleteItem(category: Category) {
+        removeCategory.category = category
+        removeCategory.perform(
+            {
+                if (it > 0) {
+                    getCategories()
+                }
+            },
+            {
+                view?.showError(it.message)
+            }
+        )
     }
 }

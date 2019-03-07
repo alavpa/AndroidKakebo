@@ -3,18 +3,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/selectable_item_background"
     android:orientation="horizontal"
     android:padding="@dimen/margin_big">
-    <ImageView android:id="@+id/icon"
+
+    <ImageView
+        android:id="@+id/icon"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="@dimen/margin"/>
-    <TextView
-        android:id="@+id/name"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/margin"
+        android:layout_weight="0"
+        android:tint="@drawable/selectable_item_tint_inverse"
+        tools:src="@drawable/ic_round_home_24px" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selectable_item_background"
-        android:textSize="@dimen/font_normal"
-        android:textColor="@color/colorPrimary"
-        tools:text="Category"/>
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@drawable/selectable_item_tint_inverse"
+            android:textSize="@dimen/font_normal"
+            tools:text="Category" />
+
+        <ImageView
+            android:id="@+id/type"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/margin"
+            android:tint="@drawable/selectable_item_tint_inverse"
+            tools:src="@drawable/ic_round_trending_down_24px" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/margin"
+        android:layout_weight="0"
+        android:src="@drawable/ic_round_delete_24px"
+        android:tint="@drawable/selectable_item_tint_inverse" />
+
 </LinearLayout>

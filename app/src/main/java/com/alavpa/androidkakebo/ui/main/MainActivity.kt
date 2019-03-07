@@ -10,7 +10,6 @@ import com.alavpa.presentation.main.MainPresenter
 import com.alavpa.presentation.main.MainView
 import kotlinx.android.synthetic.main.activity_main.bottom_bar
 import kotlinx.android.synthetic.main.activity_main.kakeboBar
-import kotlinx.android.synthetic.main.appbarlayout_kakebo.titleBar
 import kotlinx.android.synthetic.main.appbarlayout_kakebo.view.titleBar
 import org.koin.android.ext.android.inject
 
@@ -22,7 +21,7 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
     private val statisticsFragment = StatisticsFragment()
     private val settingsFragment = SettingsFragment()
 
-    private var selectedItem = -1
+    private var selectedFragment = -1
 
     companion object {
         private const val TAG_HOME = "tag_home"
@@ -51,25 +50,25 @@ class MainActivity : BaseActivity<MainPresenter>(), MainView {
 
     override fun onResume() {
         super.onResume()
-        if (selectedItem == -1) {
+        if (selectedFragment == -1) {
             bottom_bar?.selectedItemId = R.id.home
         }
     }
 
     override fun openHome() {
-        selectedItem = R.id.home
+        selectedFragment = R.id.home
         kakeboBar?.titleBar?.setText(R.string.home)
         supportFragmentManager.beginTransaction().replace(R.id.container, homeFragment, TAG_HOME).commit()
     }
 
     override fun openStatistics() {
-        selectedItem = R.id.statistics
+        selectedFragment = R.id.statistics
         kakeboBar?.titleBar?.setText(R.string.statistics)
         supportFragmentManager.beginTransaction().replace(R.id.container, statisticsFragment, TAG_STATISTICS).commit()
     }
 
     override fun openSettings() {
-        selectedItem = R.id.settings
+        selectedFragment = R.id.settings
         kakeboBar?.titleBar?.setText(R.string.settings)
         supportFragmentManager.beginTransaction().replace(R.id.container, settingsFragment, TAG_SETTINGS).commit()
     }

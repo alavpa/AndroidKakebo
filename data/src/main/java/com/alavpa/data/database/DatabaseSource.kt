@@ -24,6 +24,10 @@ class DatabaseSource(private val db: KakeboDb) {
         TODO("Implement")
     }
 
+    suspend fun deleteCategory(categoryTable: CategoryTable): Int {
+        return db.categoryDao().delete(categoryTable)
+    }
+
     suspend fun insertCategory(categoryTable: CategoryTable): Long {
         return db.categoryDao().insert(categoryTable)
     }

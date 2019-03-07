@@ -11,6 +11,10 @@ class DataRepository(
     private val resourcesDataSource: ResourcesDataSource
 ) : Repository {
 
+    override suspend fun deleteCategory(category: Category): Int {
+        return databaseSource.deleteCategory(category.toTable())
+    }
+
     override suspend fun getCategory(id: Long): Category {
         return databaseSource.getCategory(id).toEntity()
     }

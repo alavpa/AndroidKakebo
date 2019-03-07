@@ -8,10 +8,11 @@
     <string name="accept">Aceptar</string>
     <string name="cancel">Cancelar</string>
     <string name="done">Hecho</string>
-    <string name="categories">Categorias</string>
+    <string name="categories">Categorías</string>
     <string name="first_day">Primer día de mes</string>
     <string name="monthly_target">Objetivo mensual</string>
     <string name="notifications">Notificaciones</string>
     <string name="category_name_hint">Nombre</string>
-    <string name="amount_hint">0.00</string>
+    <string name="amount_hint" translatable="false">0.00</string>
+    <string name="new_category">Nueva Categoría</string>
 </resources>

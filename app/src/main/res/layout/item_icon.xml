@@ -5,5 +5,4 @@
     android:layout_width="40dp"
     android:layout_height="40dp"
     android:tint="@drawable/selectable_item_tint_inverse"
-    android:background="@drawable/selectable_item_background"
-    android:layout_margin="@dimen/margin" />
+    android:background="@drawable/selectable_item_background" />

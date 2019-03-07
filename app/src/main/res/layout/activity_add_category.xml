@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         app:elevation="0dp"
         app:theme="@style/AppTheme.AppBarOverlay"
-        app:titleBar="@string/categories" />
+        app:titleBar="@string/new_category" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/category_name_hint"
             android:textSize="@dimen/font_normal"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.alavpa.androidkakebo.views.KakeboSwitch

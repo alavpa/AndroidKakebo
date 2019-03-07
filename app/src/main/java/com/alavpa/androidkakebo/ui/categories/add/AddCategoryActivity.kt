@@ -3,12 +3,15 @@ package com.alavpa.androidkakebo.ui.categories.add
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.alavpa.androidkakebo.R
+import com.alavpa.androidkakebo.adapters.IconAdapter
 import com.alavpa.androidkakebo.base.BaseActivity
 import com.alavpa.presentation.categories.add.AddCategoryPresenter
 import com.alavpa.presentation.categories.add.AddCategoryView
 import kotlinx.android.synthetic.main.activity_add_category.icons
 import kotlinx.android.synthetic.main.activity_add_category.name
 import kotlinx.android.synthetic.main.activity_add_category.save
+import kotlinx.android.synthetic.main.activity_add_category.type
+import kotlinx.android.synthetic.main.activity_add_category.kakeboBar
 import org.koin.android.ext.android.inject
 
 class AddCategoryActivity : BaseActivity<AddCategoryPresenter>(), AddCategoryView {
@@ -27,11 +30,15 @@ class AddCategoryActivity : BaseActivity<AddCategoryPresenter>(), AddCategoryVie
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_category)
 
-        icons.layoutManager = GridLayoutManager(this, 5)
-        icons.adapter = adapter
+        setSupportActionBar(kakeboBar.getToolbar())
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        icons?.layoutManager = GridLayoutManager(this, 5)
+        icons?.adapter = adapter
 
         save?.setOnClickListener {
-            presenter.save(name.text.toString())
+            presenter.save(adapter.itemSelected, name?.text.toString(), type?.optionSelected)
         }
     }
 
@@ -43,5 +50,9 @@ class AddCategoryActivity : BaseActivity<AddCategoryPresenter>(), AddCategoryVie
     override fun populateIcons(icons: List<Int>) {
         adapter.items = icons
         adapter.notifyDataSetChanged()
+    }
+
+    override fun categorySaved() {
+        finish()
     }
 }
