@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alavpa.androidkakebo.R
-import com.alavpa.androidkakebo.adapters.CategoryAdapter
+import com.alavpa.androidkakebo.adapters.TransactionAdapter
 import com.alavpa.androidkakebo.base.BaseFragment
-import com.alavpa.domain.entity.Category
 import com.alavpa.domain.entity.Transaction
 import com.alavpa.presentation.home.HomePresenter
 import com.alavpa.presentation.home.HomeView
@@ -20,7 +19,7 @@ class HomeFragment : BaseFragment<HomePresenter>(), HomeView {
 
     private val presenter: HomePresenter by inject()
 
-    private val adapter = CategoryAdapter()
+    private val adapter = TransactionAdapter()
 
     override fun bindPresenter(): HomePresenter {
         return presenter
@@ -47,7 +46,8 @@ class HomeFragment : BaseFragment<HomePresenter>(), HomeView {
     }
 
     override fun populateTransactions(list: List<Transaction>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        adapter.items = list
+        adapter.notifyDataSetChanged()
     }
 
     override fun showEmptyList() {

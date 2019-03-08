@@ -1,6 +1,5 @@
 package com.alavpa.androidkakebo.dialogs
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,13 +20,11 @@ open class ConfirmationDialog : DialogFragment() {
 
     companion object {
         private const val TAG = "TAG_CONFIRMATION"
-        private const val ARG_TITLE = "ARG_TITLE"
         private const val ARG_MESSAGE = "ARG_MESSAGE"
 
-        fun newInstance(title: String, message: String): ConfirmationDialog {
+        fun newInstance(message: String): ConfirmationDialog {
             return ConfirmationDialog().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_TITLE, title)
                     putString(ARG_MESSAGE, message)
                 }
             }

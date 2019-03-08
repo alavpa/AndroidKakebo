@@ -1,14 +1,15 @@
 package com.alavpa.presentation.home
 
+import com.alavpa.domain.interactor.GetTransactions
 import com.alavpa.presentation.base.BasePresenter
 
-class HomePresenter : BasePresenter<HomeView>() {
+class HomePresenter(private val getTransactions: GetTransactions) : BasePresenter<HomeView>() {
 
     fun onAddTransaction() {
         view?.openAddTransaction()
     }
 
     fun loadTransactions() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        getTransactions.perform { view?.populateTransactions(it) }
     }
 }

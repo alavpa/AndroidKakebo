@@ -10,6 +10,11 @@ class DataRepository(
     private val databaseSource: DatabaseSource,
     private val resourcesDataSource: ResourcesDataSource
 ) : Repository {
+    override suspend fun getTransactions(): List<Transaction> {
+        return databaseSource.getAllTransactions().map {
+            it.toEntity(getCategory(it.categoryId))
+        }
+    }
 
     override suspend fun deleteCategory(category: Category): Int {
         return databaseSource.deleteCategory(category.toTable())

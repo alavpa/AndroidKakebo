@@ -12,7 +12,7 @@ val presentationModule = module {
     factory { MainPresenter() }
     factory { SettingsPresenter() }
     factory { CategoryPresenter(get(), get()) }
-    factory { HomePresenter() }
+    factory { HomePresenter(get()) }
     factory { AddCategoryPresenter(get(), get()) }
     factory { TransactionPresenter(get(), get(), get()) }
 }

@@ -10,4 +10,5 @@ interface Repository {
     suspend fun insertCategory(category: Category): Long
     suspend fun getIcons(): List<Int>
     suspend fun deleteCategory(category: Category): Int
+    suspend fun getTransactions(): List<Transaction>
 }

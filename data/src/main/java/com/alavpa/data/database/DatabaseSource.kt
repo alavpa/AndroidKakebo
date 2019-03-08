@@ -6,8 +6,7 @@ import com.alavpa.data.database.entity.TransactionTable
 class DatabaseSource(private val db: KakeboDb) {
 
     suspend fun getAllTransactions(): List<TransactionTable> {
-        //return db.spendDao().getAllSpend()
-        TODO("Implement")
+        return db.transactionDao().getAllTransactions()
     }
 
     suspend fun insertTransaction(transactionTable: TransactionTable): Long {
