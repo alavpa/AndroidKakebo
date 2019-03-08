@@ -6,16 +6,16 @@ import com.alavpa.domain.entity.Category
 import com.alavpa.domain.entity.Transaction
 import java.util.Calendar
 
-fun TransactionTable.toEntity(): Transaction {
+fun TransactionTable.toEntity(category: Category): Transaction {
     val cal = Calendar.getInstance()
     cal.timeInMillis = this.insertDate
-    return Transaction(this.id, this.value, cal.time, null)
+    return Transaction(this.id, this.amount, cal.time, category)
 }
 
 fun Transaction.toTable(): TransactionTable {
     val cal = Calendar.getInstance()
     cal.time = this.insertDate
-    return TransactionTable(this.id, this.value, cal.timeInMillis, this.category?.id ?: 0)
+    return TransactionTable(this.id, this.amount, cal.timeInMillis, this.category.id)
 }
 
 fun CategoryTable.toEntity(): Category {

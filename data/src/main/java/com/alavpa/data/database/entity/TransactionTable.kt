@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey
 data class TransactionTable(
     @ColumnInfo @PrimaryKey(autoGenerate = true)
     var id: Long = 0,
-    var value: Float = 0f,
+    var amount: Float = 0f,
     var insertDate: Long = 0,
     @ForeignKey(entity = CategoryTable::class, parentColumns = ["id"], childColumns = ["categoryId"], onDelete = CASCADE)
     var categoryId: Long = 0)

@@ -2,28 +2,58 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+    <LinearLayout
         android:id="@+id/option1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/selectable_switch_background"
         android:gravity="center"
-        android:padding="5dp"
-        android:textColor="@drawable/selectable_item_tint_inverse"
-        android:textSize="@dimen/font_normal"
-        tools:text="option1" />
+        android:orientation="horizontal">
 
-    <TextView
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:textColor="@drawable/selectable_item_tint_inverse"
+            android:textSize="@dimen/font_normal"
+            tools:text="option1" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_round_trending_down_24px"
+            android:tint="@drawable/selectable_item_tint_inverse" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/option2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/selectable_switch_background"
         android:gravity="center"
-        android:padding="5dp"
-        android:textColor="@drawable/selectable_item_tint_inverse"
-        android:textSize="@dimen/font_normal"
-        tools:text="option2" />
+        android:orientation="horizontal">
 
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:textColor="@drawable/selectable_item_tint_inverse"
+            android:textSize="@dimen/font_normal"
+            tools:text="option2" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_round_trending_up_24px"
+            android:tint="@drawable/selectable_item_tint_inverse" />
+    </LinearLayout>
 </merge>

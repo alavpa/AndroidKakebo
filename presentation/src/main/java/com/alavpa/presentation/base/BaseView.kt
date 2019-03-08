@@ -7,4 +7,5 @@ interface BaseView {
     fun startLoading(message : String)
     fun stopLoading()
     fun showError(message : String?)
+    fun showMessage(message : String?)
 }

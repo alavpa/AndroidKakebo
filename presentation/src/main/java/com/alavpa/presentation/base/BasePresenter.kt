@@ -8,6 +8,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 open class BasePresenter<T : BaseView> {
 
@@ -26,7 +27,13 @@ open class BasePresenter<T : BaseView> {
         this.view = null
     }
 
-    fun <T> UseCase<T>.perform(onSuccess: (T) -> Unit = {}, onError: (Throwable) -> Unit = {}) {
+    fun <T> UseCase<T>.perform(
+        onError: (Throwable) -> Unit = {
+            Timber.d(it)
+            view?.showError(it.message)
+        },
+        onSuccess: (T) -> Unit = {}
+    ) {
         val useCase = this
         CoroutineScope(Dispatchers.Default).launch(job) {
             try {

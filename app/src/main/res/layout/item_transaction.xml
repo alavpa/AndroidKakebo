@@ -44,11 +44,23 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0"
+        android:textColor="@drawable/selectable_item_tint_inverse"
+        android:textSize="@dimen/font_normal"
+        tools:text="300€" />
+
+
     <ImageView
         android:id="@+id/delete"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_gravity="center"
+        android:layout_marginStart="@dimen/margin"
         android:layout_marginEnd="@dimen/margin"
         android:layout_weight="0"
         android:src="@drawable/ic_round_delete_24px"

@@ -12,17 +12,14 @@ class AddCategoryPresenter(
 
     fun save(icon: Int, text: String?, type: Int?) {
         insertCategory.category = Category(icon = icon, name = text ?: "", income = type == 2)
-        insertCategory.perform({
+        insertCategory.perform {
             view?.categorySaved()
-        }, {
-            view?.showError(it.message)
-        })
+        }
     }
 
     fun loadItems() {
-
-        getIcons.perform(onSuccess = {
+        getIcons.perform {
             view?.populateIcons(it)
-        })
+        }
     }
 }

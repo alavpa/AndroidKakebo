@@ -3,7 +3,7 @@ package com.alavpa.androidkakebo.base
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.alavpa.androidkakebo.loading.LoadingDialog
+import com.alavpa.androidkakebo.dialogs.LoadingDialog
 import com.alavpa.androidkakebo.navigation.Navigation
 import com.alavpa.presentation.base.BasePresenter
 import com.alavpa.presentation.base.BaseView
@@ -26,6 +26,10 @@ abstract class BaseActivity<T : BasePresenter<*>> : AppCompatActivity(), BaseVie
     }
 
     override fun showError(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    override fun showMessage(message: String?) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 

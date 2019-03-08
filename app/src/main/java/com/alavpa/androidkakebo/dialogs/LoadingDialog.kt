@@ -1,4 +1,4 @@
-package com.alavpa.androidkakebo.loading
+package com.alavpa.androidkakebo.dialogs
 
 import android.os.Bundle
 import android.view.LayoutInflater

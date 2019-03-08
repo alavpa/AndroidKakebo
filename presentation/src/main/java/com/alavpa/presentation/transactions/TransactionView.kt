@@ -1,0 +1,11 @@
+package com.alavpa.presentation.transactions
+
+import com.alavpa.domain.entity.Category
+import com.alavpa.presentation.base.BaseView
+
+interface TransactionView : BaseView {
+    fun populateCategories(list: List<Category>)
+    fun showSuccessMessage()
+    fun showAddIncome(amount: String)
+    fun showAddOutcome(amount: String)
+}

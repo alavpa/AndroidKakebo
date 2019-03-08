@@ -16,6 +16,7 @@ import org.koin.android.ext.android.inject
 class CategoryActivity : BaseActivity<CategoryPresenter>(), CategoryView {
 
     private val presenter: CategoryPresenter by inject()
+
     private val adapter = CategoryAdapter(true,
         {
             presenter.onClickItem(it)
@@ -51,8 +52,7 @@ class CategoryActivity : BaseActivity<CategoryPresenter>(), CategoryView {
     }
 
     override fun showEmptyList() {
-        adapter.items = listOf()
-        adapter.notifyDataSetChanged()
+        populateCategories(listOf())
     }
 
     override fun populateCategories(list: List<Category>) {
@@ -63,5 +63,4 @@ class CategoryActivity : BaseActivity<CategoryPresenter>(), CategoryView {
     override fun openAddCategory() {
         navigation.openAddCategory(this)
     }
-
 }

@@ -11,7 +11,7 @@ class CategoryPresenter(
 ) : BasePresenter<CategoryView>() {
 
     fun getCategories() {
-        getCategories.perform(::onGetCategories, ::onError)
+        getCategories.perform(onSuccess = ::onGetCategories)
     }
 
     private fun onGetCategories(list: List<Category>) {
@@ -20,10 +20,6 @@ class CategoryPresenter(
         } else {
             view?.populateCategories(list)
         }
-    }
-
-    private fun onError(throwable: Throwable) {
-        view?.showError(throwable.message)
     }
 
     fun onClickAdd() {
@@ -36,15 +32,11 @@ class CategoryPresenter(
 
     fun onDeleteItem(category: Category) {
         removeCategory.category = category
-        removeCategory.perform(
-            {
-                if (it > 0) {
-                    getCategories()
-                }
-            },
-            {
-                view?.showError(it.message)
+        removeCategory.perform {
+            if (it > 0) {
+                getCategories()
             }
-        )
+        }
+
     }
 }

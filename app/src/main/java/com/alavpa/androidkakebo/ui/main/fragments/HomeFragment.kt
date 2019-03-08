@@ -9,9 +9,11 @@ import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.adapters.CategoryAdapter
 import com.alavpa.androidkakebo.base.BaseFragment
 import com.alavpa.domain.entity.Category
+import com.alavpa.domain.entity.Transaction
 import com.alavpa.presentation.home.HomePresenter
 import com.alavpa.presentation.home.HomeView
-import kotlinx.android.synthetic.main.activity_categories.categories
+import kotlinx.android.synthetic.main.fragment_home.add
+import kotlinx.android.synthetic.main.fragment_home.transactions
 import org.koin.android.ext.android.inject
 
 class HomeFragment : BaseFragment<HomePresenter>(), HomeView {
@@ -31,17 +33,29 @@ class HomeFragment : BaseFragment<HomePresenter>(), HomeView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        categories?.layoutManager = LinearLayoutManager(activity)
-        categories?.adapter = adapter
+        transactions?.layoutManager = LinearLayoutManager(activity)
+        transactions?.adapter = adapter
+
+        add?.setOnClickListener {
+            presenter.onAddTransaction()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        presenter.loadCategories()
+        presenter.loadTransactions()
     }
 
-    override fun populateCategories(list: List<Category>) {
-        adapter.items = list
-        adapter.notifyDataSetChanged()
+    override fun populateTransactions(list: List<Transaction>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    override fun showEmptyList() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun openAddTransaction() {
+        navigation.openTransaction(activity)
+    }
+
 }

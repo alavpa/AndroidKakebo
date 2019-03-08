@@ -15,4 +15,8 @@
     <string name="category_name_hint">Nombre</string>
     <string name="amount_hint" translatable="false">0.00</string>
     <string name="new_category">Nueva Categoría</string>
+    <string name="new_income">Vamos a agregar un nuevo ingreso de %1s€</string>
+    <string name="new_outcome">Vamos a agregar un nuevo gasto de %1s€</string>
+    <string name="new_transaction">Nueva Transacción</string>
+    <string name="confirm_title">¿Estás seguro?</string>
 </resources>

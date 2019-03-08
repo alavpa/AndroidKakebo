@@ -2,9 +2,8 @@ package com.alavpa.androidkakebo.base
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.alavpa.androidkakebo.loading.LoadingDialog
+import com.alavpa.androidkakebo.dialogs.LoadingDialog
 import com.alavpa.androidkakebo.navigation.Navigation
 import com.alavpa.presentation.base.BasePresenter
 import com.alavpa.presentation.base.BaseView
@@ -27,6 +26,12 @@ abstract class BaseFragment<T : BasePresenter<*>> : Fragment(), BaseView {
     }
 
     override fun showError(message: String?) {
+        activity?.let {
+            Toast.makeText(it, message, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun showMessage(message: String?) {
         activity?.let {
             Toast.makeText(it, message, Toast.LENGTH_LONG).show()
         }

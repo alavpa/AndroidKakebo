@@ -7,6 +7,8 @@ import android.widget.LinearLayout
 import com.alavpa.androidkakebo.R
 import kotlinx.android.synthetic.main.switch_layout_kakebo.view.option1
 import kotlinx.android.synthetic.main.switch_layout_kakebo.view.option2
+import kotlinx.android.synthetic.main.switch_layout_kakebo.view.text1
+import kotlinx.android.synthetic.main.switch_layout_kakebo.view.text2
 
 class KakeboSwitch : LinearLayout {
 
@@ -19,8 +21,8 @@ class KakeboSwitch : LinearLayout {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         val array = context.obtainStyledAttributes(attrs, R.styleable.KakeboSwitch)
-        option1?.text = array.getString(R.styleable.KakeboSwitch_text1)
-        option2?.text = array.getString(R.styleable.KakeboSwitch_text2)
+        text1?.text = array.getString(R.styleable.KakeboSwitch_text1)
+        text2?.text = array.getString(R.styleable.KakeboSwitch_text2)
         val selected = array.getInteger(R.styleable.KakeboSwitch_selected, -1)
         array.recycle()
 
