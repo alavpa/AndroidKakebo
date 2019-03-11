@@ -1,6 +1,9 @@
 package com.alavpa.androidkakebo.ui.transactions
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
+import android.widget.CalendarView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.adapters.CategoryAdapter
@@ -20,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_transaction.kakeboBar
 import kotlinx.android.synthetic.main.activity_transaction.periodSwitch
 import kotlinx.android.synthetic.main.activity_transaction.time
 import org.koin.android.ext.android.inject
+import java.util.Calendar
 
 class TransactionActivity : BaseActivity<TransactionPresenter>(), TransactionView, ConfirmationDialog.ConfirmationListener {
 
@@ -38,7 +42,6 @@ class TransactionActivity : BaseActivity<TransactionPresenter>(), TransactionVie
         setSupportActionBar(kakeboBar.getToolbar())
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
 
         categories?.layoutManager = LinearLayoutManager(this)
         categories?.adapter = adapter
@@ -86,6 +89,30 @@ class TransactionActivity : BaseActivity<TransactionPresenter>(), TransactionVie
                 }
             )
         }
+
+        date?.setOnClickListener {
+            DatePickerDialog(
+                this,
+                DatePickerDialog.OnDateSetListener { _, year, month, day ->
+                    presenter.setCurrentDate(year, month, day)
+                },
+                presenter.calendar.get(Calendar.YEAR),
+                presenter.calendar.get(Calendar.MONTH),
+                presenter.calendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+
+        time?.setOnClickListener {
+            TimePickerDialog(
+                this,
+                TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+                    presenter.setCurrentTime(hour, minute)
+                },
+                presenter.calendar.get(Calendar.HOUR_OF_DAY),
+                presenter.calendar.get(Calendar.MINUTE),
+                true
+            ).show()
+        }
     }
 
     override fun setPeriod(number: Int, period: Int) {
@@ -104,8 +131,15 @@ class TransactionActivity : BaseActivity<TransactionPresenter>(), TransactionVie
     override fun onResume() {
         super.onResume()
         presenter.loadCategories()
-        presenter.setCurrentDate()
-        presenter.setCurrentTime()
+        presenter.setCurrentDate(
+            presenter.calendar.get(Calendar.YEAR),
+            presenter.calendar.get(Calendar.MONTH),
+            presenter.calendar.get(Calendar.DAY_OF_MONTH)
+        )
+        presenter.setCurrentTime(
+            presenter.calendar.get(Calendar.HOUR_OF_DAY),
+            presenter.calendar.get(Calendar.MINUTE)
+        )
     }
 
     override fun populateCategories(list: List<Category>) {

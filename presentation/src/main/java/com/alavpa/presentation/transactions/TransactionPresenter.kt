@@ -16,6 +16,8 @@ class TransactionPresenter(
     private val timeFormat: SimpleDateFormat
 ) : BasePresenter<TransactionView>() {
 
+    val calendar: Calendar = Calendar.getInstance()
+
     fun loadCategories() {
         getCategories.perform { list ->
             view?.populateCategories(list)
@@ -26,6 +28,7 @@ class TransactionPresenter(
         insertTransaction.categoryId = categoryId
         insertTransaction.amount = amount.toFloatOrNull() ?: 0f
         insertTransaction.period = period
+        insertTransaction.date = calendar.time
 
         insertTransaction.perform {
             if (it > 0) {
@@ -45,17 +48,17 @@ class TransactionPresenter(
         }
     }
 
-    fun setCurrentDate() {
-
-        val calendar = Calendar.getInstance()
-        val date = dateFormat.format(calendar.time)
-        view?.setCurrentDate(date)
+    fun setCurrentDate(year: Int, month: Int, day: Int) {
+        calendar.set(Calendar.YEAR, year)
+        calendar.set(Calendar.MONTH, month)
+        calendar.set(Calendar.DAY_OF_MONTH, day)
+        view?.setCurrentDate(dateFormat.format(calendar.time))
     }
 
-    fun setCurrentTime() {
-        val calendar = Calendar.getInstance()
-        val time = timeFormat.format(calendar.time)
-        view?.setCurrentTime(time)
+    fun setCurrentTime(hour: Int, minute: Int) {
+        calendar.set(Calendar.HOUR_OF_DAY, hour)
+        calendar.set(Calendar.MINUTE, minute)
+        view?.setCurrentTime(timeFormat.format(calendar.time))
     }
 
     fun setPeriod(number: Int, period: Int) {
