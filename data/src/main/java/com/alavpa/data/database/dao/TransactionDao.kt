@@ -16,9 +16,12 @@ interface TransactionDao {
     @Query("SELECT * FROM TransactionTable")
     suspend fun getAllTransactions(): List<TransactionTable>
 
+    @Query("SELECT * FROM TransactionTable WHERE id=:id")
+    suspend fun getTransaction(id: Long): TransactionTable
+
     @Insert(onConflict = REPLACE)
-    suspend fun insertSpend(transactionTable: TransactionTable): Long
+    suspend fun insertTransaction(transactionTable: TransactionTable): Long
 
     @Delete
-    suspend fun deleteSpend(transactionTable: TransactionTable): Int
+    suspend fun deleteTransaction(transactionTable: TransactionTable): Int
 }

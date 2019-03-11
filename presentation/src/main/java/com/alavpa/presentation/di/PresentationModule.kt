@@ -18,7 +18,7 @@ val presentationModule = module {
     factory { AddCategoryPresenter(get(), get()) }
     factory("date") { getSimpleDateFormat() }
     factory("time") { getSimpleTimeFormat() }
-    factory { TransactionPresenter(get(), get(), get(), get("date"), get("time")) }
+    factory { TransactionPresenter(get(), get(), get(), get(), get("date"), get("time")) }
 }
 
 fun getSimpleDateFormat(): SimpleDateFormat {

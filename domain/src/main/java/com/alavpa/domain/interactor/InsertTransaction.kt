@@ -8,6 +8,7 @@ import java.util.Date
 
 class InsertTransaction(private val repository: Repository) : UseCase<Long>() {
 
+    var transactionId = 0L
     var date: Date = Calendar.getInstance().time
     var amount: Float = 0f
     var categoryId: Long = -1
@@ -15,7 +16,8 @@ class InsertTransaction(private val repository: Repository) : UseCase<Long>() {
 
     override suspend fun execute(): Long {
         val category = repository.getCategory(categoryId)
-        val transaction = Transaction(amount = amount, insertDate = date, category = category, period = period)
+        val transaction = Transaction(id = transactionId, amount = amount, insertDate = date, category = category, period = period)
+
         return repository.insertTransaction(transaction)
     }
 }

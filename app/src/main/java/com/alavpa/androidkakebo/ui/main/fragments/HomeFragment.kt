@@ -19,7 +19,9 @@ class HomeFragment : BaseFragment<HomePresenter>(), HomeView {
 
     private val presenter: HomePresenter by inject()
 
-    private val adapter = TransactionAdapter()
+    private val adapter = TransactionAdapter(onItemClickCallback = {
+        navigation.openEditTransaction(this@HomeFragment.activity, it)
+    })
 
     override fun bindPresenter(): HomePresenter {
         return presenter

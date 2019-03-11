@@ -11,7 +11,7 @@ class DatabaseSource(private val db: KakeboDb) {
     }
 
     suspend fun insertTransaction(transactionTable: TransactionTable): Long {
-        return db.transactionDao().insertSpend(transactionTable)
+        return db.transactionDao().insertTransaction(transactionTable)
     }
 
     suspend fun updateTransaction(transactionTable: TransactionTable): Int {
@@ -46,5 +46,9 @@ class DatabaseSource(private val db: KakeboDb) {
 
     suspend fun insertPeriod(period: PeriodTable): Long {
         return db.periodDao().insert(period)
+    }
+
+    suspend fun getTransaction(id: Long): TransactionTable{
+        return db.transactionDao().getTransaction(id)
     }
 }

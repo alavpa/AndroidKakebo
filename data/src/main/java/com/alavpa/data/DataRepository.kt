@@ -11,6 +11,15 @@ class DataRepository(
     private val databaseSource: DatabaseSource,
     private val resourcesDataSource: ResourcesDataSource
 ) : Repository {
+    override suspend fun getTransaction(id: Long): Transaction {
+        return databaseSource.getTransaction(id).let { transactionTable ->
+            transactionTable.toEntity(
+                getCategory(transactionTable.categoryId),
+                getPeriod(transactionTable.periodId)
+            )
+        }
+    }
+
     override suspend fun getTransactions(): List<Transaction> {
         return databaseSource.getAllTransactions().map {
             it.toEntity(getCategory(it.categoryId), getPeriod(it.periodId))
