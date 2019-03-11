@@ -8,4 +8,5 @@ import java.util.*
 class Transaction(val id: Long = 0,
                   val amount: Float,
                   val insertDate: Date,
-                  val category: Category)
+                  val category: Category,
+                  val period: Period? = null)

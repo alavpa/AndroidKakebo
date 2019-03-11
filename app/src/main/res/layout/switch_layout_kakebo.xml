@@ -16,16 +16,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="5dp"
+            android:paddingStart="@dimen/margin"
+            android:paddingEnd="@dimen/margin"
             android:textColor="@drawable/selectable_item_tint_inverse"
-            android:textSize="@dimen/font_normal"
             tools:text="option1" />
 
         <ImageView
+            android:id="@+id/icon1"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_round_trending_down_24px"
             android:tint="@drawable/selectable_item_tint_inverse" />
 
     </LinearLayout>
@@ -44,16 +44,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="5dp"
+            android:paddingStart="@dimen/margin"
+            android:paddingEnd="@dimen/margin"
             android:textColor="@drawable/selectable_item_tint_inverse"
-            android:textSize="@dimen/font_normal"
             tools:text="option2" />
 
         <ImageView
+            android:id="@+id/icon2"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_round_trending_up_24px"
             android:tint="@drawable/selectable_item_tint_inverse" />
     </LinearLayout>
 </merge>

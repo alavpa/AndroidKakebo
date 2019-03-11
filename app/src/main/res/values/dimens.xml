@@ -5,4 +5,5 @@
     <dimen name="margin_big">15dp</dimen>
     <dimen name="font_normal">25sp</dimen>
     <dimen name="font_small">18sp</dimen>
+    <dimen name="font_min">12sp</dimen>
 </resources>

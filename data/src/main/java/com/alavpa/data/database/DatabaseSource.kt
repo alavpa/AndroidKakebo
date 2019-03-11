@@ -1,6 +1,7 @@
 package com.alavpa.data.database
 
 import com.alavpa.data.database.entity.CategoryTable
+import com.alavpa.data.database.entity.PeriodTable
 import com.alavpa.data.database.entity.TransactionTable
 
 class DatabaseSource(private val db: KakeboDb) {
@@ -37,5 +38,13 @@ class DatabaseSource(private val db: KakeboDb) {
 
     suspend fun getCategory(id: Long): CategoryTable {
         return db.categoryDao().get(id)
+    }
+
+    suspend fun getPeriod(id: Long): PeriodTable? {
+        return db.periodDao().get(id)
+    }
+
+    suspend fun insertPeriod(period: PeriodTable): Long {
+        return db.periodDao().insert(period)
     }
 }

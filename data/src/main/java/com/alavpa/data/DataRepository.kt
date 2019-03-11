@@ -4,6 +4,7 @@ import com.alavpa.data.database.DatabaseSource
 import com.alavpa.data.resources.ResourcesDataSource
 import com.alavpa.domain.Repository
 import com.alavpa.domain.entity.Category
+import com.alavpa.domain.entity.Period
 import com.alavpa.domain.entity.Transaction
 
 class DataRepository(
@@ -12,7 +13,7 @@ class DataRepository(
 ) : Repository {
     override suspend fun getTransactions(): List<Transaction> {
         return databaseSource.getAllTransactions().map {
-            it.toEntity(getCategory(it.categoryId))
+            it.toEntity(getCategory(it.categoryId), getPeriod(it.periodId))
         }
     }
 
@@ -24,12 +25,22 @@ class DataRepository(
         return databaseSource.getCategory(id).toEntity()
     }
 
+    override suspend fun getPeriod(id: Long?): Period? {
+        return id?.let {
+            databaseSource.getPeriod(it)?.toEntity()
+        }
+    }
+
     override suspend fun insertCategory(category: Category): Long {
         return databaseSource.insertCategory(category.toTable())
     }
 
     override suspend fun insertTransaction(transaction: Transaction): Long {
-        return databaseSource.insertTransaction(transaction.toTable())
+        val table = transaction.toTable()
+        transaction.period?.let {
+            table.periodId = databaseSource.insertPeriod(it.toTable())
+        }
+        return databaseSource.insertTransaction(table)
     }
 
     override suspend fun getCategories(): List<Category> {

@@ -23,6 +23,6 @@ interface CategoryDao {
     @Insert(onConflict = REPLACE)
     suspend fun insert(table : CategoryTable) : Long
 
-    @Delete()
+    @Delete
     suspend fun delete(table: CategoryTable) : Int
 }

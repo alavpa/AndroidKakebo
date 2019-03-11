@@ -14,4 +14,7 @@ data class TransactionTable(
     var amount: Float = 0f,
     var insertDate: Long = 0,
     @ForeignKey(entity = CategoryTable::class, parentColumns = ["id"], childColumns = ["categoryId"], onDelete = CASCADE)
-    var categoryId: Long = 0)
+    var categoryId: Long = 0,
+    @ForeignKey(entity = PeriodTable::class, parentColumns = ["id"], childColumns = ["periodId"])
+    var periodId: Long? = null
+)

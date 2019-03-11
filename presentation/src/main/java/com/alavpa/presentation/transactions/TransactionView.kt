@@ -8,4 +8,7 @@ interface TransactionView : BaseView {
     fun showSuccessMessage()
     fun showAddIncome(amount: String)
     fun showAddOutcome(amount: String)
+    fun setCurrentDate(dateText: String?)
+    fun setCurrentTime(timeText: String?)
+    fun setPeriod(number: Int, period: Int)
 }

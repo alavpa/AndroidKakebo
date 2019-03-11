@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="period">
+        <item>día/s</item>
+        <item>semana/s</item>
+        <item>mes/es</item>
+        <item>año/es</item>
+    </array>
+</resources>

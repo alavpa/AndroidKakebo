@@ -3,8 +3,10 @@ package com.alavpa.data.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.alavpa.data.database.dao.CategoryDao
+import com.alavpa.data.database.dao.PeriodDao
 import com.alavpa.data.database.dao.TransactionDao
 import com.alavpa.data.database.entity.CategoryTable
+import com.alavpa.data.database.entity.PeriodTable
 import com.alavpa.data.database.entity.TransactionTable
 
 /**
@@ -12,7 +14,7 @@ import com.alavpa.data.database.entity.TransactionTable
  */
 
 @Database(
-    entities = [TransactionTable::class, CategoryTable::class],
+    entities = [TransactionTable::class, CategoryTable::class, PeriodTable::class],
     exportSchema = false,
     version = KakeboDb.DB_VERSION
 )
@@ -25,4 +27,5 @@ abstract class KakeboDb : RoomDatabase() {
 
     abstract fun transactionDao(): TransactionDao
     abstract fun categoryDao(): CategoryDao
+    abstract fun periodDao(): PeriodDao
 }
