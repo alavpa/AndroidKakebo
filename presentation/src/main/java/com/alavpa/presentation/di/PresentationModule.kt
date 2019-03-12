@@ -22,7 +22,7 @@ val presentationModule = module {
 }
 
 fun getSimpleDateFormat(): SimpleDateFormat {
-    return SimpleDateFormat("dd 'de' MMMM 'de' YYYY", Locale.getDefault())
+    return SimpleDateFormat("dd 'de' MMMM 'de' YYYY", Locale("es", "ES"))
 }
 
 fun getSimpleTimeFormat(): SimpleDateFormat {

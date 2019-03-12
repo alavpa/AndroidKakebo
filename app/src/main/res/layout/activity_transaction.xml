@@ -28,29 +28,28 @@
                 android:id="@+id/date_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:padding="@dimen/margin_big"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/date"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
                     android:inputType="numberDecimal"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/font_normal"
+                    android:textSize="@dimen/font_small"
                     android:textStyle="bold"
+                    android:layout_marginEnd="@dimen/margin"
                     tools:text="@string/date_tools" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/time"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:inputType="numberDecimal"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/font_normal"
+                    android:textSize="@dimen/font_small"
                     android:textStyle="bold"
                     tools:text="@string/time_tools" />
             </LinearLayout>
