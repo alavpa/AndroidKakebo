@@ -14,7 +14,7 @@ val presentationModule = module {
     factory { MainPresenter() }
     factory { SettingsPresenter() }
     factory { CategoryPresenter(get(), get()) }
-    factory { HomePresenter(get()) }
+    factory { HomePresenter(get(), get()) }
     factory { AddCategoryPresenter(get(), get()) }
     factory("date") { getSimpleDateFormat() }
     factory("time") { getSimpleTimeFormat() }

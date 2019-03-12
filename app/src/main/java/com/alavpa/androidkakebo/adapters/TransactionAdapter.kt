@@ -10,7 +10,7 @@ import com.alavpa.androidkakebo.R
 import com.alavpa.domain.entity.Transaction
 
 class TransactionAdapter(
-    private val isEditable: Boolean = false,
+    private val isRemovable: Boolean = false,
     private val onItemClickCallback: (Long) -> Unit = {},
     private val onItemDelete: (Transaction) -> Unit = {}
 ) : RecyclerView.Adapter<TransactionAdapter.ItemViewHolder>() {
@@ -29,14 +29,13 @@ class TransactionAdapter(
         val item = items[position]
         holder.bind(
             item,
-            itemSelected == item.id,
-            isEditable,
+            isRemovable,
             View.OnClickListener {
                 onItemDelete(item)
                 notifyDataSetChanged()
             },
             View.OnClickListener {
-                itemSelected = if (itemSelected != item.id) item.id else -1
+                itemSelected = item.id
                 onItemClickCallback(itemSelected)
                 notifyDataSetChanged()
             }
@@ -58,8 +57,7 @@ class TransactionAdapter(
 
         fun bind(
             item: Transaction,
-            isSelected: Boolean,
-            isEditable: Boolean,
+            isRemovable: Boolean,
             onClickDeleteListener: View.OnClickListener,
             onClickListener: View.OnClickListener
         ) {
@@ -68,10 +66,9 @@ class TransactionAdapter(
             else R.drawable.ic_round_trending_down_24px
             type.setImageResource(trending)
             icon.setImageResource(item.category.icon)
-            amount.text = item.amount.toString()
-            delete.visibility = if (isEditable) View.VISIBLE else View.GONE
+            amount.text = itemView.context?.getString(R.string.amount_placeholder, item.amount)
+            delete.visibility = if (isRemovable) View.VISIBLE else View.GONE
             delete.setOnClickListener(onClickDeleteListener)
-            itemView.isSelected = isSelected
             itemView.setOnClickListener(onClickListener)
         }
     }

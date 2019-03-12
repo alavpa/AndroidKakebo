@@ -20,8 +20,7 @@ class DatabaseSource(private val db: KakeboDb) {
     }
 
     suspend fun deleteTransaction(transactionTable: TransactionTable): Int {
-        //return db.spendDao().deleteSpend(transactionTable)
-        TODO("Implement")
+        return db.transactionDao().deleteTransaction(transactionTable)
     }
 
     suspend fun deleteCategory(categoryTable: CategoryTable): Int {
@@ -48,7 +47,7 @@ class DatabaseSource(private val db: KakeboDb) {
         return db.periodDao().insert(period)
     }
 
-    suspend fun getTransaction(id: Long): TransactionTable{
+    suspend fun getTransaction(id: Long): TransactionTable {
         return db.transactionDao().getTransaction(id)
     }
 }

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.adapters.TransactionAdapter
 import com.alavpa.androidkakebo.base.BaseFragment
+import com.alavpa.androidkakebo.dialogs.ConfirmationDialog
 import com.alavpa.domain.entity.Transaction
 import com.alavpa.presentation.home.HomePresenter
 import com.alavpa.presentation.home.HomeView
@@ -19,9 +20,28 @@ class HomeFragment : BaseFragment<HomePresenter>(), HomeView {
 
     private val presenter: HomePresenter by inject()
 
-    private val adapter = TransactionAdapter(onItemClickCallback = {
-        navigation.openEditTransaction(this@HomeFragment.activity, it)
-    })
+    private val adapter = TransactionAdapter(isRemovable = true,
+        onItemDelete = {
+            val message = if (it.category.income) getString(R.string.remove_income, it.amount)
+            else getString(R.string.remove_outcome, it.amount)
+            ConfirmationDialog.newInstance(message).show(
+                this@HomeFragment.activity,
+                object : ConfirmationDialog.ConfirmationListener {
+                    override fun onAccept() {
+                        presenter.onRemoveTransaction(it)
+                    }
+
+                    override fun onCancel() {
+                        // no-op
+                    }
+
+                }
+            )
+        },
+        onItemClickCallback = {
+            navigation.openEditTransaction(this@HomeFragment.activity, it)
+        }
+    )
 
     override fun bindPresenter(): HomePresenter {
         return presenter

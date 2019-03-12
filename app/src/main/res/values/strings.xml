@@ -13,10 +13,12 @@
     <string name="monthly_target">Objetivo mensual</string>
     <string name="notifications">Notificaciones</string>
     <string name="category_name_hint">Nombre</string>
-    <string name="amount_hint" translatable="false">0.00</string>
+    <string name="amount_hint" translatable="false">0.00€</string>
     <string name="new_category">Nueva Categoría</string>
     <string name="new_income">Vamos a agregar un nuevo ingreso de %1s€</string>
     <string name="new_outcome">Vamos a agregar un nuevo gasto de %1s€</string>
+    <string name="remove_income">Vamos a eliminar un ingreso de %1.2f€</string>
+    <string name="remove_outcome">Vamos a eliminar un gasto de %1.2f€</string>
     <string name="new_transaction">Nueva Transacción</string>
     <string name="edit_transaction">Editar Transacción</string>
     <string name="confirm_title">¿Estás seguro?</string>
@@ -28,4 +30,5 @@
     <string name="period">%1d %2s</string>
     <string name="new_edit_income">Vamos a editar un ingreso de %1s€</string>
     <string name="new_edit_outcome">Vamos a editar un gasto de %1s€</string>
+    <string name="amount_placeholder" translatable="false">%1.2f€</string>
 </resources>

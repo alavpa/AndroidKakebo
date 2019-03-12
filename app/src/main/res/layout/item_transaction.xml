@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/selectable_item_background"
+    android:background="@drawable/press_item_background"
     android:orientation="horizontal"
     android:padding="@dimen/margin_big">
 
@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin"
         android:layout_weight="0"
-        android:tint="@drawable/selectable_item_tint_inverse"
+        android:tint="@drawable/press_item_tint_inverse"
         tools:src="@drawable/ic_round_home_24px" />
 
     <LinearLayout
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@drawable/selectable_item_tint_inverse"
+            android:textColor="@drawable/press_item_tint_inverse"
             android:textSize="@dimen/font_normal"
             tools:text="Category" />
 
@@ -39,7 +39,7 @@
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:layout_marginEnd="@dimen/margin"
-            android:tint="@drawable/selectable_item_tint_inverse"
+            android:tint="@drawable/press_item_tint_inverse"
             tools:src="@drawable/ic_round_trending_down_24px" />
 
     </LinearLayout>
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="0"
-        android:textColor="@drawable/selectable_item_tint_inverse"
+        android:textColor="@drawable/press_item_tint_inverse"
         android:textSize="@dimen/font_normal"
         tools:text="300€" />
 
@@ -64,6 +64,6 @@
         android:layout_marginEnd="@dimen/margin"
         android:layout_weight="0"
         android:src="@drawable/ic_round_delete_24px"
-        android:tint="@drawable/selectable_item_tint_inverse" />
+        android:tint="@drawable/press_item_tint_inverse" />
 
 </LinearLayout>

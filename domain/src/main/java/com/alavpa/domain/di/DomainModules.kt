@@ -1,6 +1,7 @@
 package com.alavpa.domain.di
 
 import com.alavpa.domain.interactor.DeleteCategory
+import com.alavpa.domain.interactor.DeleteTransaction
 import com.alavpa.domain.interactor.GetCategories
 import com.alavpa.domain.interactor.GetCategory
 import com.alavpa.domain.interactor.GetIcons
@@ -19,4 +20,5 @@ val domainModule = module {
     factory { DeleteCategory(get()) }
     factory { GetTransactions(get()) }
     factory { GetTransaction(get()) }
+    factory { DeleteTransaction(get()) }
 }

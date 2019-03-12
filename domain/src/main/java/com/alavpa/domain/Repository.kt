@@ -14,4 +14,5 @@ interface Repository {
     suspend fun getTransactions(): List<Transaction>
     suspend fun getPeriod(id: Long?): Period?
     suspend fun getTransaction(id: Long): Transaction
+    suspend fun deleteTransaction(transaction: Transaction): Int
 }

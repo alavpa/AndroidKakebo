@@ -34,6 +34,19 @@ class TransactionActivity : BaseActivity<TransactionPresenter>(), TransactionVie
     private var period: Period? = null
     private var internalCheck = false
     private var transactionId = 0L
+    private val onConfirmationListener = object : PeriodicityDialog.ConfirmationListener {
+        override fun onAccept(number: Int, period: Int) {
+            presenter.setPeriod(number, period)
+        }
+
+        override fun onCancel() {
+            period?.let {
+                presenter.setPeriod(it.times, it.periodicity)
+            } ?: {
+                periodSwitch?.isChecked = false
+            }.invoke()
+        }
+    }
 
     override fun bindPresenter(): TransactionPresenter {
         return presenter
@@ -63,15 +76,7 @@ class TransactionActivity : BaseActivity<TransactionPresenter>(), TransactionVie
                 if (isChecked) {
                     PeriodicityDialog.newInstance().show(
                         this@TransactionActivity,
-                        object : PeriodicityDialog.ConfirmationListener {
-                            override fun onAccept(number: Int, period: Int) {
-                                presenter.setPeriod(number, period)
-                            }
-
-                            override fun onCancel() {
-                                // no-op
-                            }
-                        }
+                        onConfirmationListener
                     )
                 } else {
                     every?.text = getString(R.string.no_period)
@@ -84,15 +89,7 @@ class TransactionActivity : BaseActivity<TransactionPresenter>(), TransactionVie
         every?.setOnClickListener {
             PeriodicityDialog.newInstance().show(
                 this@TransactionActivity,
-                object : PeriodicityDialog.ConfirmationListener {
-                    override fun onAccept(number: Int, period: Int) {
-                        presenter.setPeriod(number, period)
-                    }
-
-                    override fun onCancel() {
-                        // no-op
-                    }
-                }
+                onConfirmationListener
             )
         }
 

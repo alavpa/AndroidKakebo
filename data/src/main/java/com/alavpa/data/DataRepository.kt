@@ -11,6 +11,10 @@ class DataRepository(
     private val databaseSource: DatabaseSource,
     private val resourcesDataSource: ResourcesDataSource
 ) : Repository {
+    override suspend fun deleteTransaction(transaction: Transaction): Int {
+        return databaseSource.deleteTransaction(transaction.toTable())
+    }
+
     override suspend fun getTransaction(id: Long): Transaction {
         return databaseSource.getTransaction(id).let { transactionTable ->
             transactionTable.toEntity(
