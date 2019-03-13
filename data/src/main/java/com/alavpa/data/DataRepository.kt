@@ -11,6 +11,7 @@ class DataRepository(
     private val databaseSource: DatabaseSource,
     private val resourcesDataSource: ResourcesDataSource
 ) : Repository {
+
     override suspend fun deleteTransaction(transaction: Transaction): Int {
         return databaseSource.deleteTransaction(transaction.toTable())
     }
@@ -63,5 +64,11 @@ class DataRepository(
 
     override suspend fun getIcons(): List<Int> {
         return resourcesDataSource.getIcons()
+    }
+
+    override suspend fun getTransactionsFromDate(from: Long): List<Transaction> {
+        return databaseSource.getTransactionsByDate(from).map {
+            it.toEntity(getCategory(it.categoryId), getPeriod(it.periodId))
+        }
     }
 }

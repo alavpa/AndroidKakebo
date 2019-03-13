@@ -4,24 +4,41 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <LinearLayout android:id="@+id/pies"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent">
-    <com.alavpa.androidkakebo.views.KakeboPieChart
-        android:id="@+id/pie1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:padding="@dimen/margin" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/horizontal">
 
-    <com.alavpa.androidkakebo.views.KakeboPieChart
-        android:id="@+id/pie2"
+        <com.alavpa.androidkakebo.views.KakeboPieChart
+            android:id="@+id/pie1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/margin_big" />
+
+        <com.alavpa.androidkakebo.views.KakeboPieChart
+            android:id="@+id/pie2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/margin_big" />
+
+    </LinearLayout>
+    
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5"/>
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/historial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:padding="@dimen/margin" />
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/horizontal"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

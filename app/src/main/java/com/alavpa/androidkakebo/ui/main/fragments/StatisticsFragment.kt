@@ -5,12 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import com.alavpa.androidkakebo.R
+import com.alavpa.androidkakebo.base.BaseFragment
+import com.alavpa.presentation.statistics.StatisticsPresenter
+import com.alavpa.presentation.statistics.StatisticsView
 import kotlinx.android.synthetic.main.fragment_statistics.pie1
 import kotlinx.android.synthetic.main.fragment_statistics.pie2
+import org.koin.android.ext.android.inject
 
-class StatisticsFragment : Fragment() {
+class StatisticsFragment : BaseFragment<StatisticsPresenter>(), StatisticsView {
+
+    private val presenter: StatisticsPresenter by inject()
+
+    override fun bindPresenter(): StatisticsPresenter {
+        return presenter
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_statistics, container, false)
@@ -24,16 +33,36 @@ class StatisticsFragment : Fragment() {
             pie2?.color = ContextCompat.getColor(it, R.color.red)
         }
 
-        pie1?.angle = 100f
-        pie2?.angle = 200f
-
         pie1?.strokeSize = activity?.resources?.getDimension(R.dimen.font_small) ?: 0f
         pie2?.strokeSize = activity?.resources?.getDimension(R.dimen.font_small) ?: 0f
 
         pie1.textSize = activity?.resources?.getDimension(R.dimen.font_small) ?: 0f
         pie2.textSize = activity?.resources?.getDimension(R.dimen.font_small) ?: 0f
+    }
 
-        pie1?.amount = "12€"
-        pie2?.amount = "124€"
+    override fun onResume() {
+        super.onResume()
+        presenter.getIncome()
+        presenter.getOutcome()
+    }
+
+    override fun setIncomeAmount(amount: Float) {
+        pie1?.amount = "$amount€"
+        pie1?.invalidate()
+    }
+
+    override fun setOutcomeAmount(amount: Float) {
+        pie2?.amount = "$amount€"
+        pie2?.invalidate()
+    }
+
+    override fun setOutcomeAngle(angle: Float) {
+        pie2?.angle = angle
+        pie2?.invalidate()
+    }
+
+    override fun setIncomeAngle(angle: Float) {
+        pie1?.angle = angle
+        pie1?.invalidate()
     }
 }

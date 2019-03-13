@@ -18,14 +18,14 @@ class KakeboPieChart : View {
     private var cx = 0f
     private var cy = 0f
     private var radius = 0f
+    private val dimensions = RectF()
+    private val bounds = Rect()
 
     var amount = ""
     var angle = 0f
     var strokeSize = 0f
     var textSize = context.resources.getDimension(R.dimen.font_big)
     var color = ContextCompat.getColor(context, R.color.red)
-    private val dimensions = RectF()
-    private val bounds = Rect()
 
     private val piePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = ContextCompat.getColor(context, R.color.white)
@@ -65,6 +65,11 @@ class KakeboPieChart : View {
             drawCircle(cx, cy, radius - strokeSize, piePaint)
 
             slicePaint.getTextBounds(amount, 0, amount.length, bounds)
+            val diameter = (radius - strokeSize - 20) * 2
+            while ((bounds.right - bounds.left) > diameter) {
+                slicePaint.textSize = slicePaint.textSize - 2
+                slicePaint.getTextBounds(amount, 0, amount.length, bounds)
+            }
 
             drawText(amount,
                 cx - bounds.centerX(),
@@ -83,9 +88,8 @@ class KakeboPieChart : View {
         val ww = width.toFloat() - xpad
         val hh = height.toFloat() - ypad
 
-        cx = ww / 2f
-        cy = hh / 2f
-
+        cx = paddingLeft + (ww / 2f)
+        cy = paddingTop + (hh / 2f)
 
         // Figure out how big we can make the pie.
         radius = Math.min(ww, hh) / 2f

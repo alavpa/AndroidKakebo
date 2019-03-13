@@ -5,6 +5,7 @@ import com.alavpa.presentation.categories.add.AddCategoryPresenter
 import com.alavpa.presentation.home.HomePresenter
 import com.alavpa.presentation.main.MainPresenter
 import com.alavpa.presentation.settings.SettingsPresenter
+import com.alavpa.presentation.statistics.StatisticsPresenter
 import com.alavpa.presentation.transactions.TransactionPresenter
 import org.koin.dsl.module.module
 import java.text.SimpleDateFormat
@@ -19,6 +20,7 @@ val presentationModule = module {
     factory("date") { getSimpleDateFormat() }
     factory("time") { getSimpleTimeFormat() }
     factory { TransactionPresenter(get(), get(), get(), get(), get("date"), get("time")) }
+    factory { StatisticsPresenter(get(), get(), get()) }
 }
 
 fun getSimpleDateFormat(): SimpleDateFormat {
