@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer-array name="icons">
+        <item>@drawable/ic_round_casino_24px</item>
         <item>@drawable/ic_round_child_care_24px</item>
         <item>@drawable/ic_round_fastfood_24px</item>
         <item>@drawable/ic_round_fitness_center_24px</item>
         <item>@drawable/ic_round_flight_24px</item>
         <item>@drawable/ic_round_home_24px</item>
+        <item>@drawable/ic_round_live_tv_24px</item>
+        <item>@drawable/ic_round_local_bar_24px</item>
+        <item>@drawable/ic_round_local_gas_station_24px</item>
+        <item>@drawable/ic_round_local_taxi_24px</item>
+        <item>@drawable/ic_round_restaurant_menu_24px</item>
+        <item>@drawable/ic_round_school_24px</item>
+        <item>@drawable/ic_round_shopping_cart_24px</item>
+        <item>@drawable/ic_round_work_24px</item>
     </integer-array>
 </resources>
