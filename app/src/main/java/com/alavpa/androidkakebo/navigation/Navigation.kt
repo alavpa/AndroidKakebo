@@ -5,7 +5,6 @@ import android.content.Intent
 import com.alavpa.androidkakebo.ui.categories.CategoryActivity
 import com.alavpa.androidkakebo.ui.categories.add.AddCategoryActivity
 import com.alavpa.androidkakebo.ui.transactions.TransactionActivity
-import com.alavpa.domain.entity.Transaction
 
 class Navigation {
 

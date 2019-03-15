@@ -27,17 +27,12 @@ class KakeboHistogram : View {
     private var textSize = 40f
     private var textBounds = Rect()
 
-    val data = mutableListOf<Float>()
-    val labels = mutableListOf<String>()
+    var data = mutableListOf<Pair<String, Float>>()
 
     init {
-        data.add(-12.5f)
-        data.add(-32.5f)
-        data.add(50.5f)
-
-        labels.add("ene.")
-        labels.add("feb.")
-        labels.add("mar.")
+        data.add(Pair("ene.", -12.5f))
+        data.add(Pair("feb", -32.5f))
+        data.add(Pair("mar.", 50.5f))
     }
 
     private val linePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -68,17 +63,17 @@ class KakeboHistogram : View {
         canvas?.apply {
             drawLine(startX, startY, stopX, stopY, linePaint)
 
-            val max = data.max() ?: 0f
+            val max = data.map{it.second}.max() ?: 0f
 
             data.forEachIndexed { i, value ->
 
-                histogramRedPaint.getTextBounds(labels[i], 0, labels[i].length, textBounds)
+                histogramRedPaint.getTextBounds(data[i].first, 0, data[i].first.length, textBounds)
                 val offseth = (textBounds.bottom - textBounds.top).toFloat()
                 val hhh = hh - offseth
 
                 val offset = ww / (data.size.toFloat() * 2)
                 val divisor = (i) / data.size.toFloat()
-                val valueData = (value * (hhh / 2) / max)
+                val valueData = (value.second * (hhh / 2) / max)
                 rectf.left = offset + paddingLeft + (ww * divisor) - 10
                 rectf.right = offset + paddingLeft + (ww * divisor) + 10
 
@@ -86,12 +81,12 @@ class KakeboHistogram : View {
                     rectf.top = startY - valueData
                     rectf.bottom = startY
                     drawRect(rectf, histogramBluePaint)
-                    drawText(labels[i], rectf.left - 20, rectf.top - 10, histogramBluePaint)
+                    drawText(data[i].first, rectf.left - 20, rectf.top - 10, histogramBluePaint)
                 } else {
                     rectf.top = startY
                     rectf.bottom = startY - valueData
                     drawRect(rectf, histogramRedPaint)
-                    drawText(labels[i], rectf.left - 20, rectf.bottom + 40, histogramRedPaint)
+                    drawText(data[i].first, rectf.left - 20, rectf.bottom + 40, histogramRedPaint)
                 }
             }
 

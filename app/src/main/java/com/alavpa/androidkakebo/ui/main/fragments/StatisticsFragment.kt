@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.alavpa.androidkakebo.R
+import com.alavpa.androidkakebo.adapters.HistorialAdapter
 import com.alavpa.androidkakebo.base.BaseFragment
 import com.alavpa.presentation.statistics.StatisticsPresenter
 import com.alavpa.presentation.statistics.StatisticsView
+import kotlinx.android.synthetic.main.fragment_statistics.historial
 import kotlinx.android.synthetic.main.fragment_statistics.pie1
 import kotlinx.android.synthetic.main.fragment_statistics.pie2
 import org.koin.android.ext.android.inject
@@ -16,6 +19,8 @@ import org.koin.android.ext.android.inject
 class StatisticsFragment : BaseFragment<StatisticsPresenter>(), StatisticsView {
 
     private val presenter: StatisticsPresenter by inject()
+
+    private val adapter = HistorialAdapter()
 
     override fun bindPresenter(): StatisticsPresenter {
         return presenter
@@ -38,12 +43,16 @@ class StatisticsFragment : BaseFragment<StatisticsPresenter>(), StatisticsView {
 
         pie1.textSize = activity?.resources?.getDimension(R.dimen.font_small) ?: 0f
         pie2.textSize = activity?.resources?.getDimension(R.dimen.font_small) ?: 0f
+
+        historial?.layoutManager = LinearLayoutManager(activity)
+        historial?.adapter = adapter
     }
 
     override fun onResume() {
         super.onResume()
         presenter.getIncome()
         presenter.getOutcome()
+        presenter.getHistogram()
     }
 
     override fun setIncomeAmount(amount: Float) {

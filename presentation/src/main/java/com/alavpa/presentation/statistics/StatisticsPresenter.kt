@@ -48,4 +48,8 @@ class StatisticsPresenter(
             }
         }
     }
+
+    fun getHistogram() {
+
+    }
 }
