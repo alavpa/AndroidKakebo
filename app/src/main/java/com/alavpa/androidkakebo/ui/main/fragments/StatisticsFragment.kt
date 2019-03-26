@@ -8,7 +8,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.adapters.HistorialAdapter
+import com.alavpa.androidkakebo.adapters.TestAdapter
 import com.alavpa.androidkakebo.base.BaseFragment
+import com.alavpa.presentation.model.HistogramItem
 import com.alavpa.presentation.statistics.StatisticsPresenter
 import com.alavpa.presentation.statistics.StatisticsView
 import kotlinx.android.synthetic.main.fragment_statistics.historial
@@ -73,5 +75,10 @@ class StatisticsFragment : BaseFragment<StatisticsPresenter>(), StatisticsView {
     override fun setIncomeAngle(angle: Float) {
         pie1?.angle = angle
         pie1?.invalidate()
+    }
+
+    override fun populateHistogram(items: MutableList<HistogramItem>) {
+        adapter.items = items
+        adapter.notifyDataSetChanged()
     }
 }

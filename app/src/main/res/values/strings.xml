@@ -31,4 +31,6 @@
     <string name="new_edit_income">Vamos a editar un ingreso de %1s€</string>
     <string name="new_edit_outcome">Vamos a editar un gasto de %1s€</string>
     <string name="amount_placeholder" translatable="false">%1.2f€</string>
+    <string name="cada">Cada</string>
+    <string name="one" translatable="false">1</string>
 </resources>

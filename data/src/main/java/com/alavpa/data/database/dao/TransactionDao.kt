@@ -7,13 +7,10 @@ import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import com.alavpa.data.database.entity.TransactionTable
 
-/**
- * Created by alex on 10/11/2017.
- */
 @Dao
 interface TransactionDao {
 
-    @Query("SELECT * FROM TransactionTable")
+    @Query("SELECT * FROM TransactionTable ORDER BY insertDate ASC")
     suspend fun getAllTransactions(): List<TransactionTable>
 
     @Query("SELECT * FROM TransactionTable WHERE id=:id")
@@ -25,6 +22,6 @@ interface TransactionDao {
     @Delete
     suspend fun deleteTransaction(transactionTable: TransactionTable): Int
 
-    @Query("SELECT * FROM TransactionTable WHERE insertDate>:from")
+    @Query("SELECT * FROM TransactionTable WHERE insertDate>:from ORDER BY insertDate ASC")
     fun getTransactionsFromDate(from: Long): List<TransactionTable>
 }

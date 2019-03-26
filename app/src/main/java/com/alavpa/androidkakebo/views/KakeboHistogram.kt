@@ -9,6 +9,9 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.alavpa.androidkakebo.R
+import java.text.SimpleDateFormat
+import java.util.Locale
+import kotlin.math.absoluteValue
 
 class KakeboHistogram : View {
 
@@ -63,7 +66,7 @@ class KakeboHistogram : View {
         canvas?.apply {
             drawLine(startX, startY, stopX, stopY, linePaint)
 
-            val max = data.map{it.second}.max() ?: 0f
+            val max = data.map { it.second.absoluteValue }.max() ?: 0f
 
             data.forEachIndexed { i, value ->
 
