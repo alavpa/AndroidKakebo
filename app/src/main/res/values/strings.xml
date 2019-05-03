@@ -27,7 +27,7 @@
     <string name="every_tools">Cada 3 semanas</string>
     <string name="period_title">Periodo</string>
     <string name="no_period">No automatico</string>
-    <string name="period">%1d %2s</string>
+    <string name="period" translatable="false">%1d %2s</string>
     <string name="new_edit_income">Vamos a editar un ingreso de %1s€</string>
     <string name="new_edit_outcome">Vamos a editar un gasto de %1s€</string>
     <string name="amount_placeholder" translatable="false">%1.2f€</string>
