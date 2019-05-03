@@ -1,6 +1,7 @@
 package com.alavpa.data
 
 import com.alavpa.data.database.DatabaseSource
+import com.alavpa.data.preferences.PreferencesDataSource
 import com.alavpa.data.resources.ResourcesDataSource
 import com.alavpa.domain.Repository
 import com.alavpa.domain.entity.Category
@@ -10,11 +11,34 @@ import com.alavpa.domain.entity.Transaction
 
 class DataRepository(
     private val databaseSource: DatabaseSource,
-    private val resourcesDataSource: ResourcesDataSource
+    private val resourcesDataSource: ResourcesDataSource,
+    private val preferencesDataSource: PreferencesDataSource
 ) : Repository {
+    override fun enableFirstDayNotifications(isEnabled: Boolean) {
+        preferencesDataSource.setFirstDayEnabled(isEnabled)
+    }
+
+    override fun enableAutoNotifications(isEnabled: Boolean) {
+        preferencesDataSource.setTransactionsAutoEnabled(isEnabled)
+    }
+
+    override fun enableTargetNotifications(isEnabled: Boolean) {
+        preferencesDataSource.setTargetAchievedEnabled(isEnabled)
+    }
+
     override fun getNotificationsList(): List<Notification> {
         return resourcesDataSource.getNotificationsList()
-            .mapIndexed { index, text -> Notification(index + 1L, text) }
+            .mapIndexed { index, text ->
+                val id = index + 1L
+                val isEnabled = when (id) {
+                    Notification.FIRST_DAY_ID -> preferencesDataSource.getFirstDayEnabled()
+                    Notification.AUTO_ID -> preferencesDataSource.getTransactionsAutoEnabled()
+                    Notification.TARGET_ID -> preferencesDataSource.getTargetAchievedEnabled()
+                    else -> false
+                }
+
+                Notification(id, text, isEnabled)
+            }
     }
 
     override suspend fun deleteTransaction(transaction: Transaction): Int {

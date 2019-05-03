@@ -6,6 +6,7 @@ import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.adapters.NotificationsAdapter
 import com.alavpa.androidkakebo.base.BaseActivity
 import com.alavpa.domain.entity.Notification
+import com.alavpa.presentation.model.NotificationItem
 import com.alavpa.presentation.notificacions.NotificationsPresenter
 import com.alavpa.presentation.notificacions.NotificationsView
 import kotlinx.android.synthetic.main.activity_notifications.kakeboBar
@@ -19,7 +20,9 @@ class NotificationsActivity : BaseActivity<NotificationsPresenter>(), Notificati
         return presenter
     }
 
-    val adapter = NotificationsAdapter()
+    val adapter = NotificationsAdapter { id, isEnabled ->
+        presenter.enableNotifications(id, isEnabled)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +34,6 @@ class NotificationsActivity : BaseActivity<NotificationsPresenter>(), Notificati
 
         notifications?.layoutManager = LinearLayoutManager(this)
         notifications?.adapter = adapter
-
     }
 
     override fun onResume() {
@@ -39,7 +41,7 @@ class NotificationsActivity : BaseActivity<NotificationsPresenter>(), Notificati
         presenter.loadNotifications()
     }
 
-    override fun populateNotifications(list: List<Notification>) {
+    override fun populateNotifications(list: List<NotificationItem>) {
         adapter.items = list
         adapter.notifyDataSetChanged()
     }

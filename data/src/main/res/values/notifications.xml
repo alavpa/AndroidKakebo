@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="notifications">
-        <item>Notificame cada primer día de mes.</item>
-        <item>Notificame al hacer una transacción automatica.</item>
-        <item>Notificame al gastar el 80% de los ingresos.</item>
+        <item>Primer día de mes.</item>
+        <item>Transacciones automaticas.</item>
+        <item>Alcanzar objetivo mensual.</item>
     </array>
 </resources>

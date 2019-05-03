@@ -2,7 +2,6 @@ package com.alavpa.androidkakebo.navigation
 
 import android.app.Activity
 import android.content.Intent
-import androidx.fragment.app.FragmentActivity
 import com.alavpa.androidkakebo.ui.categories.CategoryActivity
 import com.alavpa.androidkakebo.ui.categories.add.AddCategoryActivity
 import com.alavpa.androidkakebo.ui.notifications.NotificationsActivity

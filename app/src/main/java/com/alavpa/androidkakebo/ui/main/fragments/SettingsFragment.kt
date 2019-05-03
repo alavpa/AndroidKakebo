@@ -42,5 +42,4 @@ class SettingsFragment : BaseFragment<SettingsPresenter>(), SettingsView {
     override fun openNotifications() {
         navigation.openNotifications(activity)
     }
-
 }

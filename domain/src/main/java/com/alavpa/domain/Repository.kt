@@ -18,4 +18,7 @@ interface Repository {
     suspend fun deleteTransaction(transaction: Transaction): Int
     suspend fun getTransactionsFromDate(from: Long): List<Transaction>
     fun getNotificationsList(): List<Notification>
+    fun enableFirstDayNotifications(isEnabled: Boolean)
+    fun enableAutoNotifications(isEnabled: Boolean)
+    fun enableTargetNotifications(isEnabled: Boolean)
 }

@@ -7,16 +7,18 @@ import android.widget.CheckedTextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.alavpa.androidkakebo.R
-import com.alavpa.domain.entity.Notification
+import com.alavpa.presentation.model.NotificationItem
 
-class NotificationsAdapter : RecyclerView.Adapter<NotificationsAdapter.ItemViewHolder>() {
+class NotificationsAdapter(
+    private val onClick: (Long, Boolean) -> Unit
+) : RecyclerView.Adapter<NotificationsAdapter.ItemViewHolder>() {
 
-    var items: List<Notification> = listOf()
+    var items: List<NotificationItem> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_notifications, parent, false)
-        return ItemViewHolder(view)
+        return ItemViewHolder(view, onClick)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
@@ -28,24 +30,40 @@ class NotificationsAdapter : RecyclerView.Adapter<NotificationsAdapter.ItemViewH
         return items.size
     }
 
-    class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ItemViewHolder(
+        itemView: View,
+        private val onClick: (Long, Boolean) -> Unit
+    ) : RecyclerView.ViewHolder(itemView) {
 
         private var notificationCheck: CheckedTextView = itemView.findViewById(R.id.notification_check)
 
-        fun bind(item: Notification) {
+        fun bind(item: NotificationItem) {
             notificationCheck.text = item.text
+            if (item.selected) setEnabled(notificationCheck) else setDisabled(notificationCheck)
+
             notificationCheck.setOnClickListener {
                 with(it as CheckedTextView) {
                     if (isChecked) {
-                        isChecked = false
-                        checkMarkDrawable = null
+                        setDisabled(this)
+                        item.selected = false
+                        onClick(item.id, false)
                     } else {
-                        isChecked = true
-                        checkMarkDrawable = ContextCompat.getDrawable(itemView.context, R.drawable.ic_check_black_24dp)
+                        setEnabled(this)
+                        item.selected = true
+                        onClick(item.id, true)
                     }
                 }
-
             }
+        }
+
+        private fun setEnabled(view: CheckedTextView) {
+            view.isChecked = true
+            view.checkMarkDrawable = ContextCompat.getDrawable(itemView.context, R.drawable.ic_check_black_24dp)
+        }
+
+        private fun setDisabled(view: CheckedTextView) {
+            view.isChecked = false
+            view.checkMarkDrawable = null
         }
     }
 }

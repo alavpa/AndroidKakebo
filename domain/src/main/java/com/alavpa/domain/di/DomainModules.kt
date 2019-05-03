@@ -2,6 +2,7 @@ package com.alavpa.domain.di
 
 import com.alavpa.domain.interactor.DeleteCategory
 import com.alavpa.domain.interactor.DeleteTransaction
+import com.alavpa.domain.interactor.EnableNotifications
 import com.alavpa.domain.interactor.GetCategories
 import com.alavpa.domain.interactor.GetCategory
 import com.alavpa.domain.interactor.GetIcons
@@ -29,4 +30,5 @@ val domainModule = module {
     factory { GetOutcomeFromDate(get()) }
     factory { GetTransactionsFromDate(get()) }
     factory { GetNotificationsList(get()) }
+    factory { EnableNotifications(get()) }
 }
