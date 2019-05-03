@@ -14,14 +14,14 @@ interface CategoryDao {
     suspend fun getAll(): List<CategoryTable>
 
     @Query("SELECT * FROM CategoryTable WHERE income = :income")
-    suspend fun getAll(income : Boolean): List<CategoryTable>
+    suspend fun getAll(income: Boolean): List<CategoryTable>
 
     @Query("SELECT * FROM CategoryTable WHERE id = :id")
     suspend fun get(id: Long): CategoryTable
 
     @Insert(onConflict = REPLACE)
-    suspend fun insert(table : CategoryTable) : Long
+    suspend fun insert(table: CategoryTable): Long
 
     @Delete
-    suspend fun delete(table: CategoryTable) : Int
+    suspend fun delete(table: CategoryTable): Int
 }

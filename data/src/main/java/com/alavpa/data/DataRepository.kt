@@ -4,6 +4,7 @@ import com.alavpa.data.database.DatabaseSource
 import com.alavpa.data.resources.ResourcesDataSource
 import com.alavpa.domain.Repository
 import com.alavpa.domain.entity.Category
+import com.alavpa.domain.entity.Notification
 import com.alavpa.domain.entity.Period
 import com.alavpa.domain.entity.Transaction
 
@@ -11,6 +12,10 @@ class DataRepository(
     private val databaseSource: DatabaseSource,
     private val resourcesDataSource: ResourcesDataSource
 ) : Repository {
+    override fun getNotificationsList(): List<Notification> {
+        return resourcesDataSource.getNotificationsList()
+            .mapIndexed { index, text -> Notification(index + 1L, text) }
+    }
 
     override suspend fun deleteTransaction(transaction: Transaction): Int {
         return databaseSource.deleteTransaction(transaction.toTable())

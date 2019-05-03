@@ -12,7 +12,7 @@ import org.koin.android.ext.android.inject
 abstract class BaseFragment<T : BasePresenter<*>> : Fragment(), BaseView {
 
     private var basePresenter: BasePresenter<BaseView>? = null
-    private val loadingDialog : LoadingDialog by inject()
+    private val loadingDialog: LoadingDialog by inject()
     val navigation: Navigation by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +41,6 @@ abstract class BaseFragment<T : BasePresenter<*>> : Fragment(), BaseView {
         activity?.let {
             loadingDialog.show(it, message)
         }
-
     }
 
     override fun onStart() {
@@ -56,4 +55,3 @@ abstract class BaseFragment<T : BasePresenter<*>> : Fragment(), BaseView {
 
     abstract fun bindPresenter(): T
 }
-

@@ -2,7 +2,6 @@ package com.alavpa.domain.interactor
 
 import com.alavpa.domain.Repository
 import com.alavpa.domain.entity.Transaction
-import java.util.Calendar
 
 class GetIncomeFromDate(private val repository: Repository) : UseCase<List<Transaction>>() {
 

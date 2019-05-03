@@ -7,7 +7,8 @@ import androidx.room.PrimaryKey
 @Entity
 data class CategoryTable(
     @ColumnInfo @PrimaryKey(autoGenerate = true)
-    var id : Long = 0,
+    var id: Long = 0,
     var icon: Int = 0,
     var name: String = "",
-    var income: Boolean = false)
+    var income: Boolean = false
+)

@@ -3,7 +3,6 @@ package com.alavpa.androidkakebo.base
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import com.alavpa.androidkakebo.dialogs.LoadingDialog
 import com.alavpa.androidkakebo.navigation.Navigation
 import com.alavpa.presentation.base.BasePresenter
@@ -13,7 +12,7 @@ import org.koin.android.ext.android.inject
 abstract class BaseActivity<T : BasePresenter<*>> : AppCompatActivity(), BaseView {
 
     private var basePresenter: BasePresenter<BaseView>? = null
-    private val loadingDialog : LoadingDialog by inject()
+    private val loadingDialog: LoadingDialog by inject()
     val navigation: Navigation by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,4 +49,3 @@ abstract class BaseActivity<T : BasePresenter<*>> : AppCompatActivity(), BaseVie
 
     abstract fun bindPresenter(): T
 }
-

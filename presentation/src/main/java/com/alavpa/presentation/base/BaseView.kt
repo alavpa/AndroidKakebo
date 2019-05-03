@@ -4,8 +4,8 @@ package com.alavpa.presentation.base
  * Created by alex_avila on 8/11/17.
  */
 interface BaseView {
-    fun startLoading(message : String)
+    fun startLoading(message: String)
     fun stopLoading()
-    fun showError(message : String?)
-    fun showMessage(message : String?)
+    fun showError(message: String?)
+    fun showMessage(message: String?)
 }

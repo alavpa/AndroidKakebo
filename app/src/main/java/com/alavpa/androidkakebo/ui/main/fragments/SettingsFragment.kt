@@ -25,7 +25,6 @@ class SettingsFragment : BaseFragment<SettingsPresenter>(), SettingsView {
         categories?.setOnClickListener {
             presenter.onClickCategories()
         }
-
     }
 
     override fun bindPresenter(): SettingsPresenter {

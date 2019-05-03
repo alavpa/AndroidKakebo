@@ -5,9 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import com.alavpa.data.database.entity.CategoryTable
 import com.alavpa.data.database.entity.PeriodTable
-import com.alavpa.data.database.entity.TransactionTable
 
 @Dao
 interface PeriodDao {
@@ -19,8 +17,8 @@ interface PeriodDao {
     suspend fun get(id: Long): PeriodTable
 
     @Insert(onConflict = REPLACE)
-    suspend fun insert(table : PeriodTable) : Long
+    suspend fun insert(table: PeriodTable): Long
 
     @Delete
-    suspend fun delete(table: PeriodTable) : Int
+    suspend fun delete(table: PeriodTable): Int
 }

@@ -9,7 +9,7 @@ import com.alavpa.androidkakebo.R
 import com.alavpa.presentation.model.HistogramItem
 import com.alavpa.androidkakebo.views.KakeboHistogram
 
-class HistorialAdapter: RecyclerView.Adapter<HistorialAdapter.ItemViewHolder>() {
+class HistorialAdapter : RecyclerView.Adapter<HistorialAdapter.ItemViewHolder>() {
 
     var items: List<HistogramItem> = mutableListOf()
 
@@ -29,8 +29,7 @@ class HistorialAdapter: RecyclerView.Adapter<HistorialAdapter.ItemViewHolder>() 
         return items.size
     }
 
-    class ItemViewHolder(itemView: View)
-        : RecyclerView.ViewHolder(itemView) {
+    class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private var histogram: KakeboHistogram = itemView.findViewById(R.id.histogram)
         private var year: TextView = itemView.findViewById(R.id.year)

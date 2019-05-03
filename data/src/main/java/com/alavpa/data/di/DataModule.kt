@@ -10,11 +10,6 @@ import com.alavpa.domain.Repository
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module.module
 
-
-/**
- * Created by alex on 09/01/2018.
- */
-
 val dataModule = module {
     single { createDb(androidApplication()) }
     single { DatabaseSource(get()) }

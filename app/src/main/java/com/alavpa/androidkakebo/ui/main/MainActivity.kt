@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.activity_main.bottom_bar
 import kotlinx.android.synthetic.main.activity_main.kakeboBar
 import kotlinx.android.synthetic.main.appbarlayout_kakebo.view.titleBar
 import org.koin.android.ext.android.inject
-import timber.log.Timber
 
 class MainActivity : BaseActivity<MainPresenter>(), MainView {
 

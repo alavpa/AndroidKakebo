@@ -83,7 +83,6 @@ class TransactionActivity : BaseActivity<TransactionPresenter>(), TransactionVie
                     this.period = null
                 }
             }
-
         }
 
         every?.setOnClickListener {
@@ -212,6 +211,4 @@ class TransactionActivity : BaseActivity<TransactionPresenter>(), TransactionVie
             presenter.setPeriod(it.times, it.periodicity)
         }
     }
-
-
 }

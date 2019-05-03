@@ -14,5 +14,4 @@ class MainPresenter : BasePresenter<MainView>() {
     fun onClickSettings() {
         view?.openSettings()
     }
-
 }

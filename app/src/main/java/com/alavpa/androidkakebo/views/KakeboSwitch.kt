@@ -96,7 +96,6 @@ class KakeboSwitch : LinearLayout {
 
     fun setOnSwitchChanged(onSwitchChangedListener: OnSwitchChangedListener) {
         this.onSwitchChangedListener = onSwitchChangedListener
-
     }
 
     interface OnSwitchChangedListener {

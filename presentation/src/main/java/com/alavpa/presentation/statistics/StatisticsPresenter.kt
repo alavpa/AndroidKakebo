@@ -105,7 +105,6 @@ class StatisticsPresenter(
 
                 view?.populateHistogram(items)
             }
-
         }
     }
 }

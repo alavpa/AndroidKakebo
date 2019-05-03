@@ -7,8 +7,9 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.alavpa.androidkakebo.R
 
-class IconAdapter(private val onItemClickCallback: (Int) -> Unit = {})
-    : RecyclerView.Adapter<IconAdapter.ItemViewHolder>() {
+class IconAdapter(
+    private val onItemClickCallback: (Int) -> Unit = {}
+) : RecyclerView.Adapter<IconAdapter.ItemViewHolder>() {
 
     var items: List<Int> = listOf()
     var itemSelected = -1
@@ -37,8 +38,7 @@ class IconAdapter(private val onItemClickCallback: (Int) -> Unit = {})
         return items.size
     }
 
-    class ItemViewHolder(itemView: View)
-        : RecyclerView.ViewHolder(itemView) {
+    class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var icon: ImageView = itemView.findViewById(R.id.icon)
 
         fun bind(item: Int, isSelected: Boolean, onClickListener: View.OnClickListener) {

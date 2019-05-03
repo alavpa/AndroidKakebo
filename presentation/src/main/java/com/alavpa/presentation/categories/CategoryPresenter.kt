@@ -27,7 +27,7 @@ class CategoryPresenter(
     }
 
     fun onClickItem(id: Long) {
-
+        // no-op
     }
 
     fun onDeleteItem(category: Category) {
@@ -37,6 +37,5 @@ class CategoryPresenter(
                 getCategories()
             }
         }
-
     }
 }

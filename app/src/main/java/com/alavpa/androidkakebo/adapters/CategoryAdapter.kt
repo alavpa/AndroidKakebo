@@ -47,8 +47,7 @@ class CategoryAdapter(
         return items.size
     }
 
-    class ItemViewHolder(itemView: View)
-        : RecyclerView.ViewHolder(itemView) {
+    class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private var name: TextView = itemView.findViewById(R.id.name)
         private var icon: ImageView = itemView.findViewById(R.id.icon)

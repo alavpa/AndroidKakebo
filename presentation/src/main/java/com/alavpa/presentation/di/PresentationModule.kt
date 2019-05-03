@@ -4,6 +4,7 @@ import com.alavpa.presentation.categories.CategoryPresenter
 import com.alavpa.presentation.categories.add.AddCategoryPresenter
 import com.alavpa.presentation.home.HomePresenter
 import com.alavpa.presentation.main.MainPresenter
+import com.alavpa.presentation.notificacions.NotificationsPresenter
 import com.alavpa.presentation.settings.SettingsPresenter
 import com.alavpa.presentation.statistics.StatisticsPresenter
 import com.alavpa.presentation.transactions.TransactionPresenter
@@ -21,6 +22,7 @@ val presentationModule = module {
     factory("time") { getSimpleTimeFormat() }
     factory { TransactionPresenter(get(), get(), get(), get(), get("date"), get("time")) }
     factory { StatisticsPresenter(get(), get(), get(), get()) }
+    factory { NotificationsPresenter() }
 }
 
 fun getSimpleDateFormat(): SimpleDateFormat {

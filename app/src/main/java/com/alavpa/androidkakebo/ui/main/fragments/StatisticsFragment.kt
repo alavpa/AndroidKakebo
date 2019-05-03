@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alavpa.androidkakebo.R
 import com.alavpa.androidkakebo.adapters.HistorialAdapter
-import com.alavpa.androidkakebo.adapters.TestAdapter
 import com.alavpa.androidkakebo.base.BaseFragment
 import com.alavpa.presentation.model.HistogramItem
 import com.alavpa.presentation.statistics.StatisticsPresenter

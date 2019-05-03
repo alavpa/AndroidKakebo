@@ -46,8 +46,7 @@ class TransactionAdapter(
         return items.size
     }
 
-    class ItemViewHolder(itemView: View)
-        : RecyclerView.ViewHolder(itemView) {
+    class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private var amount: TextView = itemView.findViewById(R.id.amount)
         private var name: TextView = itemView.findViewById(R.id.name)

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class TestAdapter: RecyclerView.Adapter<TestAdapter.ItemViewHolder>() {
+class TestAdapter : RecyclerView.Adapter<TestAdapter.ItemViewHolder>() {
 
     var items: List<String> = mutableListOf()
 
@@ -25,10 +25,9 @@ class TestAdapter: RecyclerView.Adapter<TestAdapter.ItemViewHolder>() {
         return items.size
     }
 
-    class ItemViewHolder(itemView: View)
-        : RecyclerView.ViewHolder(itemView) {
+    class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val textView : TextView = itemView.findViewById(android.R.id.text1)
+        val textView: TextView = itemView.findViewById(android.R.id.text1)
 
         fun bind(item: String) {
             textView.text = item

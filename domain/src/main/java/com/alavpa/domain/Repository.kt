@@ -1,6 +1,7 @@
 package com.alavpa.domain
 
 import com.alavpa.domain.entity.Category
+import com.alavpa.domain.entity.Notification
 import com.alavpa.domain.entity.Period
 import com.alavpa.domain.entity.Transaction
 
@@ -16,4 +17,5 @@ interface Repository {
     suspend fun getTransaction(id: Long): Transaction
     suspend fun deleteTransaction(transaction: Transaction): Int
     suspend fun getTransactionsFromDate(from: Long): List<Transaction>
+    fun getNotificationsList(): List<Notification>
 }

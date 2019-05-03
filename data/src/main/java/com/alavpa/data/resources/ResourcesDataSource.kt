@@ -14,4 +14,8 @@ class ResourcesDataSource(private val context: Context) {
         array.recycle()
         return list
     }
+
+    fun getNotificationsList(): List<String> {
+        return context.resources.getStringArray(R.array.notifications).toList()
+    }
 }

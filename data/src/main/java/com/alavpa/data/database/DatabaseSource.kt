@@ -3,7 +3,6 @@ package com.alavpa.data.database
 import com.alavpa.data.database.entity.CategoryTable
 import com.alavpa.data.database.entity.PeriodTable
 import com.alavpa.data.database.entity.TransactionTable
-import com.alavpa.domain.entity.Transaction
 
 class DatabaseSource(private val db: KakeboDb) {
 
@@ -13,11 +12,6 @@ class DatabaseSource(private val db: KakeboDb) {
 
     suspend fun insertTransaction(transactionTable: TransactionTable): Long {
         return db.transactionDao().insertTransaction(transactionTable)
-    }
-
-    suspend fun updateTransaction(transactionTable: TransactionTable): Int {
-        //return db.spendDao().updateSpend(transactionTable)
-        TODO("Implement")
     }
 
     suspend fun deleteTransaction(transactionTable: TransactionTable): Int {

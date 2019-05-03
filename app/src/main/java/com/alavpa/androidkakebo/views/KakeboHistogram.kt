@@ -9,8 +9,6 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.alavpa.androidkakebo.R
-import java.text.SimpleDateFormat
-import java.util.Locale
 import kotlin.math.absoluteValue
 
 class KakeboHistogram : View {
@@ -92,7 +90,6 @@ class KakeboHistogram : View {
                     drawText(data[i].first, rectf.left - 20, rectf.bottom + 40, histogramRedPaint)
                 }
             }
-
         }
     }
 
