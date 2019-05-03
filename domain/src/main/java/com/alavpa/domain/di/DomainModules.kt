@@ -6,6 +6,7 @@ import com.alavpa.domain.interactor.GetCategories
 import com.alavpa.domain.interactor.GetCategory
 import com.alavpa.domain.interactor.GetIcons
 import com.alavpa.domain.interactor.GetIncomeFromDate
+import com.alavpa.domain.interactor.GetNotificationsList
 import com.alavpa.domain.interactor.GetOutcomeFromDate
 import com.alavpa.domain.interactor.GetTransaction
 import com.alavpa.domain.interactor.GetTransactions
@@ -27,4 +28,5 @@ val domainModule = module {
     factory { GetIncomeFromDate(get()) }
     factory { GetOutcomeFromDate(get()) }
     factory { GetTransactionsFromDate(get()) }
+    factory { GetNotificationsList(get()) }
 }

@@ -2,8 +2,10 @@ package com.alavpa.androidkakebo.navigation
 
 import android.app.Activity
 import android.content.Intent
+import androidx.fragment.app.FragmentActivity
 import com.alavpa.androidkakebo.ui.categories.CategoryActivity
 import com.alavpa.androidkakebo.ui.categories.add.AddCategoryActivity
+import com.alavpa.androidkakebo.ui.notifications.NotificationsActivity
 import com.alavpa.androidkakebo.ui.transactions.TransactionActivity
 
 class Navigation {
@@ -37,6 +39,13 @@ class Navigation {
         context?.let {
             val intent = Intent(it, TransactionActivity::class.java)
             intent.putExtra(EXTRA_TRANSACTION_ID, transactionId)
+            it.startActivity(intent)
+        }
+    }
+
+    fun openNotifications(context: Activity?) {
+        context?.let {
+            val intent = Intent(it, NotificationsActivity::class.java)
             it.startActivity(intent)
         }
     }

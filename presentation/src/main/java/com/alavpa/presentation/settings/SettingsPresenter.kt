@@ -6,4 +6,8 @@ class SettingsPresenter : BasePresenter<SettingsView>() {
     fun onClickCategories() {
         view?.openCategories()
     }
+
+    fun onClickNotifications() {
+        view?.openNotifications()
+    }
 }

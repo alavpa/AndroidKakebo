@@ -9,6 +9,7 @@ import com.alavpa.androidkakebo.base.BaseFragment
 import com.alavpa.presentation.settings.SettingsPresenter
 import com.alavpa.presentation.settings.SettingsView
 import kotlinx.android.synthetic.main.fragment_settings.categories
+import kotlinx.android.synthetic.main.fragment_settings.notifications
 import org.koin.android.ext.android.inject
 
 class SettingsFragment : BaseFragment<SettingsPresenter>(), SettingsView {
@@ -25,6 +26,9 @@ class SettingsFragment : BaseFragment<SettingsPresenter>(), SettingsView {
         categories?.setOnClickListener {
             presenter.onClickCategories()
         }
+        notifications?.setOnClickListener {
+            presenter.onClickNotifications()
+        }
     }
 
     override fun bindPresenter(): SettingsPresenter {
@@ -34,4 +38,9 @@ class SettingsFragment : BaseFragment<SettingsPresenter>(), SettingsView {
     override fun openCategories() {
         navigation.openCategories(activity)
     }
+
+    override fun openNotifications() {
+        navigation.openNotifications(activity)
+    }
+
 }

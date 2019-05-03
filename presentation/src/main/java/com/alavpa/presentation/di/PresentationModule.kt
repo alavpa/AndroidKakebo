@@ -22,7 +22,7 @@ val presentationModule = module {
     factory("time") { getSimpleTimeFormat() }
     factory { TransactionPresenter(get(), get(), get(), get(), get("date"), get("time")) }
     factory { StatisticsPresenter(get(), get(), get(), get()) }
-    factory { NotificationsPresenter() }
+    factory { NotificationsPresenter(get()) }
 }
 
 fun getSimpleDateFormat(): SimpleDateFormat {
