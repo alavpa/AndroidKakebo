@@ -52,7 +52,7 @@ class DatabaseSource(private val db: KakeboDb) {
         return db.transactionDao().getTransaction(id)
     }
 
-    fun getTransactionsByDate(from: Long): List<TransactionTable> {
+    suspend fun getTransactionsByDate(from: Long): List<TransactionTable> {
         return db.transactionDao().getTransactionsFromDate(from)
     }
 }

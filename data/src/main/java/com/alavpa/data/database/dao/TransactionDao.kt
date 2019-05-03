@@ -23,5 +23,5 @@ interface TransactionDao {
     suspend fun deleteTransaction(transactionTable: TransactionTable): Int
 
     @Query("SELECT * FROM TransactionTable WHERE insertDate>:from ORDER BY insertDate ASC")
-    fun getTransactionsFromDate(from: Long): List<TransactionTable>
+    suspend fun getTransactionsFromDate(from: Long): List<TransactionTable>
 }
