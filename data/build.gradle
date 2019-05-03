@@ -35,7 +35,7 @@ dependencies {
 
     // Room
     implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-coroutines:$room_version"
+    implementation "androidx.room:room-coroutines:$room_coroutines_version"
     kapt "androidx.room:room-compiler:$room_version"
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
