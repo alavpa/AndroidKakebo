@@ -14,6 +14,14 @@ class DataRepository(
     private val resourcesDataSource: ResourcesDataSource,
     private val preferencesDataSource: PreferencesDataSource
 ) : Repository {
+    override fun setFirstDay(timeInMillis: Long) {
+        preferencesDataSource.setFirstDay(timeInMillis)
+    }
+
+    override fun getFirstDay(): Long {
+        return preferencesDataSource.getFirstDay()
+    }
+
     override fun enableFirstDayNotifications(isEnabled: Boolean) {
         preferencesDataSource.setFirstDayEnabled(isEnabled)
     }

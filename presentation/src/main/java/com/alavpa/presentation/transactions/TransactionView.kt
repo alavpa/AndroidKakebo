@@ -3,6 +3,7 @@ package com.alavpa.presentation.transactions
 import com.alavpa.domain.entity.Category
 import com.alavpa.domain.entity.Transaction
 import com.alavpa.presentation.base.BaseView
+import java.util.Calendar
 
 interface TransactionView : BaseView {
     fun populateCategories(list: List<Category>)
@@ -13,4 +14,6 @@ interface TransactionView : BaseView {
     fun setCurrentTime(timeText: String?)
     fun setPeriod(number: Int, period: Int)
     fun populateTransaction(transaction: Transaction)
+    fun openDateDialog(calendar: Calendar)
+    fun openTimeDialog(calendar: Calendar)
 }

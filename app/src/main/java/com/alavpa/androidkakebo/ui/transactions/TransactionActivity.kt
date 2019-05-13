@@ -93,27 +93,11 @@ class TransactionActivity : BaseActivity<TransactionPresenter>(), TransactionVie
         }
 
         date?.setOnClickListener {
-            DatePickerDialog(
-                this,
-                DatePickerDialog.OnDateSetListener { _, year, month, day ->
-                    presenter.setCurrentDate(year, month, day)
-                },
-                presenter.calendar.get(Calendar.YEAR),
-                presenter.calendar.get(Calendar.MONTH),
-                presenter.calendar.get(Calendar.DAY_OF_MONTH)
-            ).show()
+            presenter.onDateClick()
         }
 
         time?.setOnClickListener {
-            TimePickerDialog(
-                this,
-                TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-                    presenter.setCurrentTime(hour, minute)
-                },
-                presenter.calendar.get(Calendar.HOUR_OF_DAY),
-                presenter.calendar.get(Calendar.MINUTE),
-                true
-            ).show()
+            presenter.onTimeClick()
         }
     }
 
@@ -210,5 +194,29 @@ class TransactionActivity : BaseActivity<TransactionPresenter>(), TransactionVie
             internalCheck = false
             presenter.setPeriod(it.times, it.periodicity)
         }
+    }
+
+    override fun openTimeDialog(calendar: Calendar) {
+        TimePickerDialog(
+            this,
+            TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+                presenter.setCurrentTime(hour, minute)
+            },
+            calendar.get(Calendar.HOUR_OF_DAY),
+            calendar.get(Calendar.MINUTE),
+            true
+        ).show()
+    }
+
+    override fun openDateDialog(calendar: Calendar) {
+        DatePickerDialog(
+            this,
+            DatePickerDialog.OnDateSetListener { _, year, month, day ->
+                presenter.setCurrentDate(year, month, day)
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        ).show()
     }
 }

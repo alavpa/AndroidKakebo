@@ -87,4 +87,12 @@ class TransactionPresenter(
             view?.populateTransaction(it)
         }
     }
+
+    fun onDateClick() {
+        view?.openDateDialog(calendar)
+    }
+
+    fun onTimeClick() {
+        view?.openTimeDialog(calendar)
+    }
 }

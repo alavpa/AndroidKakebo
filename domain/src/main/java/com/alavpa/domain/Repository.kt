@@ -21,4 +21,6 @@ interface Repository {
     fun enableFirstDayNotifications(isEnabled: Boolean)
     fun enableAutoNotifications(isEnabled: Boolean)
     fun enableTargetNotifications(isEnabled: Boolean)
+    fun setFirstDay(timeInMillis: Long)
+    fun getFirstDay(): Long
 }

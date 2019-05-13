@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 class PreferencesDataSource(private val sharedPreferences: SharedPreferences) {
 
     companion object {
+        private const val KEY_FIRST_DAY = "KEY_FIRST_DAY"
         private const val KEY_FIRST_DAY_ENABLED = "KEY_FIRST_DAY_ENABLED"
         private const val KEY_TARGET_ENABLED = "KEY_TARGET_ENABLED"
         private const val KEY_AUTO_ENABLED = "KEY_AUTO_ENABLED"
@@ -21,6 +22,10 @@ class PreferencesDataSource(private val sharedPreferences: SharedPreferences) {
     fun setTransactionsAutoEnabled(isEnabled: Boolean) = save(KEY_AUTO_ENABLED, isEnabled)
 
     fun getTransactionsAutoEnabled() = get(KEY_AUTO_ENABLED, true)
+
+    fun getFirstDay() = get(KEY_FIRST_DAY, System.currentTimeMillis())
+
+    fun setFirstDay(timeInMillis: Long) = save(KEY_FIRST_DAY, timeInMillis)
 
     private fun <T> save(key: String, value: T) {
         when (value) {

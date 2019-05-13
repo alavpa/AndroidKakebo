@@ -14,7 +14,7 @@ import java.util.Locale
 
 val presentationModule = module {
     factory { MainPresenter() }
-    factory { SettingsPresenter() }
+    factory { SettingsPresenter(get(), get()) }
     factory { CategoryPresenter(get(), get()) }
     factory { HomePresenter(get(), get()) }
     factory { AddCategoryPresenter(get(), get()) }
