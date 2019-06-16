@@ -22,7 +22,7 @@
         android:id="@+id/first_day_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_big"
+        android:layout_marginEnd="@dimen/margin_big"
         android:layout_marginTop="@dimen/margin_big"
         android:text="@string/first_day"
         android:textColor="@color/colorPrimary"

@@ -79,7 +79,7 @@ class SettingsFragment : BaseFragment<SettingsPresenter>(), SettingsView {
         val cal = Calendar.getInstance()
         cal.timeInMillis = timeInMillis
 
-        val firstDay = SimpleDateFormat("dd de MMM", Locale.getDefault())
+        val firstDay = SimpleDateFormat("dd 'de' MMM", Locale.getDefault())
             .format(cal.time)
 
         first_day_value?.text = firstDay
